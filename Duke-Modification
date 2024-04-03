@@ -7,6 +7,7 @@ from spacy.matcher import PhraseMatcher
 nlp = English()
 
 #Inspired by: https://github.com/kheslin0420/kheslin0420.github.io/blob/master/audit-collection-descriptions.py
+#Modified from: https://gist.github.com/noahgh221/6aa54bfbcf16b312b56181866fba6631#file-description_audit_ead-py
 
 #Path to DCs
 path = 'C:/Users/u6045253/Desktop/Audit Test'
