@@ -46,7 +46,7 @@ matcher.add('HateBase', None, *phrase_patterns)
 
 with open(csv_path,'wt', newline='', encoding='utf-8') as csvout:
     writer = csv.writer(csvout)
-    row =  ['identifer','setSpec', 'match_count', 'match_type', 'match_phrase', 'snippet']
+    row =  ['identifer', 'match_count', 'match_type', 'match_phrase', 'snippet']
     writer.writerow(row)
 
     for subdir, dirs, files in os.walk(path):
@@ -61,15 +61,12 @@ with open(csv_path,'wt', newline='', encoding='utf-8') as csvout:
                 #Get collection info
                 identifier = soup.identifier.text
                 print (identifier)
-                setSpec = soup.archdesc.did.title.text #might need to remove tabs, newlines
-                setSpec = setSpec.split()
-                clean_setSpec = ' '.join(setSpec).replace('\\n','').replace('\\', '')
 
                 #Note fields (stuff in <p> tags)
                 all_descriptions = []
                 descriptions = soup.find_all('dc:description')
                 for description in descriptions:
-                    all_description.append(descriptions)
+                    all_descriptions.append(descriptions)
 
                 #Convert giant list object of p text into one big string
                 full_descriptions = str(descriptions)
@@ -78,10 +75,10 @@ with open(csv_path,'wt', newline='', encoding='utf-8') as csvout:
                 full_descriptions = full_descriptions.split()
 
                 #Remove line breaks and such
-                full_descriptions = ' '.join(full_note_text).replace('\n',' ')
+                full_descriptions = ' '.join(full_descriptions).replace('\n',' ')
 
                 #Remove commas
-                full_descriptions = ' '.join(full_note_text).replace(',',' ')
+                full_descriptions = ' '.join(full_descriptions).replace(',',' ')
 
                 #print (clean_note_text)
                 if len(full_descriptions) > 1000000: #nlp has max text length of 1000000 chars
@@ -125,8 +122,8 @@ with open(csv_path,'wt', newline='', encoding='utf-8') as csvout:
 
                     #Term in context
                     span2 = doc1[start_snippet1:end_snippet1]
-                    print (identifier, setSpec, desc_match_count, 'desc_match', span1.text, span2.text)
-                    row = [identifier, setSpec, desc_match_count, 'desc_match', span1.text, span2.text]
+                    print (identifier, desc_match_count, 'desc_match', span1.text, span2.text)
+                    row = [identifier, desc_match_count, 'desc_match', span1.text, span2.text]
                     writer.writerow(row)
 
                     #Report out <title> matches in CSV
