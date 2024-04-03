@@ -1,1 +1,1 @@
-# DC-Audit-Tool
+# Dublin Core Metadata Audit Tool
