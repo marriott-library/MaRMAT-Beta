@@ -60,7 +60,7 @@ with open(csv_path,'wt', newline='', encoding='utf-8') as csvout:
                 #Get collection info
                 identifier = soup.identifier.text
                 print (identifier)
-                setSpec = soup.archdesc.did.unittitle.text #might need to remove tabs, newlines
+                setSpec = soup.archdesc.did.title.text #might need to remove tabs, newlines
                 setSpec = setSpec.split()
                 clean_setSpec = ' '.join(setSpec).replace('\\n','').replace('\\', '')
                                
@@ -72,12 +72,17 @@ with open(csv_path,'wt', newline='', encoding='utf-8') as csvout:
         
                 #Convert giant list object of p text into one big string
                 full_descriptions = str(descriptions)
+               
                 #Get rid of extra spaces
                 full_descriptions = full_descriptions.split()
+
                 #Try to remove line breaks and such
                 full_descriptions = ' '.join(full_note_text).replace('\n',' ')
+
+                #Remove commas
+                full_descriptions = ' '.join(full_note_text).replace(',',' ')
+
                 #print (clean_note_text)
-                                
                 if len(full_descriptions) > 1000000: #nlp has max text length of 1000000 chars
                     continue
         
@@ -85,18 +90,18 @@ with open(csv_path,'wt', newline='', encoding='utf-8') as csvout:
                 desc = nlp(full_descriptions)
         
                 #Title fields
-                unittitle_list = []
-                unittitle_tags = soup.find_all('dc:title')
-                for unittitle in unittitle_tags:
-                     unittitle_list.append(unittitle.text)
+                title_list = []
+                title_tags = soup.find_all('dc:title')
+                for title in title_tags:
+                     title_list.append(title.text)
                     
-                clean_unittitle_text = ' '.join(unittitle_list).replace('\n',' ')
+                clean_title_text = ' '.join(title_list).replace('\n',' ')
                 
-                if len(clean_unittitle_text) > 1000000: #nlp has max text length of 1000000 chars
+                if len(clean_title_text) > 1000000: #nlp has max text length of 1000000 chars
                     continue
                 
-                #Giant string of unittitle content
-                doc2 = nlp(str(clean_unittitle_text))
+                #Giant string of title content
+                doc2 = nlp(str(clean_title_text))
                     
                 #Create lists of matches for notes and title
                 matches_desc = matcher(doc1)
@@ -118,7 +123,7 @@ with open(csv_path,'wt', newline='', encoding='utf-8') as csvout:
                     row = [identifier, setSpec, desc_match_count, 'desc_match', span1.text, span2.text]
                     writer.writerow(row)
                 
-                #Report out <unittitle> matches in CSV
+                #Report out <title> matches in CSV
                 for match_id, start, end in matches_titles:
                     #Term itself
                     span3 = doc2[start:end]
