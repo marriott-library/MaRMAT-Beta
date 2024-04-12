@@ -1,1 +1,1 @@
-# Dublin Core Reparative Metadata Audit Tool
+# Reparative Metadata Audit Tool
