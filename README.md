@@ -7,7 +7,8 @@ This tool was inspired by the Duke University Libraries Description Audit Tool, 
 
 Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in collaboration with ChatGPT 3.5, [Rachel Wittmann](https://github.com/RachelJaneWittmann), and [Anna Neatrour](https://github.com/aneatrour) at the University of Utah's J. Willard Marriot Library.
 
-## About the Code
+## About the Tool
+This Python tool is designed to parse XML files containing Open Archives Initiative (OAI) feed metadata for library special collections, extract the data, tokenize and preprocess it, and then write the extracted data into a CSV file. Then, it matches the tokens against a lexicon and appends corresponding lexicon categories (Aggrandizement, Race Euphemisms, Race Terms, Slavery Terms, Gender Terms, LGBTQ, Mental Illness, and Disability) to each row in the CSV output. It is intended to facilitate reparative metadata practices. 
 
 ### Dependencies 
 1. **Python 3.x**: The programming language used to write the code.
