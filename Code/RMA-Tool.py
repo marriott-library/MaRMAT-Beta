@@ -43,7 +43,7 @@ def find_matches(lexicon_df, metadata_df):
             for term in lexicon_df['term']:
                 pattern = r'\b' + re.escape(term) + r'\b'  # Match the whole word
                 if re.search(pattern, text, flags=re.IGNORECASE):
-                    matches.append((term, lexicon_df[lexicon_df['term'] == term]['category'].iloc[0], col))
+                    matches.append((term, lexicon_df[lexicon_df['term'] == term]['category'].iloc[0], col, row['Identifier']))
     return matches
 
 # Example usage
@@ -62,7 +62,7 @@ if lexicon is not None and metadata is not None:
     matches = find_matches(lexicon, metadata)
     if matches:
         print("Matches found:")
-        matched_data = pd.DataFrame(matches, columns=['Matched Term', 'Category', 'Metadata Column'])
+        matched_data = pd.DataFrame(matches, columns=['Matched Term', 'Category', 'Metadata Column', 'Identifier'])
         updated_metadata = pd.concat([matched_data, metadata], axis=1)
         updated_metadata.to_csv("updated_metadata.csv", index=False)
         print("Updated metadata saved to 'updated_metadata.csv'")
