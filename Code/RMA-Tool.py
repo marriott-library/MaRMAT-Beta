@@ -29,7 +29,6 @@ def load_metadata(file_path):
         punctuation_table = str.maketrans('', '', string.punctuation)
         metadata_df['Title'] = metadata_df['Title'].apply(lambda x: x.translate(punctuation_table))
         metadata_df['Description'] = metadata_df['Description'].apply(lambda x: x.translate(punctuation_table))
-        metadata_df['Subject'] = metadata_df['Subject'].apply(lambda x: x.translate(punctuation_table))
         metadata_df['Collection Name'] = metadata_df['Collection Name'].apply(lambda x: x.translate(punctuation_table))
         
         # Return the DataFrame
@@ -76,6 +75,8 @@ if lexicon is not None and metadata is not None:
     matches_df = pd.DataFrame(matches, columns=['Identifier', 'Term', 'Category', 'Column'])
     # Merge matches with original metadata using left join on "Identifier"
     merged_df = pd.merge(metadata, matches_df, on="Identifier", how="left")
+    # Filter out rows without matches
+    merged_df = merged_df.dropna(subset=['Term'])
     # Save merged DataFrame to CSV
     merged_df.to_csv(output_file_path, index=False)
 
