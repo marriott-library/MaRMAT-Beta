@@ -45,8 +45,7 @@ def load_lexicon_from_csv(file_path):
 
 def search_and_append_lexicon_category(lexicon, input_csv_file, output_csv_file):
     """
-    Searches for lexicon term matches in specified columns of an input CSV file,
-    appends lexicon categories to each row, and writes the modified data into an output CSV file.
+    Searches for lexicon term matches in an input CSV file, appends lexicon categories to each row, and writes the modified data into an output CSV file.
 
     Parameters:
     - lexicon (dict): Dictionary containing lexicon categories as keys and lists of terms as values.
@@ -54,7 +53,7 @@ def search_and_append_lexicon_category(lexicon, input_csv_file, output_csv_file)
     - output_csv_file (str): File path of the output CSV file.
 
     Note:
-    - Specified columns for lexicon analysis: "Title", "Subject", "Description", "Collection Name"
+    - The input CSV file should contain columns specified for lexicon analysis.
     - The output CSV file will have additional columns for each lexicon category, indicating the matched terms.
     """
 
@@ -72,6 +71,9 @@ def search_and_append_lexicon_category(lexicon, input_csv_file, output_csv_file)
         
         # Iterate over rows in the input CSV file
         for row in reader:
+            # Initialize dictionary to store token matches for each lexicon category
+            token_matches = {category: [] for category in lexicon}
+            
             # Tokenize and preprocess text from specified columns
             for column in ["Title", "Subject", "Description", "Collection Name"]:
                 text = row[column]
@@ -81,8 +83,10 @@ def search_and_append_lexicon_category(lexicon, input_csv_file, output_csv_file)
                     # Search for matches between tokens and terms in the lexicon
                     for category, terms in lexicon.items():
                         matches = [term for term in filtered_tokens if term in terms]
-                        # Append lexicon matches to the row
-                        row[category] = ', '.join(matches)
+                        token_matches[category].extend(matches)
+            
+            # Update the row with token matches for each lexicon category
+            row.update(token_matches)
             # Write the modified row to the output CSV file
             writer.writerow(row)
 
