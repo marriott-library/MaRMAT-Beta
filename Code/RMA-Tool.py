@@ -42,3 +42,28 @@ def find_matches(lexicon_df, metadata_df):
             # Iterate over each term in the lexicon and check for matches
             for term, category in zip(lexicon_df['term'], lexicon_df['category']):
                 # Check if the term exists in the text column
+                if term.lower() in row[col].lower():
+                    matches.append((row['Identifier'], term, category, col))
+    return matches
+
+# Example usage
+lexicon_file_path = "lexicon.csv"  # Replace with the path to your lexicon CSV file
+metadata_file_path = "metadata.csv"  # Replace with the path to your metadata CSV file
+output_file_path = "matches.csv"  # Path to the output CSV file
+
+lexicon = load_lexicon(lexicon_file_path)
+metadata = load_metadata(metadata_file_path)
+
+# Perform matching
+if lexicon is not None and metadata is not None:
+    matches = find_matches(lexicon, metadata)
+    # Create DataFrame from matches
+    matches_df = pd.DataFrame(matches, columns=['Identifier', 'Term', 'Category', 'Column'])
+    # Merge matches with original metadata using left join on "Identifier"
+    merged_df = pd.merge(metadata, matches_df, on="Identifier", how="left")
+    # Filter out rows without matches
+    merged_df = merged_df.dropna(subset=['Term'])
+    # Save merged DataFrame to CSV
+    merged_df.to_csv(output_file_path, index=False)
+
+    print("Merged data saved to:", output_file_path)
