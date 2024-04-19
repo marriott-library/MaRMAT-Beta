@@ -1,1 +1,19 @@
 Here are our project notes from Friday, April 19 2024
+
+
+Project notes from working meeting:
+
+We continued to look at issues with harvesting OAI and convering xml to CSV
+We decided to focus only on downloaded CSV and TSV files
+
+Kaylee explored writing something that would help Rachel convert TSV files, or this is done in Open Refine? Does this need to be revisited?
+We had discussions about supplementing the lexicon.
+
+Kaylee wrote code and Rachel tested on her PC
+One issue raised was the idea of searching for phrases, for example "biological male"
+We also thought of supplementing the lexicon with lists of LCSH terms that were outdated, in addition to terms that were problematic.
+We tried to find ways of getting automated lists of changed LCSH subject headings and did not come up with a good solution. 
+Rachel and Anna are coping and pasting lists of changes into Excel and adjusting in order to come up with these terms from classweb:
+https://classweb.org/approved-subjects/ (Rachel to do from 2011-2016, Anna to work on 2017-2024)
+
+At the close of day, there is a working script, with some issues - tokenizing? on parts of words causes the riot in Marriott to appear.
