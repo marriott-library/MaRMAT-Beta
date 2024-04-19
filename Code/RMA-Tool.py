@@ -1,17 +1,11 @@
 import pandas as pd
 import string
 import re
-import spacy
-
-# Load the English NLP model from spaCy
-nlp = spacy.load("en_core_web_sm")
 
 def load_lexicon(file_path):
     try:
         # Load the lexicon CSV file into a DataFrame
         lexicon_df = pd.read_csv(file_path)
-        
-        # Return the DataFrame
         return lexicon_df
     except FileNotFoundError:
         print("File not found. Please provide a valid file path.")
@@ -31,7 +25,6 @@ def load_metadata(file_path):
         metadata_df['Description'] = metadata_df['Description'].apply(lambda x: x.translate(punctuation_table))
         metadata_df['Collection Name'] = metadata_df['Collection Name'].apply(lambda x: x.translate(punctuation_table))
         
-        # Return the DataFrame
         return metadata_df
     except FileNotFoundError:
         print("File not found. Please provide a valid file path.")
@@ -42,22 +35,15 @@ def load_metadata(file_path):
 
 def find_matches(lexicon_df, metadata_df):
     matches = []
-    
     # Iterate over each row in the metadata DataFrame
     for index, row in metadata_df.iterrows():
-        # Process the text in each specified column using spaCy
+        # Process the text in each specified column
         for col in ['Title', 'Description', 'Subject', 'Collection Name']:
-            doc = nlp(row[col])
-            # Extract lemmatized tokens from the document
-            tokens = [token.lemma_.lower() for token in doc if not token.is_stop and not token.is_punct]
-            # Join the tokens into a string
-            text = ' '.join(tokens)
             # Iterate over each term in the lexicon and check for matches
             for term, category in zip(lexicon_df['terms'], lexicon_df['category']):
-                # Use regular expression to find matches
-                if re.search(r'\b' + term.lower() + r'\b', text):
+                # Check if the term exists in the text column
+                if term.lower() in row[col].lower():
                     matches.append((row['Identifier'], term, category, col))
-    
     return matches
 
 # Example usage
