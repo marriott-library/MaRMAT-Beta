@@ -62,10 +62,10 @@ if lexicon is not None and metadata is not None:
     matches = find_matches(lexicon, metadata)
     if matches:
         print("Matches found:")
-        matched_data = pd.DataFrame(matches, columns=['Matched Term', 'Category', 'Metadata Column', 'Identifier'])
-        updated_metadata = pd.concat([metadata] * len(matched_data), ignore_index=True)
-        updated_metadata[['Matched Term', 'Category', 'Metadata Column', 'Identifier']] = matched_data
-        updated_metadata.to_csv("updated_metadata.csv", index=False)
-        print("Updated metadata saved to 'updated_metadata.csv'")
+        matched_data = pd.DataFrame(columns=['Matched Term', 'Category', 'Metadata Column', 'Identifier'])
+        for match in matches:
+            matched_data = matched_data.append(pd.Series(match, index=['Matched Term', 'Category', 'Metadata Column', 'Identifier']), ignore_index=True)
+        matched_data.to_csv("matched_data.csv", index=False)
+        print("Matched data saved to 'matched_data.csv'")
     else:
         print("No matches found.")
