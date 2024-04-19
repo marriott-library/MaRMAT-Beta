@@ -37,34 +37,7 @@ def remove_punctuation(text):
 
 def find_matches(lexicon_df, metadata_df):
     matches = []
-    for index, row in metadata_df.iterrows():
-        for col in ['Title', 'Description', 'Subject', 'Collection Name']:
-            text = remove_punctuation(row[col])
-            for term in lexicon_df['term']:
-                pattern = r'\b' + re.escape(term) + r'\b'  # Match the whole word
-                if re.search(pattern, text, flags=re.IGNORECASE):
-                    matches.append((term, lexicon_df[lexicon_df['term'] == term]['category'].iloc[0], col, row['Identifier']))
-    return matches
-
-# Example usage
-lexicon_file_path = "lexicon.csv"  # Replace with the path to your lexicon file
-metadata_file_path = "metadata.csv"  # Replace with the path to your metadata file
-
-lexicon = load_lexicon(lexicon_file_path)
-metadata = load_metadata(metadata_file_path)
-
-if lexicon is not None and metadata is not None:
-    print("Lexicon loaded successfully:")
-    print(lexicon.head())  # Display the first few rows of the loaded lexicon
-    print("Metadata loaded successfully:")
-    print(metadata.head())  # Display the first few rows of the loaded metadata
-    
-    matches = find_matches(lexicon, metadata)
-    if matches:
-        print("Matches found:")
-        matched_data = pd.DataFrame(matches, columns=['Matched Term', 'Category', 'Metadata Column', 'Identifier'])
-        updated_metadata = pd.concat([matched_data, metadata], axis=1)
-        updated_metadata.to_csv("updated_metadata.csv", index=False)
-        print("Updated metadata saved to 'updated_metadata.csv'")
-    else:
-        print("No matches found.")
+    # Iterate over the terms in the lexicon
+    for term, category in zip(lexicon_df['term'], lexicon_df['category']):
+        # Create a regex pattern for the term
+        pattern = r'\b' + re.escape(term) + r'\b'
