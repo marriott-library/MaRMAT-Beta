@@ -41,8 +41,8 @@ def find_matches(lexicon_df, metadata_df):
         for col in ['Title', 'Description', 'Subject', 'Collection Name']:
             # Iterate over each term in the lexicon and check for matches
             for term, category in zip(lexicon_df['term'], lexicon_df['category']):
-                # Check if the term exists in the text column
-                if term.lower() in row[col].lower():
+                # Check if the whole term exists in the text column
+                if re.search(r'\b' + re.escape(term.lower()) + r'\b', row[col].lower()):
                     matches.append((row['Identifier'], term, category, col))
     return matches
 
