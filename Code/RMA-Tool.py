@@ -37,18 +37,15 @@ def remove_punctuation(text):
 
 def find_matches(lexicon_df, metadata_df):
     matches = []
-    # Iterate over the terms in the lexicon
-    for term, category in zip(lexicon_df['term'], lexicon_df['category']):
-        # Create a regex pattern for the term
-        pattern = r'\b' + re.escape(term) + r'\b'
-        # Apply the regex pattern to each text column in metadata_df
+    for index, row in metadata_df.iterrows():
+        row_matches = []
         for col in ['Title', 'Description', 'Subject', 'Collection Name']:
-            # Concatenate all text columns into a single string
-            text = metadata_df[col].astype(str).str.cat(sep=' ')
-            # Remove punctuation
-            text = remove_punctuation(text)
-            # Find matches
-            matches.extend([(term, category, col, identifier) for identifier in metadata_df.loc[metadata_df[col].str.contains(pattern, flags=re.IGNORECASE), 'Identifier']])
+            text = remove_punctuation(row[col])
+            for term in lexicon_df['term']:
+                pattern = r'\b' + re.escape(term) + r'\b'  # Match the whole word
+                if re.search(pattern, text, flags=re.IGNORECASE):
+                    row_matches.append((term, lexicon_df[lexicon_df['term'] == term]['category'].iloc[0], col, row['Identifier']))
+        matches.extend(row_matches)
     return matches
 
 # Example usage
@@ -68,7 +65,7 @@ if lexicon is not None and metadata is not None:
     if matches:
         print("Matches found:")
         matched_data = pd.DataFrame(matches, columns=['Matched Term', 'Category', 'Metadata Column', 'Identifier'])
-        updated_metadata = pd.concat([matched_data, metadata], axis=1)
+        updated_metadata = pd.merge(metadata, matched_data, on='Identifier', how='left')
         updated_metadata.to_csv("updated_metadata.csv", index=False)
         print("Updated metadata saved to 'updated_metadata.csv'")
     else:
