@@ -37,6 +37,17 @@ An initial test case developed a tool for parsing, extracting, tokenizing, and p
    - Returns:
      - matches: List of tuples (Identifier, Term, Category, Column) representing matches.
 
+### Example Usage
+1. Replace **lexicon_file_path**, **metadata_file_path**, and **output_file_path** with the paths to the locally saved [lexicon CSV file](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/reparative-metadata_lexicon.csv), your metadata CSV file, and desired output CSV file, respectively.
+2. Ensure that the specified columns in the metadata CSV file are present and accurately represent the textual data to be matched. Preformat your metadata file with the following column names:
+   - **Title**
+   - **Description**
+   - **Subject**
+   - **Collection Name**
+4. Execute the script to generate the output CSV file containing the matched results.
+
+*Note: Make sure the CSV files have the required format and structure for proper processing. Handle any exceptions related to file loading or data processing as needed.*
+
 ### The Lexicon
 
 ### Sample Data
