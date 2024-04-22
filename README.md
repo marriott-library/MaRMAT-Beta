@@ -19,23 +19,23 @@ An initial test case developed a tool for parsing, extracting, tokenizing, and p
 
 ### Functions 
 1. **load_lexicon(file_path)**: Loads a lexicon CSV file into a Pandas DataFrame.
-  -Parameters:
-    -file_path: Path to the lexicon CSV file.
-  -Returns:
-    -lexicon_df: DataFrame containing the lexicon data.
+   - Parameters:
+      - file_path: Path to the lexicon CSV file.
+    - Returns:
+      - lexicon_df: DataFrame containing the lexicon data.
 
 2. **load_metadata(file_path)**: Loads a metadata CSV file into a Pandas DataFrame. Removes punctuation from specified columns in the metadata DataFrame.
-   -Parameters:
-     -file_path: Path to the metadata CSV file.
-  -Returns:
-    -metadata_df: DataFrame containing the metadata.
+   - Parameters:
+     - file_path: Path to the metadata CSV file.
+   - Returns:
+     - metadata_df: DataFrame containing the metadata.
 
 3. **find_matches(lexicon_df, metadata_df)**: Finds matches between terms in the lexicon and text in specified columns of the metadata.
-  -Parameters:
-    -lexicon_df: DataFrame containing the lexicon data.
-    -metadata_df: DataFrame containing the metadata.
-  -Returns:
-    -matches: List of tuples (Identifier, Term, Category, Column) representing matches.
+   - Parameters:
+     - lexicon_df: DataFrame containing the lexicon data.
+     - metadata_df: DataFrame containing the metadata.
+   - Returns:
+     - matches: List of tuples (Identifier, Term, Category, Column) representing matches.
 
 ### The Lexicon
 
