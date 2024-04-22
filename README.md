@@ -8,16 +8,34 @@ This tool was inspired by the Duke University Libraries Description Audit Tool, 
 Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in collaboration with ChatGPT 3.5, [Rachel Wittmann](https://github.com/RachelJaneWittmann), and [Anna Neatrour](https://github.com/aneatrour) at the University of Utah's J. Willard Marriot Library.
 
 ## About the Tool
-This Python tool is designed to parse XML files containing Open Archives Initiative (OAI) feed metadata for library special collections, extract the data, tokenize and preprocess it, and then write the extracted data into a CSV file. Then, it matches the tokens against a lexicon and appends corresponding lexicon categories (Aggrandizement, Race Euphemisms, Race Terms, Slavery Terms, Gender Terms, LGBTQ, Mental Illness, and Disability) to each row in the CSV output. It is intended to facilitate reparative metadata practices. 
+At the most basic level, this Python script is designed to match terms from a lexicon with textual data and produce a CSV file containing the matched results. It utilizes the Pandas library for data manipulation and regular expressions for text processing. It was designed for librarians engaged in reparative metadata practices to assist them in idenfiying terms in their metadata that may be outdated, biased, or otherwise problematic. The code and lexicon for the tool can be accessed via the [Code](https://github.com/kayleealexander/RMA-Tool/tree/main/Code) folder of this repository; a GUI is currently under development.
+
+An initial test case developed a tool for parsing, extracting, tokenizing, and preprocessing XML files containing Open Archives Initiative (OAI) feed metadata for library special collections that would then crosscheck tokens against Duke's [lexicons](https://github.com/duke-libraries/description-audit/tree/main/lexicons) and append the corresponding lexicon categories (Aggrandizement, Race Euphemisms, Race Terms, Slavery Terms, Gender Terms, LGBTQ, Mental Illness, and Disability) to each row in the CSV output. This tool is accessible via the [XML Test Code](https://github.com/kayleealexander/RMA-Tool/tree/main/XML%20Test%20Code) folder of this repository, though may not work with all OAI feed formats. 
 
 ### Dependencies 
-1. **Python 3.x**: The programming language used to write the code.
-2. **NLTK (Natural Language Toolkit)**: Library for natural language processing, used for tokenization and stopword removal.
-3. **Tkinter**: Standard GUI toolkit for Python, used for creating the graphical user interface.
-4. **xml.etree.ElementTree**: Part of Python's standard library, used for parsing XML files.
-5. **csv**: Part of Python's standard library, used for reading and writing CSV files.
-6. **string**: Part of Python's standard library, used for string operations.
-7. **os**: Part of Python's standard library, used for removing temporary files.
+1. **Pandas**: A powerful data manipulation library for Python.
+2. **String**: A standard Python library for string manipulation.
+3. **Re**: A module providing support for regular expressions (regex) in Python.
+
+### Functions 
+1. **load_lexicon(file_path)**: Loads a lexicon CSV file into a Pandas DataFrame.
+  -Parameters:
+    -file_path: Path to the lexicon CSV file.
+  -Returns:
+    -lexicon_df: DataFrame containing the lexicon data.
+
+2. **load_metadata(file_path)**: Loads a metadata CSV file into a Pandas DataFrame. Removes punctuation from specified columns in the metadata DataFrame.
+   -Parameters:
+     -file_path: Path to the metadata CSV file.
+  -Returns:
+    -metadata_df: DataFrame containing the metadata.
+
+3. **find_matches(lexicon_df, metadata_df)**: Finds matches between terms in the lexicon and text in specified columns of the metadata.
+  -Parameters:
+    -lexicon_df: DataFrame containing the lexicon data.
+    -metadata_df: DataFrame containing the metadata.
+  -Returns:
+    -matches: List of tuples (Identifier, Term, Category, Column) representing matches.
 
 ### The Lexicon
 
