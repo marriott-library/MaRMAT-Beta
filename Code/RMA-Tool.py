@@ -21,7 +21,7 @@ def load_metadata(file_path):
         
         # Remove punctuation from specified columns
         punctuation_table = str.maketrans('', '', string.punctuation)
-        for col in ['Title', 'Description', 'Collection Name']:
+        for col in ['Title', 'Description', 'Subject','Collection Name']:
             metadata_df[col] = metadata_df[col].apply(lambda x: x.translate(punctuation_table) if isinstance(x, str) else x)
         
         return metadata_df
