@@ -33,7 +33,8 @@ class MetadataMatcherApp(tk.Tk):
         try:
             self.metadata_df = pd.read_csv(file_path, encoding='latin1')
             self.current_page.destroy()
-            self.create_category_page()
+            # Create the page to select categories here if needed
+            self.process_files()  # Directly process files after loading metadata
         except FileNotFoundError:
             messagebox.showerror("Error", "File not found. Please provide a valid file path.")
         except Exception as e:
@@ -41,10 +42,6 @@ class MetadataMatcherApp(tk.Tk):
 
     def create_metadata_page(self):
         self.current_page = MetadataPage(self)
-        self.current_page.grid(row=0, column=0, sticky="nsew")
-
-    def create_category_page(self):
-        self.current_page = CategoryPage(self)
         self.current_page.grid(row=0, column=0, sticky="nsew")
 
     def process_files(self):
@@ -86,29 +83,34 @@ class MainPage(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        lexicon_label = tk.Label(self, text="Lexicon File:")
-        lexicon_label.grid(row=0, column=0, padx=5, pady=5)
-        self.lexicon_entry = tk.Entry(self, width=50)
-        self.lexicon_entry.grid(row=0, column=1, padx=5, pady=5)
-        lexicon_button = tk.Button(self, text="Browse", command=self.browse_lexicon)
+        style = ttk.Style()
+        style.configure('TButton', font=('Arial', 12))
+
+        lexicon_label = ttk.Label(self, text="Lexicon File:")
+        lexicon_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
+        self.lexicon_entry = ttk.Entry(self, width=50)
+        self.lexicon_entry.grid(row=0, column=1, padx=5, pady=5, sticky="ew")
+        lexicon_button = ttk.Button(self, text="Browse", command=self.browse_lexicon)
         lexicon_button.grid(row=0, column=2, padx=5, pady=5)
 
-        metadata_label = tk.Label(self, text="Metadata File:")
-        metadata_label.grid(row=1, column=0, padx=5, pady=5)
-        self.metadata_entry = tk.Entry(self, width=50)
-        self.metadata_entry.grid(row=1, column=1, padx=5, pady=5)
-        metadata_button = tk.Button(self, text="Browse", command=self.browse_metadata)
+        metadata_label = ttk.Label(self, text="Metadata File:")
+        metadata_label.grid(row=1, column=0, padx=5, pady=5, sticky="w")
+        self.metadata_entry = ttk.Entry(self, width=50)
+        self.metadata_entry.grid(row=1, column=1, padx=5, pady=5, sticky="ew")
+        metadata_button = ttk.Button(self, text="Browse", command=self.browse_metadata)
         metadata_button.grid(row=1, column=2, padx=5, pady=5)
 
-        output_label = tk.Label(self, text="Output File:")
-        output_label.grid(row=2, column=0, padx=5, pady=5)
-        self.output_entry = tk.Entry(self, width=50)
-        self.output_entry.grid(row=2, column=1, padx=5, pady=5)
-        output_button = tk.Button(self, text="Browse", command=self.browse_output)
+        output_label = ttk.Label(self, text="Output File:")
+        output_label.grid(row=2, column=0, padx=5, pady=5, sticky="w")
+        self.output_entry = ttk.Entry(self, width=50)
+        self.output_entry.grid(row=2, column=1, padx=5, pady=5, sticky="ew")
+        output_button = ttk.Button(self, text="Browse", command=self.browse_output)
         output_button.grid(row=2, column=2, padx=5, pady=5)
 
-        process_button = tk.Button(self, text="Next", command=self.process_next)
+        process_button = ttk.Button(self, text="Next", command=self.process_next)
         process_button.grid(row=3, column=1, padx=5, pady=5)
+
+        self.columnconfigure(1, weight=1)  # Expand middle column
 
     def browse_lexicon(self):
         filename = filedialog.askopenfilename()
@@ -145,16 +147,63 @@ class MetadataPage(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        lexicon_label = tk.Label(self, text="Lexicon File:")
-        lexicon_label.grid(row=0, column=0, padx=5, pady=5)
-        self.lexicon_entry = tk.Entry(self, width=50)
-        self.lexicon_entry.grid(row=0, column=1, padx=5, pady=5)
-        lexicon_button = tk.Button(self, text="Browse", command=self.browse_lexicon)
+        style = ttk.Style()
+        style.configure('TButton', font=('Arial', 12))
+
+        lexicon_label = ttk.Label(self, text="Lexicon File:")
+        lexicon_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
+        self.lexicon_entry = ttk.Entry(self, width=50)
+        self.lexicon_entry.grid(row=0, column=1, padx=5, pady=5, sticky="ew")
+        lexicon_button = ttk.Button(self, text="Browse", command=self.browse_lexicon)
         lexicon_button.grid(row=0, column=2, padx=5, pady=5)
 
-        metadata_label = tk.Label(self, text="Metadata File:")
-        metadata_label.grid(row=1, column=0, padx=5, pady=5)
-        self.metadata_entry = tk.Entry(self, width=50)
-        self.metadata_entry.grid(row=1, column=1, padx=5, pady=5)
-        metadata_button = tk.Button(self, text="Browse", command=self.browse_metadata)
-       
+        metadata_label = ttk.Label(self, text="Metadata File:")
+        metadata_label.grid(row=1, column=0, padx=5, pady=5, sticky="w")
+        self.metadata_entry = ttk.Entry(self, width=50)
+        self.metadata_entry.grid(row=1, column=1, padx=5, pady=5, sticky="ew")
+        metadata_button = ttk.Button(self, text="Browse", command=self.browse_metadata)
+        metadata_button.grid(row=1, column=2, padx=5, pady=5)
+
+        output_label = ttk.Label(self, text="Output File:")
+        output_label.grid(row=2, column=0, padx=5, pady=5, sticky="w")
+        self.output_entry = ttk.Entry(self, width=50)
+        self.output_entry.grid(row=2, column=1, padx=5, pady=5, sticky="ew")
+        output_button = ttk.Button(self, text="Browse", command=self.browse_output)
+        output_button.grid(row=2, column=2, padx=5, pady=5)
+
+        process_button = ttk.Button(self, text="Process", command=self.process_files)
+        process_button.grid(row=3, column=1, padx=5, pady=5)
+
+        self.columnconfigure(1, weight=1)  # Expand middle column
+
+    def browse_lexicon(self):
+        filename = filedialog.askopenfilename()
+        self.lexicon_entry.delete(0, tk.END)
+        self.lexicon_entry.insert(0, filename)
+
+    def browse_metadata(self):
+        filename = filedialog.askopenfilename()
+        self.metadata_entry.delete(0, tk.END)
+        self.metadata_entry.insert(0, filename)
+
+    def browse_output(self):
+        filename = filedialog.asksaveasfilename(defaultextension=".csv")
+        self.output_entry.delete(0, tk.END)
+        self.output_entry.insert(0, filename)
+
+    def process_files(self):
+        lexicon_file = self.lexicon_entry.get()
+        metadata_file = self.metadata_entry.get()
+        output_file = self.output_entry.get()
+
+        if not all([lexicon_file, metadata_file, output_file]):
+            messagebox.showerror("Error", "Please fill in all fields.")
+            return
+
+        self.master.load_lexicon(lexicon_file)
+        self.master.load_metadata(metadata_file)
+
+
+if __name__ == "__main__":
+    app = MetadataMatcherApp()
+    app.mainloop()
