@@ -74,13 +74,11 @@ def find_matches(lexicon_df, metadata_df):
     for index, row in metadata_df.iterrows():
         # Process the text in each specified column
         for col in ['Title', 'Description', 'Subject', 'Collection Name']:
-            # Check if the value is a string
-            if isinstance(row[col], str):
-                # Iterate over each term in the lexicon and check for matches
-                for term, category in zip(lexicon_df['term'], lexicon_df['category']):
-                    # Check if the term exists in the text column
-                    if term.lower() in row[col].lower():
-                        matches.append((row['Identifier'], term, category, col))
+            # Iterate over each term in the lexicon and check for matches
+            for term, category in zip(lexicon_df['term'], lexicon_df['category']):
+                # Check if the whole term exists in the text column
+                if re.search(r'\b' + re.escape(term.lower()) + r'\b', row[col].lower()):
+                    matches.append((row['Identifier'], term, category, col))
     return matches
 
 # Example usage
