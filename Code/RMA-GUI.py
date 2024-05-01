@@ -72,8 +72,11 @@ class MetadataMatcherApp(tk.Tk):
         matches_df = pd.DataFrame(matches, columns=['Identifier', 'Term', 'Category', 'Column'])
         merged_df = pd.merge(self.metadata_df, matches_df, on="Identifier", how="left")
         merged_df = merged_df.dropna(subset=['Term'])
-        merged_df.to_csv(output_file_path, index=False)
-        messagebox.showinfo("Success", f"Merged data saved to: {output_file_path}")
+        try:
+            merged_df.to_csv(output_file_path, index=False)
+            messagebox.showinfo("Success", f"Merged data saved to: {output_file_path}")
+        except Exception as e:
+            messagebox.showerror("Error", f"An error occurred while saving the merged data: {e}")
 
 
 class MainPage(tk.Frame):
@@ -113,19 +116,22 @@ class MainPage(tk.Frame):
         self.columnconfigure(1, weight=1)  # Expand middle column
 
     def browse_lexicon(self):
-        filename = filedialog.askopenfilename()
-        self.lexicon_entry.delete(0, tk.END)
-        self.lexicon_entry.insert(0, filename)
+        filename = filedialog.askopenfilename(initialdir="/", title="Select Lexicon File", filetypes=(("CSV files", "*.csv"), ("All files", "*.*")))
+        if filename:
+            self.lexicon_entry.delete(0, tk.END)
+            self.lexicon_entry.insert(0, filename)
 
     def browse_metadata(self):
-        filename = filedialog.askopenfilename()
-        self.metadata_entry.delete(0, tk.END)
-        self.metadata_entry.insert(0, filename)
+        filename = filedialog.askopenfilename(initialdir="/", title="Select Metadata File", filetypes=(("CSV files", "*.csv"), ("All files", "*.*")))
+        if filename:
+            self.metadata_entry.delete(0, tk.END)
+            self.metadata_entry.insert(0, filename)
 
     def browse_output(self):
-        filename = filedialog.asksaveasfilename(defaultextension=".csv")
-        self.output_entry.delete(0, tk.END)
-        self.output_entry.insert(0, filename)
+        filename = filedialog.asksaveasfilename(initialdir="/", title="Save Output File", defaultextension=".csv", filetypes=(("CSV files", "*.csv"), ("All files", "*.*")))
+        if filename:
+            self.output_entry.delete(0, tk.END)
+            self.output_entry.insert(0, filename)
 
     def process_next(self):
         lexicon_file = self.lexicon_entry.get()
@@ -138,6 +144,10 @@ class MainPage(tk.Frame):
 
         self.master.load_lexicon(lexicon_file)
         self.master.load_metadata(metadata_file)
+        # Clear entry fields
+        self.lexicon_entry.delete(0, tk.END)
+        self.metadata_entry.delete(0, tk.END)
+        self.output_entry.delete(0, tk.END)
 
 
 class MetadataPage(tk.Frame):
@@ -177,19 +187,22 @@ class MetadataPage(tk.Frame):
         self.columnconfigure(1, weight=1)  # Expand middle column
 
     def browse_lexicon(self):
-        filename = filedialog.askopenfilename()
-        self.lexicon_entry.delete(0, tk.END)
-        self.lexicon_entry.insert(0, filename)
+        filename = filedialog.askopenfilename(initialdir="/", title="Select Lexicon File", filetypes=(("CSV files", "*.csv"), ("All files", "*.*")))
+        if filename:
+            self.lexicon_entry.delete(0, tk.END)
+            self.lexicon_entry.insert(0, filename)
 
     def browse_metadata(self):
-        filename = filedialog.askopenfilename()
-        self.metadata_entry.delete(0, tk.END)
-        self.metadata_entry.insert(0, filename)
+        filename = filedialog.askopenfilename(initialdir="/", title="Select Metadata File", filetypes=(("CSV files", "*.csv"), ("All files", "*.*")))
+        if filename:
+            self.metadata_entry.delete(0, tk.END)
+            self.metadata_entry.insert(0, filename)
 
     def browse_output(self):
-        filename = filedialog.asksaveasfilename(defaultextension=".csv")
-        self.output_entry.delete(0, tk.END)
-        self.output_entry.insert(0, filename)
+        filename = filedialog.asksaveasfilename(initialdir="/", title="Save Output File", defaultextension=".csv", filetypes=(("CSV files", "*.csv"), ("All files", "*.*")))
+        if filename:
+            self.output_entry.delete(0, tk.END)
+            self.output_entry.insert(0, filename)
 
     def process_files(self):
         lexicon_file = self.lexicon_entry.get()
@@ -202,6 +215,10 @@ class MetadataPage(tk.Frame):
 
         self.master.load_lexicon(lexicon_file)
         self.master.load_metadata(metadata_file)
+        # Clear entry fields
+        self.lexicon_entry.delete(0, tk.END)
+        self.metadata_entry.delete(0, tk.END)
+        self.output_entry.delete(0, tk.END)
 
 
 if __name__ == "__main__":
