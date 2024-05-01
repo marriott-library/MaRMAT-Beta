@@ -40,7 +40,7 @@ import re
 def load_lexicon(file_path):
     try:
         # Load the lexicon CSV file into a DataFrame
-        lexicon_df = pd.read_csv(file_path)
+        lexicon_df = pd.read_csv(file_path, encoding='latin1')
         return lexicon_df
     except FileNotFoundError:
         print("File not found. Please provide a valid file path.")
@@ -52,13 +52,13 @@ def load_lexicon(file_path):
 def load_metadata(file_path):
     try:
         # Load the metadata CSV file into a DataFrame
-        metadata_df = pd.read_csv(file_path)
+        metadata_df = pd.read_csv(file_path, encoding='latin1')
         
         # Remove punctuation from specified columns
         punctuation_table = str.maketrans('', '', string.punctuation)
-        metadata_df['Title'] = metadata_df['Title'].apply(lambda x: x.translate(punctuation_table))
-        metadata_df['Description'] = metadata_df['Description'].apply(lambda x: x.translate(punctuation_table))
-        metadata_df['Collection Name'] = metadata_df['Collection Name'].apply(lambda x: x.translate(punctuation_table))
+        metadata_df['Title'] = metadata_df['Title'].apply(lambda x: x.translate(punctuation_table) if isinstance(x, str) else x)
+        metadata_df['Description'] = metadata_df['Description'].apply(lambda x: x.translate(punctuation_table) if isinstance(x, str) else x)
+        metadata_df['Collection Name'] = metadata_df['Collection Name'].apply(lambda x: x.translate(punctuation_table) if isinstance(x, str) else x)
         
         return metadata_df
     except FileNotFoundError:
@@ -67,24 +67,26 @@ def load_metadata(file_path):
     except Exception as e:
         print("An error occurred:", e)
         return None
-
+    
 def find_matches(lexicon_df, metadata_df):
     matches = []
     # Iterate over each row in the metadata DataFrame
     for index, row in metadata_df.iterrows():
         # Process the text in each specified column
         for col in ['Title', 'Description', 'Subject', 'Collection Name']:
-            # Iterate over each term in the lexicon and check for matches
-            for term, category in zip(lexicon_df['term'], lexicon_df['category']):
-                # Check if the term exists in the text column
-                if term.lower() in row[col].lower():
-                    matches.append((row['Identifier'], term, category, col))
+            # Check if the value is a string
+            if isinstance(row[col], str):
+                # Iterate over each term in the lexicon and check for matches
+                for term, category in zip(lexicon_df['term'], lexicon_df['category']):
+                    # Check if the term exists in the text column
+                    if term.lower() in row[col].lower():
+                        matches.append((row['Identifier'], term, category, col))
     return matches
 
 # Example usage
 lexicon_file_path = "lexicon.csv"  # Replace with the path to your lexicon CSV file
 metadata_file_path = "metadata.csv"  # Replace with the path to your metadata CSV file
-output_file_path = "matches.csv"  # Path to the output CSV file
+output_file_path = "matches.csv"  # Path to the output CSV
 
 lexicon = load_lexicon(lexicon_file_path)
 metadata = load_metadata(metadata_file_path)
@@ -102,14 +104,6 @@ if lexicon is not None and metadata is not None:
     merged_df.to_csv(output_file_path, index=False)
 
     print("Merged data saved to:", output_file_path)
-
-# Example usage
-lexicon_file_path = "lexicon.csv"  # Replace with the path to your lexicon CSV file
-metadata_file_path = "metadata.csv"  # Replace with the path to your metadata CSV file
-output_file_path = "matches.csv"  # Path to the output CSV file
-
-lexicon = load_lexicon(lexicon_file_path)
-metadata = load_metadata(metadata_file_path)
 
 # Perform matching
 if lexicon is not None and metadata is not None:
