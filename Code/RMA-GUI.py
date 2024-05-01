@@ -67,6 +67,8 @@ def process_files():
 root = tk.Tk()
 root.title("Metadata Matcher")
 
+lexicon_df = None  # Define lexicon_df globally
+
 # Lexicon File
 lexicon_label = tk.Label(root, text="Lexicon File:")
 lexicon_label.grid(row=0, column=0, padx=5, pady=5)
@@ -92,12 +94,18 @@ output_button = tk.Button(root, text="Browse", command=lambda: browse_file(outpu
 output_button.grid(row=2, column=2, padx=5, pady=5)
 
 # Category Dropdown
+def populate_category_dropdown():
+    global lexicon_df
+    if lexicon_df is not None:
+        categories = ["All Categories"] + lexicon_df['category'].unique().tolist()
+        category_combobox['values'] = categories
+        category_combobox.current(0)
+
 category_label = tk.Label(root, text="Category:")
 category_label.grid(row=3, column=0, padx=5, pady=5)
-categories = ["All Categories"] + lexicon_df['category'].unique().tolist()
-category_combobox = ttk.Combobox(root, values=categories, state="readonly")
-category_combobox.current(0)
+category_combobox = ttk.Combobox(root, state="readonly")
 category_combobox.grid(row=3, column=1, padx=5, pady=5)
+populate_category_dropdown()
 
 # Process Button
 process_button = tk.Button(root, text="Process", command=process_files)
