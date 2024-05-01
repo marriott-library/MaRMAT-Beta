@@ -107,7 +107,7 @@ class MainPage(tk.Frame):
         output_button = tk.Button(self, text="Browse", command=self.browse_output)
         output_button.grid(row=2, column=2, padx=5, pady=5)
 
-        process_button = tk.Button(self, text="Next", command=self.master.create_metadata_page)
+        process_button = tk.Button(self, text="Next", command=self.process_next)
         process_button.grid(row=3, column=1, padx=5, pady=5)
 
     def browse_lexicon(self):
@@ -124,6 +124,18 @@ class MainPage(tk.Frame):
         filename = filedialog.asksaveasfilename(defaultextension=".csv")
         self.output_entry.delete(0, tk.END)
         self.output_entry.insert(0, filename)
+
+    def process_next(self):
+        lexicon_file = self.lexicon_entry.get()
+        metadata_file = self.metadata_entry.get()
+        output_file = self.output_entry.get()
+
+        if not all([lexicon_file, metadata_file, output_file]):
+            messagebox.showerror("Error", "Please fill in all fields.")
+            return
+
+        self.master.load_lexicon(lexicon_file)
+        self.master.load_metadata(metadata_file)
 
 
 class MetadataPage(tk.Frame):
@@ -145,52 +157,4 @@ class MetadataPage(tk.Frame):
         self.metadata_entry = tk.Entry(self, width=50)
         self.metadata_entry.grid(row=1, column=1, padx=5, pady=5)
         metadata_button = tk.Button(self, text="Browse", command=self.browse_metadata)
-        metadata_button.grid(row=1, column=2, padx=5, pady=5)
-
-        output_label = tk.Label(self, text="Output File:")
-        output_label.grid(row=2, column=0, padx=5, pady=5)
-        self.output_entry = tk.Entry(self, width=50)
-        self.output_entry.grid(row=2, column=1, padx=5, pady=5)
-        output_button = tk.Button(self, text="Browse", command=self.browse_output)
-        output_button.grid(row=2, column=2, padx=5, pady=5)
-
-        process_button = tk.Button(self, text="Next", command=self.master.create_category_page)
-        process_button.grid(row=3, column=1, padx=5, pady=5)
-
-    def browse_lexicon(self):
-        filename = filedialog.askopenfilename()
-        self.lexicon_entry.delete(0, tk.END)
-        self.lexicon_entry.insert(0, filename)
-
-    def browse_metadata(self):
-        filename = filedialog.askopenfilename()
-        self.metadata_entry.delete(0, tk.END)
-        self.metadata_entry.insert(0, filename)
-
-    def browse_output(self):
-        filename = filedialog.asksaveasfilename(defaultextension=".csv")
-        self.output_entry.delete(0, tk.END)
-        self.output_entry.insert(0, filename)
-
-
-class CategoryPage(tk.Frame):
-    def __init__(self, master):
-        super().__init__(master)
-        self.master = master
-        self.create_widgets()
-
-    def create_widgets(self):
-        category_label = tk.Label(self, text="Category:")
-        category_label.grid(row=0, column=0, padx=5, pady=5)
-        categories = ["All Categories"] + self.master.lexicon_df['category'].unique().tolist()
-        self.category_combobox = ttk.Combobox(self, values=categories, textvariable=self.master.selected_category, state="readonly")
-        self.category_combobox.current(0)
-        self.category_combobox.grid(row=0, column=1, padx=5, pady=5)
-
-        process_button = tk.Button(self, text="Process", command=self.master.process_files)
-        process_button.grid(row=1, column=1, padx=5, pady=5)
-
-
-if __name__ == "__main__":
-    app = MetadataMatcherApp()
-    app.mainloop()
+       
