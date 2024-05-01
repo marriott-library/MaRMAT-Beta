@@ -4,111 +4,193 @@ import pandas as pd
 import string
 import re
 
-def load_lexicon(file_path):
-    try:
-        lexicon_df = pd.read_csv(file_path, encoding='latin1')
-        return lexicon_df
-    except FileNotFoundError:
-        messagebox.showerror("Error", "File not found. Please provide a valid file path.")
-        return None
-    except Exception as e:
-        messagebox.showerror("Error", f"An error occurred: {e}")
-        return None
+class MetadataMatcherApp(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Metadata Matcher")
+        self.geometry("600x400")
+        self.current_page = None
+        self.lexicon_df = None
+        self.metadata_df = None
+        self.selected_category = tk.StringVar()
+        self.create_main_page()
 
-def load_metadata(file_path):
-    try:
-        metadata_df = pd.read_csv(file_path, encoding='latin1')
-        punctuation_table = str.maketrans('', '', string.punctuation)
-        metadata_df['Title'] = metadata_df['Title'].apply(lambda x: x.translate(punctuation_table) if isinstance(x, str) else x)
-        metadata_df['Description'] = metadata_df['Description'].apply(lambda x: x.translate(punctuation_table) if isinstance(x, str) else x)
-        metadata_df['Collection Name'] = metadata_df['Collection Name'].apply(lambda x: x.translate(punctuation_table) if isinstance(x, str) else x)
-        return metadata_df
-    except FileNotFoundError:
-        messagebox.showerror("Error", "File not found. Please provide a valid file path.")
-        return None
-    except Exception as e:
-        messagebox.showerror("Error", f"An error occurred: {e}")
-        return None
+    def create_main_page(self):
+        self.current_page = MainPage(self)
+        self.current_page.grid(row=0, column=0, sticky="nsew")
 
-def find_matches(lexicon_df, metadata_df, selected_category):
-    matches = []
-    for index, row in metadata_df.iterrows():
-        for col in ['Title', 'Description', 'Subject', 'Collection Name']:
-            if isinstance(row[col], str):
-                for term, category in zip(lexicon_df['term'], lexicon_df['category']):
-                    if category == selected_category or selected_category == "All Categories":
-                        if re.search(r'\b' + re.escape(term.lower()) + r'\b', row[col].lower()):
-                            matches.append((row['Identifier'], term, category, col))
-    return matches
+    def load_lexicon(self, file_path):
+        try:
+            self.lexicon_df = pd.read_csv(file_path, encoding='latin1')
+            self.current_page.destroy()
+            self.create_metadata_page()
+        except FileNotFoundError:
+            messagebox.showerror("Error", "File not found. Please provide a valid file path.")
+        except Exception as e:
+            messagebox.showerror("Error", f"An error occurred: {e}")
 
-def browse_file(entry):
-    filename = filedialog.askopenfilename()
-    entry.delete(0, tk.END)
-    entry.insert(0, filename)
+    def load_metadata(self, file_path):
+        try:
+            self.metadata_df = pd.read_csv(file_path, encoding='latin1')
+            self.current_page.destroy()
+            self.create_category_page()
+        except FileNotFoundError:
+            messagebox.showerror("Error", "File not found. Please provide a valid file path.")
+        except Exception as e:
+            messagebox.showerror("Error", f"An error occurred: {e}")
 
-def process_files():
-    lexicon_file_path = lexicon_entry.get()
-    metadata_file_path = metadata_entry.get()
-    output_file_path = output_entry.get()
-    selected_category = category_combobox.get()
+    def create_metadata_page(self):
+        self.current_page = MetadataPage(self)
+        self.current_page.grid(row=0, column=0, sticky="nsew")
 
-    lexicon = load_lexicon(lexicon_file_path)
-    metadata = load_metadata(metadata_file_path)
+    def create_category_page(self):
+        self.current_page = CategoryPage(self)
+        self.current_page.grid(row=0, column=0, sticky="nsew")
 
-    if lexicon is not None and metadata is not None:
-        matches = find_matches(lexicon, metadata, selected_category)
+    def process_files(self):
+        output_file_path = self.current_page.output_entry.get()
+
+        if self.lexicon_df is None or self.metadata_df is None:
+            messagebox.showerror("Error", "Please load lexicon and metadata files.")
+            return
+
+        selected_category = self.selected_category.get()
+
+        matches = self.find_matches(selected_category)
+        if matches:
+            self.save_matches(matches, output_file_path)
+
+    def find_matches(self, selected_category):
+        matches = []
+        for index, row in self.metadata_df.iterrows():
+            for col in ['Title', 'Description', 'Subject', 'Collection Name']:
+                if isinstance(row[col], str):
+                    for term, category in zip(self.lexicon_df['term'], self.lexicon_df['category']):
+                        if category == selected_category or selected_category == "All Categories":
+                            if re.search(r'\b' + re.escape(term.lower()) + r'\b', row[col].lower()):
+                                matches.append((row['Identifier'], term, category, col))
+        return matches
+
+    def save_matches(self, matches, output_file_path):
         matches_df = pd.DataFrame(matches, columns=['Identifier', 'Term', 'Category', 'Column'])
-        merged_df = pd.merge(metadata, matches_df, on="Identifier", how="left")
+        merged_df = pd.merge(self.metadata_df, matches_df, on="Identifier", how="left")
         merged_df = merged_df.dropna(subset=['Term'])
         merged_df.to_csv(output_file_path, index=False)
         messagebox.showinfo("Success", f"Merged data saved to: {output_file_path}")
 
-# GUI
-root = tk.Tk()
-root.title("Metadata Matcher")
 
-lexicon_df = None  # Define lexicon_df globally
+class MainPage(tk.Frame):
+    def __init__(self, master):
+        super().__init__(master)
+        self.master = master
+        self.create_widgets()
 
-# Lexicon File
-lexicon_label = tk.Label(root, text="Lexicon File:")
-lexicon_label.grid(row=0, column=0, padx=5, pady=5)
-lexicon_entry = tk.Entry(root, width=50)
-lexicon_entry.grid(row=0, column=1, padx=5, pady=5)
-lexicon_button = tk.Button(root, text="Browse", command=lambda: browse_file(lexicon_entry))
-lexicon_button.grid(row=0, column=2, padx=5, pady=5)
+    def create_widgets(self):
+        lexicon_label = tk.Label(self, text="Lexicon File:")
+        lexicon_label.grid(row=0, column=0, padx=5, pady=5)
+        self.lexicon_entry = tk.Entry(self, width=50)
+        self.lexicon_entry.grid(row=0, column=1, padx=5, pady=5)
+        lexicon_button = tk.Button(self, text="Browse", command=self.browse_lexicon)
+        lexicon_button.grid(row=0, column=2, padx=5, pady=5)
 
-# Metadata File
-metadata_label = tk.Label(root, text="Metadata File:")
-metadata_label.grid(row=1, column=0, padx=5, pady=5)
-metadata_entry = tk.Entry(root, width=50)
-metadata_entry.grid(row=1, column=1, padx=5, pady=5)
-metadata_button = tk.Button(root, text="Browse", command=lambda: browse_file(metadata_entry))
-metadata_button.grid(row=1, column=2, padx=5, pady=5)
+        metadata_label = tk.Label(self, text="Metadata File:")
+        metadata_label.grid(row=1, column=0, padx=5, pady=5)
+        self.metadata_entry = tk.Entry(self, width=50)
+        self.metadata_entry.grid(row=1, column=1, padx=5, pady=5)
+        metadata_button = tk.Button(self, text="Browse", command=self.browse_metadata)
+        metadata_button.grid(row=1, column=2, padx=5, pady=5)
 
-# Output File
-output_label = tk.Label(root, text="Output File:")
-output_label.grid(row=2, column=0, padx=5, pady=5)
-output_entry = tk.Entry(root, width=50)
-output_entry.grid(row=2, column=1, padx=5, pady=5)
-output_button = tk.Button(root, text="Browse", command=lambda: browse_file(output_entry))
-output_button.grid(row=2, column=2, padx=5, pady=5)
+        output_label = tk.Label(self, text="Output File:")
+        output_label.grid(row=2, column=0, padx=5, pady=5)
+        self.output_entry = tk.Entry(self, width=50)
+        self.output_entry.grid(row=2, column=1, padx=5, pady=5)
+        output_button = tk.Button(self, text="Browse", command=self.browse_output)
+        output_button.grid(row=2, column=2, padx=5, pady=5)
 
-# Category Dropdown
-def populate_category_dropdown():
-    global lexicon_df
-    if lexicon_df is not None:
-        categories = ["All Categories"] + lexicon_df['category'].unique().tolist()
-        category_combobox['values'] = categories
-        category_combobox.current(0)
+        process_button = tk.Button(self, text="Next", command=self.master.create_metadata_page)
+        process_button.grid(row=3, column=1, padx=5, pady=5)
 
-category_label = tk.Label(root, text="Category:")
-category_label.grid(row=3, column=0, padx=5, pady=5)
-category_combobox = ttk.Combobox(root, state="readonly")
-category_combobox.grid(row=3, column=1, padx=5, pady=5)
-populate_category_dropdown()
+    def browse_lexicon(self):
+        filename = filedialog.askopenfilename()
+        self.lexicon_entry.delete(0, tk.END)
+        self.lexicon_entry.insert(0, filename)
 
-# Process Button
-process_button = tk.Button(root, text="Process", command=process_files)
-process_button.grid(row=4, column=1, padx=5, pady=5)
+    def browse_metadata(self):
+        filename = filedialog.askopenfilename()
+        self.metadata_entry.delete(0, tk.END)
+        self.metadata_entry.insert(0, filename)
 
-root.mainloop()
+    def browse_output(self):
+        filename = filedialog.asksaveasfilename(defaultextension=".csv")
+        self.output_entry.delete(0, tk.END)
+        self.output_entry.insert(0, filename)
+
+
+class MetadataPage(tk.Frame):
+    def __init__(self, master):
+        super().__init__(master)
+        self.master = master
+        self.create_widgets()
+
+    def create_widgets(self):
+        lexicon_label = tk.Label(self, text="Lexicon File:")
+        lexicon_label.grid(row=0, column=0, padx=5, pady=5)
+        self.lexicon_entry = tk.Entry(self, width=50)
+        self.lexicon_entry.grid(row=0, column=1, padx=5, pady=5)
+        lexicon_button = tk.Button(self, text="Browse", command=self.browse_lexicon)
+        lexicon_button.grid(row=0, column=2, padx=5, pady=5)
+
+        metadata_label = tk.Label(self, text="Metadata File:")
+        metadata_label.grid(row=1, column=0, padx=5, pady=5)
+        self.metadata_entry = tk.Entry(self, width=50)
+        self.metadata_entry.grid(row=1, column=1, padx=5, pady=5)
+        metadata_button = tk.Button(self, text="Browse", command=self.browse_metadata)
+        metadata_button.grid(row=1, column=2, padx=5, pady=5)
+
+        output_label = tk.Label(self, text="Output File:")
+        output_label.grid(row=2, column=0, padx=5, pady=5)
+        self.output_entry = tk.Entry(self, width=50)
+        self.output_entry.grid(row=2, column=1, padx=5, pady=5)
+        output_button = tk.Button(self, text="Browse", command=self.browse_output)
+        output_button.grid(row=2, column=2, padx=5, pady=5)
+
+        process_button = tk.Button(self, text="Next", command=self.master.create_category_page)
+        process_button.grid(row=3, column=1, padx=5, pady=5)
+
+    def browse_lexicon(self):
+        filename = filedialog.askopenfilename()
+        self.lexicon_entry.delete(0, tk.END)
+        self.lexicon_entry.insert(0, filename)
+
+    def browse_metadata(self):
+        filename = filedialog.askopenfilename()
+        self.metadata_entry.delete(0, tk.END)
+        self.metadata_entry.insert(0, filename)
+
+    def browse_output(self):
+        filename = filedialog.asksaveasfilename(defaultextension=".csv")
+        self.output_entry.delete(0, tk.END)
+        self.output_entry.insert(0, filename)
+
+
+class CategoryPage(tk.Frame):
+    def __init__(self, master):
+        super().__init__(master)
+        self.master = master
+        self.create_widgets()
+
+    def create_widgets(self):
+        category_label = tk.Label(self, text="Category:")
+        category_label.grid(row=0, column=0, padx=5, pady=5)
+        categories = ["All Categories"] + self.master.lexicon_df['category'].unique().tolist()
+        self.category_combobox = ttk.Combobox(self, values=categories, textvariable=self.master.selected_category, state="readonly")
+        self.category_combobox.current(0)
+        self.category_combobox.grid(row=0, column=1, padx=5, pady=5)
+
+        process_button = tk.Button(self, text="Process", command=self.master.process_files)
+        process_button.grid(row=1, column=1, padx=5, pady=5)
+
+
+if __name__ == "__main__":
+    app = MetadataMatcherApp()
+    app.mainloop()
