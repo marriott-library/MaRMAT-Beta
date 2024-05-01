@@ -49,9 +49,9 @@ def find_matches(lexicon_df, metadata_df):
     return matches
 
 # Example usage
-lexicon_file_path = "C:/Users/u6045253/Desktop/reparative-metadata_lexicon.csv"  # Replace with the path to your lexicon CSV file
-metadata_file_path = "C:/Users/u6045253/Desktop/ehc_sample.csv"  # Replace with the path to your metadata CSV file
-output_file_path = "C:/Users/u6045253/Desktop/test.csv"  # Path to the output CSV
+lexicon_file_path = "lexicon.csv"  # Replace with the path to your lexicon CSV file
+metadata_file_path = "metadata.csv"  # Replace with the path to your metadata CSV file
+output_file_path = "matches.csv"  # Path to the output matches CSV
 
 lexicon = load_lexicon(lexicon_file_path)
 metadata = load_metadata(metadata_file_path)
