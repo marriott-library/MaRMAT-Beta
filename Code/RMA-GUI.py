@@ -17,7 +17,7 @@ class MetadataMatcherApp(tk.Tk):
 
     def create_main_page(self):
         self.current_page = MainPage(self)
-        self.current_page.grid(row=0, column=0, sticky="nsew")
+        self.current_page.pack(expand=True, fill="both")
 
     def load_lexicon(self, file_path):
         try:
@@ -33,8 +33,7 @@ class MetadataMatcherApp(tk.Tk):
         try:
             self.metadata_df = pd.read_csv(file_path, encoding='latin1')
             self.current_page.destroy()
-            # Create the page to select categories here if needed
-            self.process_files()  # Directly process files after loading metadata
+            self.process_files()
         except FileNotFoundError:
             messagebox.showerror("Error", "File not found. Please provide a valid file path.")
         except Exception as e:
@@ -42,7 +41,7 @@ class MetadataMatcherApp(tk.Tk):
 
     def create_metadata_page(self):
         self.current_page = MetadataPage(self)
-        self.current_page.grid(row=0, column=0, sticky="nsew")
+        self.current_page.pack(expand=True, fill="both")
 
     def process_files(self):
         output_file_path = self.current_page.output_entry.get()
@@ -113,8 +112,6 @@ class MainPage(tk.Frame):
         process_button = ttk.Button(self, text="Next", command=self.process_next)
         process_button.grid(row=3, column=1, padx=5, pady=5)
 
-        self.columnconfigure(1, weight=1)  # Expand middle column
-
     def browse_lexicon(self):
         filename = filedialog.askopenfilename(initialdir="/", title="Select Lexicon File", filetypes=(("CSV files", "*.csv"), ("All files", "*.*")))
         if filename:
@@ -144,10 +141,6 @@ class MainPage(tk.Frame):
 
         self.master.load_lexicon(lexicon_file)
         self.master.load_metadata(metadata_file)
-        # Clear entry fields
-        self.lexicon_entry.delete(0, tk.END)
-        self.metadata_entry.delete(0, tk.END)
-        self.output_entry.delete(0, tk.END)
 
 
 class MetadataPage(tk.Frame):
@@ -184,8 +177,6 @@ class MetadataPage(tk.Frame):
         process_button = ttk.Button(self, text="Process", command=self.process_files)
         process_button.grid(row=3, column=1, padx=5, pady=5)
 
-        self.columnconfigure(1, weight=1)  # Expand middle column
-
     def browse_lexicon(self):
         filename = filedialog.askopenfilename(initialdir="/", title="Select Lexicon File", filetypes=(("CSV files", "*.csv"), ("All files", "*.*")))
         if filename:
@@ -215,10 +206,6 @@ class MetadataPage(tk.Frame):
 
         self.master.load_lexicon(lexicon_file)
         self.master.load_metadata(metadata_file)
-        # Clear entry fields
-        self.lexicon_entry.delete(0, tk.END)
-        self.metadata_entry.delete(0, tk.END)
-        self.output_entry.delete(0, tk.END)
 
 
 if __name__ == "__main__":
