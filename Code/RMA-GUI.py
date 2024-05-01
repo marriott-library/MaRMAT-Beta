@@ -144,17 +144,4 @@ class MetadataPage(tk.Frame):
         self.master = master
         self.create_widgets()
 
-    def create_widgets(self):
-        lexicon_label = tk.Label(self, text="Lexicon File:")
-        lexicon_label.grid(row=0, column=0, padx=5, pady=5)
-        self.lexicon_entry = tk.Entry(self, width=50)
-        self.lexicon_entry.grid(row=0, column=1, padx=5, pady=5)
-        lexicon_button = tk.Button(self, text="Browse", command=self.browse_lexicon)
-        lexicon_button.grid(row=0, column=2, padx=5, pady=5)
-
-        metadata_label = tk.Label(self, text="Metadata File:")
-        metadata_label.grid(row=1, column=0, padx=5, pady=5)
-        self.metadata_entry = tk.Entry(self, width=50)
-        self.metadata_entry.grid(row=1, column=1, padx=5, pady=5)
-        metadata_button = tk.Button(self, text="Browse", command=self.browse_metadata)
-       
+    def
