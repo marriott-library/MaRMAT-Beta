@@ -19,10 +19,6 @@ def load_metadata(file_path):
         # Load the metadata CSV file into a DataFrame
         metadata_df = pd.read_csv(file_path)
         
-        # Debugging: Print data types of each column
-        print("Data Types:")
-        print(metadata_df.dtypes)
-        
         # Remove punctuation from specified columns
         punctuation_table = str.maketrans('', '', string.punctuation)
         for col in ['Title', 'Description', 'Collection Name']:
