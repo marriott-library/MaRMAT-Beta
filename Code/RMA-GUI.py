@@ -1,213 +1,92 @@
 import tkinter as tk
-from tkinter import filedialog, messagebox, ttk
+from tkinter import filedialog
+from tkinter import messagebox
 import pandas as pd
 import string
 import re
 
-class MetadataMatcherApp(tk.Tk):
-    def __init__(self):
-        super().__init__()
-        self.title("Metadata Matcher")
-        self.geometry("600x400")
-        self.current_page = None
-        self.lexicon_df = None
-        self.metadata_df = None
-        self.selected_category = tk.StringVar()
-        self.create_main_page()
+def load_lexicon(file_path):
+    try:
+        lexicon_df = pd.read_csv(file_path, encoding='latin1')
+        return lexicon_df
+    except FileNotFoundError:
+        messagebox.showerror("Error", "File not found. Please provide a valid file path.")
+        return None
+    except Exception as e:
+        messagebox.showerror("Error", f"An error occurred: {e}")
+        return None
 
-    def create_main_page(self):
-        self.current_page = MainPage(self)
-        self.current_page.pack(expand=True, fill="both")
+def load_metadata(file_path):
+    try:
+        metadata_df = pd.read_csv(file_path, encoding='latin1')
+        punctuation_table = str.maketrans('', '', string.punctuation)
+        metadata_df['Title'] = metadata_df['Title'].apply(lambda x: x.translate(punctuation_table) if isinstance(x, str) else x)
+        metadata_df['Description'] = metadata_df['Description'].apply(lambda x: x.translate(punctuation_table) if isinstance(x, str) else x)
+        metadata_df['Collection Name'] = metadata_df['Collection Name'].apply(lambda x: x.translate(punctuation_table) if isinstance(x, str) else x)
+        return metadata_df
+    except FileNotFoundError:
+        messagebox.showerror("Error", "File not found. Please provide a valid file path.")
+        return None
+    except Exception as e:
+        messagebox.showerror("Error", f"An error occurred: {e}")
+        return None
+    
+def find_matches(lexicon_df, metadata_df):
+    matches = []
+    for index, row in metadata_df.iterrows():
+        for col in ['Title', 'Description', 'Subject', 'Collection Name']:
+            if isinstance(row[col], str):
+                for term, category in zip(lexicon_df['term'], lexicon_df['category']):
+                    if re.search(r'\b' + re.escape(term.lower()) + r'\b', row[col].lower()):
+                        matches.append((row['Identifier'], term, category, col))
+    return matches
 
-    def load_lexicon(self, file_path):
-        try:
-            self.lexicon_df = pd.read_csv(file_path, encoding='latin1')
-            self.current_page.destroy()
-            self.create_metadata_page()
-        except FileNotFoundError:
-            messagebox.showerror("Error", "File not found. Please provide a valid file path.")
-        except Exception as e:
-            messagebox.showerror("Error", f"An error occurred: {e}")
+def execute_matching():
+    lexicon_file_path = lexicon_entry.get()
+    metadata_file_path = metadata_entry.get()
+    output_file_path = output_entry.get()
+    
+    lexicon = load_lexicon(lexicon_file_path)
+    metadata = load_metadata(metadata_file_path)
 
-    def load_metadata(self, file_path):
-        try:
-            self.metadata_df = pd.read_csv(file_path, encoding='latin1')
-            self.current_page.destroy()
-            self.process_files()
-        except FileNotFoundError:
-            messagebox.showerror("Error", "File not found. Please provide a valid file path.")
-        except Exception as e:
-            messagebox.showerror("Error", f"An error occurred: {e}")
-
-    def create_metadata_page(self):
-        self.current_page = MetadataPage(self)
-        self.current_page.pack(expand=True, fill="both")
-
-    def process_files(self):
-        output_file_path = self.current_page.output_entry.get()
-
-        if self.lexicon_df is None or self.metadata_df is None:
-            messagebox.showerror("Error", "Please load lexicon and metadata files.")
-            return
-
-        selected_category = self.selected_category.get()
-
-        matches = self.find_matches(selected_category)
-        if matches:
-            self.save_matches(matches, output_file_path)
-
-    def find_matches(self, selected_category):
-        matches = []
-        for index, row in self.metadata_df.iterrows():
-            for col in ['Title', 'Description', 'Subject', 'Collection Name']:
-                if isinstance(row[col], str):
-                    for term, category in zip(self.lexicon_df['term'], self.lexicon_df['category']):
-                        if category == selected_category or selected_category == "All Categories":
-                            if re.search(r'\b' + re.escape(term.lower()) + r'\b', row[col].lower()):
-                                matches.append((row['Identifier'], term, category, col))
-        return matches
-
-    def save_matches(self, matches, output_file_path):
+    if lexicon is not None and metadata is not None:
+        matches = find_matches(lexicon, metadata)
         matches_df = pd.DataFrame(matches, columns=['Identifier', 'Term', 'Category', 'Column'])
-        merged_df = pd.merge(self.metadata_df, matches_df, on="Identifier", how="left")
+        merged_df = pd.merge(metadata, matches_df, on="Identifier", how="left")
         merged_df = merged_df.dropna(subset=['Term'])
-        try:
-            merged_df.to_csv(output_file_path, index=False)
-            messagebox.showinfo("Success", f"Merged data saved to: {output_file_path}")
-        except Exception as e:
-            messagebox.showerror("Error", f"An error occurred while saving the merged data: {e}")
+        merged_df.to_csv(output_file_path, index=False)
+        messagebox.showinfo("Success", "Matching process completed. Output saved successfully.")
 
+# GUI
+root = tk.Tk()
+root.title("Lexicon Matcher")
 
-class MainPage(tk.Frame):
-    def __init__(self, master):
-        super().__init__(master)
-        self.master = master
-        self.create_widgets()
+# Lexicon file path entry
+lexicon_label = tk.Label(root, text="Lexicon File Path:")
+lexicon_label.grid(row=0, column=0, padx=5, pady=5)
+lexicon_entry = tk.Entry(root, width=50)
+lexicon_entry.grid(row=0, column=1, padx=5, pady=5)
+lexicon_button = tk.Button(root, text="Browse", command=lambda: lexicon_entry.insert(tk.END, filedialog.askopenfilename()))
+lexicon_button.grid(row=0, column=2, padx=5, pady=5)
 
-    def create_widgets(self):
-        style = ttk.Style()
-        style.configure('TButton', font=('Arial', 12))
+# Metadata file path entry
+metadata_label = tk.Label(root, text="Metadata File Path:")
+metadata_label.grid(row=1, column=0, padx=5, pady=5)
+metadata_entry = tk.Entry(root, width=50)
+metadata_entry.grid(row=1, column=1, padx=5, pady=5)
+metadata_button = tk.Button(root, text="Browse", command=lambda: metadata_entry.insert(tk.END, filedialog.askopenfilename()))
+metadata_button.grid(row=1, column=2, padx=5, pady=5)
 
-        lexicon_label = ttk.Label(self, text="Lexicon File:")
-        lexicon_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
-        self.lexicon_entry = ttk.Entry(self, width=50)
-        self.lexicon_entry.grid(row=0, column=1, padx=5, pady=5, sticky="ew")
-        lexicon_button = ttk.Button(self, text="Browse", command=self.browse_lexicon)
-        lexicon_button.grid(row=0, column=2, padx=5, pady=5)
+# Output file path entry
+output_label = tk.Label(root, text="Output File Path:")
+output_label.grid(row=2, column=0, padx=5, pady=5)
+output_entry = tk.Entry(root, width=50)
+output_entry.grid(row=2, column=1, padx=5, pady=5)
+output_button = tk.Button(root, text="Browse", command=lambda: output_entry.insert(tk.END, filedialog.asksaveasfilename(defaultextension=".csv")))
+output_button.grid(row=2, column=2, padx=5, pady=5)
 
-        metadata_label = ttk.Label(self, text="Metadata File:")
-        metadata_label.grid(row=1, column=0, padx=5, pady=5, sticky="w")
-        self.metadata_entry = ttk.Entry(self, width=50)
-        self.metadata_entry.grid(row=1, column=1, padx=5, pady=5, sticky="ew")
-        metadata_button = ttk.Button(self, text="Browse", command=self.browse_metadata)
-        metadata_button.grid(row=1, column=2, padx=5, pady=5)
+# Execute button
+execute_button = tk.Button(root, text="Execute Matching", command=execute_matching)
+execute_button.grid(row=3, column=1, padx=5, pady=5)
 
-        output_label = ttk.Label(self, text="Output File:")
-        output_label.grid(row=2, column=0, padx=5, pady=5, sticky="w")
-        self.output_entry = ttk.Entry(self, width=50)
-        self.output_entry.grid(row=2, column=1, padx=5, pady=5, sticky="ew")
-        output_button = ttk.Button(self, text="Browse", command=self.browse_output)
-        output_button.grid(row=2, column=2, padx=5, pady=5)
-
-        process_button = ttk.Button(self, text="Next", command=self.process_next)
-        process_button.grid(row=3, column=1, padx=5, pady=5)
-
-    def browse_lexicon(self):
-        filename = filedialog.askopenfilename(initialdir="/", title="Select Lexicon File", filetypes=(("CSV files", "*.csv"), ("All files", "*.*")))
-        if filename:
-            self.lexicon_entry.delete(0, tk.END)
-            self.lexicon_entry.insert(0, filename)
-
-    def browse_metadata(self):
-        filename = filedialog.askopenfilename(initialdir="/", title="Select Metadata File", filetypes=(("CSV files", "*.csv"), ("All files", "*.*")))
-        if filename:
-            self.metadata_entry.delete(0, tk.END)
-            self.metadata_entry.insert(0, filename)
-
-    def browse_output(self):
-        filename = filedialog.asksaveasfilename(initialdir="/", title="Save Output File", defaultextension=".csv", filetypes=(("CSV files", "*.csv"), ("All files", "*.*")))
-        if filename:
-            self.output_entry.delete(0, tk.END)
-            self.output_entry.insert(0, filename)
-
-    def process_next(self):
-        lexicon_file = self.lexicon_entry.get()
-        metadata_file = self.metadata_entry.get()
-        output_file = self.output_entry.get()
-
-        if not all([lexicon_file, metadata_file, output_file]):
-            messagebox.showerror("Error", "Please fill in all fields.")
-            return
-
-        self.master.load_lexicon(lexicon_file)
-        self.master.load_metadata(metadata_file)
-
-
-class MetadataPage(tk.Frame):
-    def __init__(self, master):
-        super().__init__(master)
-        self.master = master
-        self.create_widgets()
-
-    def create_widgets(self):
-        style = ttk.Style()
-        style.configure('TButton', font=('Arial', 12))
-
-        lexicon_label = ttk.Label(self, text="Lexicon File:")
-        lexicon_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
-        self.lexicon_entry = ttk.Entry(self, width=50)
-        self.lexicon_entry.grid(row=0, column=1, padx=5, pady=5, sticky="ew")
-        lexicon_button = ttk.Button(self, text="Browse", command=self.browse_lexicon)
-        lexicon_button.grid(row=0, column=2, padx=5, pady=5)
-
-        metadata_label = ttk.Label(self, text="Metadata File:")
-        metadata_label.grid(row=1, column=0, padx=5, pady=5, sticky="w")
-        self.metadata_entry = ttk.Entry(self, width=50)
-        self.metadata_entry.grid(row=1, column=1, padx=5, pady=5, sticky="ew")
-        metadata_button = ttk.Button(self, text="Browse", command=self.browse_metadata)
-        metadata_button.grid(row=1, column=2, padx=5, pady=5)
-
-        output_label = ttk.Label(self, text="Output File:")
-        output_label.grid(row=2, column=0, padx=5, pady=5, sticky="w")
-        self.output_entry = ttk.Entry(self, width=50)
-        self.output_entry.grid(row=2, column=1, padx=5, pady=5, sticky="ew")
-        output_button = ttk.Button(self, text="Browse", command=self.browse_output)
-        output_button.grid(row=2, column=2, padx=5, pady=5)
-
-        process_button = ttk.Button(self, text="Process", command=self.process_files)
-        process_button.grid(row=3, column=1, padx=5, pady=5)
-
-    def browse_lexicon(self):
-        filename = filedialog.askopenfilename(initialdir="/", title="Select Lexicon File", filetypes=(("CSV files", "*.csv"), ("All files", "*.*")))
-        if filename:
-            self.lexicon_entry.delete(0, tk.END)
-            self.lexicon_entry.insert(0, filename)
-
-    def browse_metadata(self):
-        filename = filedialog.askopenfilename(initialdir="/", title="Select Metadata File", filetypes=(("CSV files", "*.csv"), ("All files", "*.*")))
-        if filename:
-            self.metadata_entry.delete(0, tk.END)
-            self.metadata_entry.insert(0, filename)
-
-    def browse_output(self):
-        filename = filedialog.asksaveasfilename(initialdir="/", title="Save Output File", defaultextension=".csv", filetypes=(("CSV files", "*.csv"), ("All files", "*.*")))
-        if filename:
-            self.output_entry.delete(0, tk.END)
-            self.output_entry.insert(0, filename)
-
-    def process_files(self):
-        lexicon_file = self.lexicon_entry.get()
-        metadata_file = self.metadata_entry.get()
-        output_file = self.output_entry.get()
-
-        if not all([lexicon_file, metadata_file, output_file]):
-            messagebox.showerror("Error", "Please fill in all fields.")
-            return
-
-        self.master.load_lexicon(lexicon_file)
-        self.master.load_metadata(metadata_file)
-
-
-if __name__ == "__main__":
-    app = MetadataMatcherApp()
-    app.mainloop()
+root.mainloop()
