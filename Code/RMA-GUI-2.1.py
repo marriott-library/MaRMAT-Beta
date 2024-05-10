@@ -31,13 +31,9 @@ class ReparativeMetadataAuditTool(tk.Tk):
         self.load_metadata_button = ttk.Button(self.main_frame, text="Load Metadata", command=self.load_metadata)
         self.load_metadata_button.pack(pady=10, padx=20, side="left")
         
-        # Load different lexicon button
-        self.load_diff_lexicon_button = ttk.Button(self.main_frame, text="Choose Different Lexicon", command=self.load_lexicon)
-        self.load_diff_lexicon_button.pack(pady=10, padx=20, side="left")
-        
-        # Load different metadata button
-        self.load_diff_metadata_button = ttk.Button(self.main_frame, text="Choose Different Metadata", command=self.load_metadata)
-        self.load_diff_metadata_button.pack(pady=10, padx=20, side="left")
+        # Reset button
+        self.reset_button = ttk.Button(self.main_frame, text="Reset", command=self.reset)
+        self.reset_button.pack(pady=10, padx=20, side="left")
         
         # Next button
         self.next_button = ttk.Button(self.main_frame, text="Next", command=self.show_column_selection)
@@ -176,7 +172,7 @@ class ReparativeMetadataAuditTool(tk.Tk):
         self.column_selection_frame.pack_forget()
         self.match_button.pack_forget()  # Hide matching button if it's already displayed
         self.identifier_label.pack(pady=5)
-        self.identifier_dropdown['values'] = self.selected_columns
+        self.identifier_dropdown['values'] = self.columns  # Update dropdown with all columns
         self.identifier_dropdown.current(0)  # Select first column by default
         self.identifier_dropdown.pack(pady=5)
         self.category_selection_frame.pack(fill='both', expand=True)
@@ -239,14 +235,6 @@ class ReparativeMetadataAuditTool(tk.Tk):
             self.column_listbox.selection_clear(0, tk.END)
             self.column_listbox.config(state='normal')
     
-    def toggle_categories(self):
-        if self.all_categories_var.get():
-            self.category_listbox.selection_set(0, tk.END)
-            self.category_listbox.config(state='disabled')
-        else:
-            self.category_listbox.selection_clear(0, tk.END)
-            self.category_listbox.config(state='normal')
-    
     def get_selected_columns(self):
         if self.all_columns_var.get():
             return self.columns
@@ -254,10 +242,7 @@ class ReparativeMetadataAuditTool(tk.Tk):
             return [self.columns[i] for i in self.column_listbox.curselection()]
     
     def get_selected_categories(self):
-        if self.all_categories_var.get():
-            return self.categories
-        else:
-            return [self.categories[i] for i in self.category_listbox.curselection()]
+        return [self.categories[i] for i in self.category_listbox.curselection()]
     
     def find_matches(self, selected_columns, selected_categories):
         matches = []
@@ -286,6 +271,20 @@ class ReparativeMetadataAuditTool(tk.Tk):
         else:
             self.column_selection_frame.pack_forget()
             self.main_frame.pack(fill='both', expand=True)
+    
+    def reset(self):
+        self.load_lexicon_button.config(state='normal')
+        self.load_metadata_button.config(state='normal')
+        self.lexicon_df = None
+        self.metadata_df = None
+        self.columns = []
+        self.categories = []
+        self.selected_columns = []
+        self.identifier_column = None
+        self.next_button.pack_forget()
+        self.explanation_label.pack_forget()
+        self.main_frame.pack()
+        self.explanation_label.pack(padx=20, pady=20)
 
 # Create and run the application
 app = ReparativeMetadataAuditTool()
