@@ -1,7 +1,7 @@
 # Reparative Metadata Audit Tool
-The Reparative Metadata Audit Tool is a Python application designed for auditing collections metadata files against a lexicon of potentially problematic terms. This tool provides a graphical user interface (GUI) for PC users, built using the Tkinter library.  
+The Reparative Metadata Audit Tool is a Python application designed for auditing collections metadata files against a lexicon of potentially problematic terms. A graphical user interface (GUI), built using the Tkinter library, is available for PC users. 
 
-## Background
+## Project Background
 
 ## Credits and Acknowledgments
 This tool was inspired by the Duke University Libraries Description Audit Tool, developed by [Noah Huffman](https://github.com/noahgh221) at the Rubenstein Library, and expanded by [Miriam Shams-Rainey](https://github.com/mshamsrainey). See: [Description-Audit](https://github.com/duke-libraries/description-audit/tree/main). 
@@ -9,11 +9,17 @@ This tool was inspired by the Duke University Libraries Description Audit Tool, 
 Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in collaboration with ChatGPT 3.5, [Rachel Wittmann](https://github.com/RachelJaneWittmann), and [Anna Neatrour](https://github.com/aneatrour) at the University of Utah's J. Willard Marriot Library.
 
 ## About the Tool
-At the most basic level, this Python script is designed to match terms from a lexicon with textual data and produce a CSV file containing the matched results. It utilizes the Pandas library for data manipulation and regular expressions for text processing. It was designed primarily with librarians in mind, specifically those engaged in reparative metadata practices, to assist in idenfiying terms in their metadata that may be outdated, biased, or otherwise problematic. The underlying code and a lexicon for the tool can be accessed via the [Code](https://github.com/kayleealexander/RMA-Tool/tree/main/Code) folder of this repository. 
+At the most basic level, the underlying Python code is designed to match terms from a lexicon with textual data and produce a CSV file containing the matched results. It utilizes the Pandas library for data manipulation and regular expressions for text processing. It was designed primarily with librarians in mind, specifically those engaged in reparative metadata practices, to assist in idenfiying terms in their metadata that may be outdated, biased, or otherwise problematic. The underlying code (including preliminary iterations) and a recommended lexicon for using the tool can be accessed via the [Code](https://github.com/kayleealexander/RMA-Tool/tree/main/Code) folder of this repository. 
 
 An initial test case developed a tool for parsing, extracting, tokenizing, and preprocessing XML files containing Open Archives Initiative (OAI) feed metadata for library special collections that would then crosscheck tokens against Duke's [lexicons](https://github.com/duke-libraries/description-audit/tree/main/lexicons) and append the corresponding lexicon categories (Aggrandizement, Race Euphemisms, Race Terms, Slavery Terms, Gender Terms, LGBTQ, Mental Illness, and Disability) to each row in the CSV output. This tool is accessible via the [XML Test Code](https://github.com/kayleealexander/RMA-Tool/tree/main/XML%20Test%20Code) folder of this repository, though may not work with all OAI feed formats. 
 
-### GUI Features 
+### About the Lexicon
+
+### Developing Your Own Lexicon
+
+### Sample Data
+
+## GUI Features 
 - Load lexicon and metadata files in CSV format.
 - Select columns from the metadata file for analysis.
 - Choose the column in the metadata file to be rewritten as the "Identifier" column so that the output can be reconciled with the original metadata file.
@@ -48,15 +54,7 @@ An initial test case developed a tool for parsing, extracting, tokenizing, and p
 
 - Tkinter: Tkinter is Python's standard GUI (Graphical User Interface) package. It is used to create desktop applications with a graphical interface. Documentation
 
-* * Note: These dependencies are essential for running the Reparative Metadata Audit Tool. If you don't have Python installed, you can download it from the official Python website. Tkinter is usually included with Python distributions, so no separate installation is required.* *
+*Note: These dependencies are essential for running the Reparative Metadata Audit Tool. If you don't have Python installed, you can download it from the official Python website. Tkinter is usually included with Python distributions, so no separate installation is required.*
 
 ### Installation 
 No installation is required. Simply run the Python script reparative_metadata_audit_tool.py to start the application on your PC.
-
-### The Lexicon
-
-### Developing Your Own Lexicon
-
-### Sample Data
-
-### Using the GUI
