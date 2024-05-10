@@ -4,6 +4,7 @@ The Reparative Metadata Audit Tool is a Python application designed for auditing
 Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in collaboration with ChatGPT 3.5, [Rachel Wittmann](https://github.com/RachelJaneWittmann), and [Anna Neatrour](https://github.com/aneatrour) at the University of Utah's J. Willard Marriot Library.
 
 ## Project Background
+*Coming soon*
 
 ## About the Tool
 At the most basic level, the underlying Python code is designed to match terms from a lexicon with textual data and produce a CSV file containing the matched results. It utilizes the Pandas library for data manipulation and regular expressions for text processing. It was designed primarily with librarians in mind, specifically those engaged in reparative metadata practices, to assist in idenfiying terms in their metadata that may be outdated, biased, or otherwise problematic. The underlying code (including preliminary iterations) and a recommended lexicon for using the tool can be accessed via the [Code](https://github.com/kayleealexander/RMA-Tool/tree/main/Code) folder of this repository. 
@@ -18,9 +19,12 @@ Users may download our lexicon to use in the tool as is or add additional terms 
 ### Sample Data
 *Coming soon*
 
-# Reparative Metadata Audit Tool GUI for PC
+## GUI for PC Users
+To facilitate wider use, our GUI allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
 
-## GUI Features
+*Note: The GUI is not compatible with MacOS*
+
+### Features
 - Load lexicon and metadata files in CSV format.
 - Select columns from the metadata file for analysis.
 - Choose the column in the metadata file to be rewritten as the "Identifier" column so that the output can be reconciled with the original metadata file.
@@ -28,9 +32,7 @@ Users may download our lexicon to use in the tool as is or add additional terms 
 - Perform matching to find matches between selected columns and categories.
 - Export results to a CSV file.
 
-*Note: This GUI is not compatible with MacOS*
-
-## Usage 
+### Usage 
 1. Loading Files:
    - Click on the "Load Lexicon" button to load the lexicon file.
    - Click on the "Load Metadata" button to load the metadata file.
@@ -40,7 +42,7 @@ Users may download our lexicon to use in the tool as is or add additional terms 
    - Select the columns from the metadata file that you want to analyze.
      
 3. Selecting Identifier Column:
-   - After selecting columns, choose the column in the metadata file that will serve as the "Identifier" column.
+   - After selecting columns, choose the column in the metadata file that will serve as the key column or "Identifier" column, such as a record ID. 
 
 4. Selecting Categories:
    - Next, choose the categories of terms from the lexicon that you want to search for.
@@ -50,17 +52,18 @@ Users may download our lexicon to use in the tool as is or add additional terms 
    - The results will be exported to a CSV file.
 
 6. Resetting:
-   - Use the "Reset" button to clear file selections and start over.
+   - Use the "Back" button to return to previous screens and alter your selections.
+   - Use the "Reset" button on the main frame to clear file selections and start over.
   
-## Dependencies
-- Python 3.x: Python is a widely used high-level programming language for general-purpose programming. Documentation
+### Dependencies
+- **[Python 3.x](https://docs.python.org/3/)**: Python is a widely used high-level programming language for general-purpose programming.
 
-- Tkinter: Tkinter is Python's standard GUI (Graphical User Interface) package. It is used to create desktop applications with a graphical interface. Documentation
+- **[Tkinter](https://docs.python.org/3/library/tk.html)**: Tkinter is Python's standard GUI (Graphical User Interface) package. It is used to create desktop applications with a graphical interface.
 
-*Note: These dependencies are essential for running the Reparative Metadata Audit Tool. If you don't have Python installed, you can download it from the official Python website. Tkinter is usually included with Python distributions, so no separate installation is required.*
+*Note: These dependencies are essential for running the Reparative Metadata Audit Tool. If you don't have Python installed, you can download it from the [official Python website](https://www.python.org/downloads/). Tkinter is usually included with Python distributions, so no separate installation is required.*
 
-## Installation 
+### Installation 
 No installation is required. Simply run the Python script reparative_metadata_audit_tool.py to start the application on your PC.
 
-# Credits and Acknowledgments
+## Credits and Acknowledgments
 This tool was inspired by the Duke University Libraries Description Audit Tool, developed by [Noah Huffman](https://github.com/noahgh221) at the Rubenstein Library, and expanded by [Miriam Shams-Rainey](https://github.com/mshamsrainey). See: [Description-Audit](https://github.com/duke-libraries/description-audit/tree/main). 
