@@ -180,6 +180,7 @@ class ReparativeMetadataAuditTool(tk.Tk):
                 return
 
             self.progress_bar.grid()
+            self.progress_bar["value"] = 0
             self.thread = threading.Thread(target=self.process_matching, args=(selected_categories,))
             self.thread.start()
         else:
@@ -190,6 +191,7 @@ class ReparativeMetadataAuditTool(tk.Tk):
                 return
 
             self.progress_bar.grid()
+            self.progress_bar["value"] = 0
             self.thread = threading.Thread(target=self.process_matching, args=(selected_categories,))
             self.thread.start()
 
