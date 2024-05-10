@@ -1,4 +1,5 @@
 # Reparative Metadata Audit Tool
+The Reparative Metadata Audit Tool is a Python application designed for auditing collections metadata files against a lexicon of potentially problematic terms. This tool provides a graphical user interface (GUI) for PC users, built using the Tkinter library.  
 
 ## Background
 
@@ -8,50 +9,53 @@ This tool was inspired by the Duke University Libraries Description Audit Tool, 
 Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in collaboration with ChatGPT 3.5, [Rachel Wittmann](https://github.com/RachelJaneWittmann), and [Anna Neatrour](https://github.com/aneatrour) at the University of Utah's J. Willard Marriot Library.
 
 ## About the Tool
-At the most basic level, this Python script is designed to match terms from a lexicon with textual data and produce a CSV file containing the matched results. It utilizes the Pandas library for data manipulation and regular expressions for text processing. It was designed for librarians engaged in reparative metadata practices to assist them in idenfiying terms in their metadata that may be outdated, biased, or otherwise problematic. The code and lexicon for the tool can be accessed via the [Code](https://github.com/kayleealexander/RMA-Tool/tree/main/Code) folder of this repository; a GUI is currently under development.
+At the most basic level, this Python script is designed to match terms from a lexicon with textual data and produce a CSV file containing the matched results. It utilizes the Pandas library for data manipulation and regular expressions for text processing. It was designed primarily with librarians in mind, specifically those engaged in reparative metadata practices, to assist in idenfiying terms in their metadata that may be outdated, biased, or otherwise problematic. The underlying code and a lexicon for the tool can be accessed via the [Code](https://github.com/kayleealexander/RMA-Tool/tree/main/Code) folder of this repository. 
 
 An initial test case developed a tool for parsing, extracting, tokenizing, and preprocessing XML files containing Open Archives Initiative (OAI) feed metadata for library special collections that would then crosscheck tokens against Duke's [lexicons](https://github.com/duke-libraries/description-audit/tree/main/lexicons) and append the corresponding lexicon categories (Aggrandizement, Race Euphemisms, Race Terms, Slavery Terms, Gender Terms, LGBTQ, Mental Illness, and Disability) to each row in the CSV output. This tool is accessible via the [XML Test Code](https://github.com/kayleealexander/RMA-Tool/tree/main/XML%20Test%20Code) folder of this repository, though may not work with all OAI feed formats. 
 
-### Dependencies 
-1. **Pandas**: A powerful data manipulation library for Python.
-2. **String**: A standard Python library for string manipulation.
-3. **Re**: A module providing support for regular expressions (regex) in Python.
+### GUI Features 
+- Load lexicon and metadata files in CSV format.
+- Select columns from the metadata file for analysis.
+- Choose the column in the metadata file to be rewritten as the "Identifier" column so that the output can be reconciled with the original metadata file.
+- Select categories of terms from the lexicon for analysis.
+- Perform matching to find matches between selected columns and categories.
+- Export results to a CSV file.
 
-### Functions 
-1. **load_lexicon(file_path)**: Loads a lexicon CSV file into a Pandas DataFrame.
-   - Parameters:
-      - file_path: Path to the lexicon CSV file.
-    - Returns:
-      - lexicon_df: DataFrame containing the lexicon data.
+### Usage 
+1. Loading Files:
+   - Click on the "Load Lexicon" button to load the lexicon file.
+   - Click on the "Load Metadata" button to load the metadata file.
+     
+2. Selecting Columns:
+   - After loading files, click "Next" to proceed to column selection.
+   - Select the columns from the metadata file that you want to analyze.
+     
+3. Selecting Identifier Column:
+   - After selecting columns, choose the column in the metadata file that will serve as the "Identifier" column.
 
-2. **load_metadata(file_path)**: Loads a metadata CSV file into a Pandas DataFrame. Removes punctuation from specified columns in the metadata DataFrame.
-   - Parameters:
-     - file_path: Path to the metadata CSV file.
-   - Returns:
-     - metadata_df: DataFrame containing the metadata.
+4. Selecting Categories:
+   - Next, choose the categories of terms from the lexicon that you want to search for.
 
-3. **find_matches(lexicon_df, metadata_df)**: Finds matches between terms in the lexicon and text in specified columns of the metadata.
-   - Parameters:
-     - lexicon_df: DataFrame containing the lexicon data.
-     - metadata_df: DataFrame containing the metadata.
-   - Returns:
-     - matches: List of tuples (Identifier, Term, Category, Column) representing matches.
+5. Performing Matching:
+   - Click "Perform Matching" to find matches between selected columns and categories.
+   - The results will be exported to a CSV file.
 
-### Example Usage
-1. Replace **lexicon_file_path**, **metadata_file_path**, and **output_file_path** with the paths to the locally saved [lexicon CSV file](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/reparative-metadata_lexicon.csv), your metadata CSV file, and your desired output CSV file, respectively.
-2. Ensure that the specified columns in the metadata CSV file are present and accurately represent the textual data to be matched. Preformat your metadata file with the following column names:
-   - **Title**
-   - **Description**
-   - **Subject**
-   - **Collection Name**
-4. Execute the script to generate the output CSV file containing the matched results.
+6. Resetting:
+   - Use the "Reset" button to clear file selections and start over.
+  
+### Dependencies
+- Python 3.x: Python is a widely used high-level programming language for general-purpose programming. Documentation
 
-*Note: Make sure the CSV files have the required format and structure for proper processing. Handle any exceptions related to file loading or data processing as needed.*
+- Tkinter: Tkinter is Python's standard GUI (Graphical User Interface) package. It is used to create desktop applications with a graphical interface. Documentation
+
+* * Note: These dependencies are essential for running the Reparative Metadata Audit Tool. If you don't have Python installed, you can download it from the official Python website. Tkinter is usually included with Python distributions, so no separate installation is required.* *
+
+### Installation 
+No installation is required. Simply run the Python script reparative_metadata_audit_tool.py to start the application on your PC.
 
 ### The Lexicon
 
 ### Developing Your Own Lexicon
-
 
 ### Sample Data
 
