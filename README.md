@@ -37,12 +37,9 @@ The RMA Tool can be run by any user from their command line. Where indicated in 
 
 3. Navigate to the tool's directory in the command-line interface.
    
-4. Update the paths to your lexicon and metadata files in the reparative_metadata_audit.py script.
-   - ```tool.load_lexicon("path/to/your/lexicon.csv")```
-   - ```tool.load_metadata("path/to/your/metadata.csv")```
+4. Update the paths to your lexicon and metadata files in the reparative_metadata_audit.py script. 
 
-6. Run the tool using the following command:
-   - ```python reparative_metadata_audit.py```
+6. Run the tool using the following command: ```python reparative_metadata_audit.py```
 
 8. Follow the on-screen prompts to input the columns and categories:
    - Enter the names of the columns you want to analyze, separated by commas (e.g., "column1,column2").
@@ -54,12 +51,16 @@ The RMA Tool can be run by any user from their command line. Where indicated in 
 ### Dependencies
 
 - **[Python 3.x](https://docs.python.org/3/)**: Python is a widely used high-level programming language for general-purpose programming.
-- **[pandas](https://pandas.pydata.org/docs/)**: Pandas is a Python library that provides easy-to-use data structures and data analysis tools for manipulating and analyzing structured data, particularly tabular data.
+- **[pandas](https://pandas.pydata.org/docs/)**: Pandas is a Python library that provides easy-to-use data structures and data analysis tools for manipulating and analyzing structured data, particularly tabular data. Pandas can be installed via pip: ```pip install pandas```
+- **[re](https://docs.python.org/3/library/re.html)**: This module provides regular expression matching operations. It's a built-in module in Python and doesn't require separate installation.
+
+*Note: These dependencies are necessary to run the provided code successfully. Ensure that you have them installed before running the code.*
 
 ### Notes
 - Ensure that both the lexicon and metadata files are in CSV format.
 - The lexicon file should contain columns for terms and their corresponding categories ("Terms","Category").
 - The metadata file should contain the text data to be analyzed, with each row representing a separate entry.
+- The metadata file should contain a column, such as a Record ID, that you can use as an "Identifier" to reconcile the tool's output with your original metadata. 
 - The tool outputs matching results to a CSV file named "matching_results.csv" in the tool's directory.
 
 ## GUI for PC Users
