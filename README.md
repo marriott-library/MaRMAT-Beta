@@ -1,5 +1,5 @@
-# Reparative Metadata Audit Tool
-The Reparative Metadata Audit Tool is a Python application designed for auditing collections metadata files against a lexicon of potentially problematic terms. A graphical user interface (GUI), built using the Tkinter library, is available for PC users. 
+# Reparative Metadata Audit (RMA) Tool
+The Reparative Metadata Audit Tool is a Python application designed for auditing collections metadata files against a lexicon of potentially problematic terms. The tool can be run in your command line, but a graphical user interface (GUI) is also available for PC users.
 
 Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in collaboration with ChatGPT 3.5, [Rachel Wittmann](https://github.com/RachelJaneWittmann), and [Anna Neatrour](https://github.com/aneatrour) at the University of Utah's J. Willard Marriot Library.
 
@@ -7,7 +7,7 @@ Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in coll
 *Coming soon*
 
 ## About the Tool
-At the most basic level, the [underlying Python code](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-Tool-2.5.py) is designed to match terms from a lexicon with textual data and produce a CSV file containing the matched results. It utilizes the Pandas library for data manipulation and regular expressions for text processing. It was designed primarily with librarians in mind, specifically those engaged in reparative metadata practices, to assist in idenfiying terms in their metadata that may be outdated, biased, or otherwise problematic. The underlying code (including preliminary iterations) and a recommended lexicon for using the tool can be accessed via the [Code](https://github.com/kayleealexander/RMA-Tool/tree/main/Code) folder of this repository. 
+At the most basic level, the RMA Tool is designed to match terms from a lexicon with textual data and produce a CSV file containing the matched results. It utilizes the Pandas library for data manipulation and regular expressions for text processing. It was designed primarily with librarians in mind, specifically those engaged in reparative metadata practices, to assist in idenfiying terms in their metadata that may be outdated, biased, or otherwise problematic. The underlying code (including preliminary iterations) and a recommended lexicon for using the tool can be accessed via the [Code](https://github.com/kayleealexander/RMA-Tool/tree/main/Code) folder of this repository. 
 
 An initial test case developed a tool for parsing, extracting, tokenizing, and preprocessing XML files containing Open Archives Initiative (OAI) feed metadata for library special collections that would then crosscheck tokens against Duke University's [lexicons](https://github.com/duke-libraries/description-audit/tree/main/lexicons) and append the corresponding lexicon categories (Aggrandizement, Race Euphemisms, Race Terms, Slavery Terms, Gender Terms, LGBTQ, Mental Illness, and Disability) to each row in the CSV output. This tool is accessible via the [XML Test Code](https://github.com/kayleealexander/RMA-Tool/tree/main/XML%20Test%20Code) folder of this repository, please note that this may not work with all OAI feed formats or take into account resumption tokens.
 
@@ -16,14 +16,6 @@ The lexicon provided [here](https://github.com/kayleealexander/RMA-Tool/tree/mai
 
 Users may download our lexicon to use in the tool as is or add additional terms and categories based on specific project needs. The only requirements for a lexicon to work against another file are that there be two columns in the CSV file: "Term" and "Category" (case sensitive). Therefore, the tool's use is not limited to auditing metadata for problematic terms; it may also be loaded with a custom lexicon to perform matching against a variety of content types.
 
-### Sample Data
-*Coming soon*
-
-## GUI for PC Users
-To facilitate wider use, our [Reparative Metadata Audit GUI](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-GUI-2.5.py) allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
-
-*Note: The GUI is not compatible with MacOS*
-
 ### Features
 - Load lexicon and metadata files in CSV format.
 - Select columns from the metadata file for analysis.
@@ -31,6 +23,50 @@ To facilitate wider use, our [Reparative Metadata Audit GUI](https://github.com/
 - Select categories of terms from the lexicon for analysis.
 - Perform matching to find matches between selected columns and categories.
 - Export results to a CSV file.
+
+### Sample Data
+*Coming soon*
+
+## Command-Line Tool 
+The RMA Tool can be run by any user from their command line. Where indicated in the script, provide the paths to each file, specify the columns you wish to analyze, designate your "Identifier" column, and input the categories of terms you want to match. Then, run the Python file from your command line. 
+
+### Usage
+1. Install Python if not already installed (Python 3.x recommended).
+   
+2. Clone or download the Reparative Metadata Audit Tool repository.
+
+3. Navigate to the tool's directory in the command-line interface.
+   
+4. Update the paths to your lexicon and metadata files in the reparative_metadata_audit.py script.
+   - tool.load_lexicon("path/to/your/lexicon.csv")
+   - tool.load_metadata("path/to/your/metadata.csv")
+
+5. Run the tool using the following command:
+   ```
+   python reparative_metadata_audit.py
+   ```
+6. Follow the on-screen prompts to input the columns and categories:
+   - Enter the names of the columns you want to analyze, separated by commas (e.g., "column1,column2").
+   - Enter the name of the identifier column (e.g., the name of a column used as a record ID)
+   - Enter the categories of terms you want to search for, separated by commas (e.g., "Category1,Category2").
+
+7. Review the matching results displayed on the console or in the generated CSV file.
+
+### Dependencies
+
+- **[Python 3.x](https://docs.python.org/3/)**: Python is a widely used high-level programming language for general-purpose programming.
+- **[pandas](https://pandas.pydata.org/docs/)**: Pandas is a Python library that provides easy-to-use data structures and data analysis tools for manipulating and analyzing structured data, particularly tabular data.
+
+### Notes
+- Ensure that both the lexicon and metadata files are in CSV format.
+- The lexicon file should contain columns for terms and their corresponding categories ("Terms","Category").
+- The metadata file should contain the text data to be analyzed, with each row representing a separate entry.
+- The tool outputs matching results to a CSV file named "matching_results.csv" in the tool's directory.
+
+## GUI for PC Users
+To facilitate wider use, our [Reparative Metadata Audit GUI](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-GUI-2.5.py) allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
+
+*Note: The GUI is not compatible with MacOS*
 
 ### Usage 
 1. Loading Files:
