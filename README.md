@@ -6,31 +6,31 @@ Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in coll
 ## **Table of Contents**
 1. [Project Background](#1-project-background)
 
-   1.1 About the Tool
+   1.1 [About the Tool](#11-about-the-tool)
    
-   1.2 The Lexicon
+   1.2 [The Lexicon](#12-the-lexicon)
 
-   1.3 Features
+   1.3 [Features](#13-features)
 
-   1.4 Sample Data
+   1.4 [Sample Data](#14-sample-data)
 
-2. The Command-Line Tool
+2. [The Command-Line Tool](#2-the-command-line-tool)
 
-   2.1 Usage
+   2.1 [Usage](#21-usage)
 
-   2.2 Dependencies
+   2.2 [Dependencies](#22-dependencies)
 
-   2.3 Notes
+   2.3 [Notes](#23-notes)
 
-3. The GUI for PC Users
+3. [The GUI for PC Users](#3-the-gui-for-pc-users)
 
-   3.1 Usage
+   3.1 [Usage](#31-usage)
 
-   3.2 Dependencies
+   3.2 [Dependencies](#32-dependencies)
 
-   3.3 Installation
+   3.3 [Installation](#33-installation)
 
-4. Credits and Acknowledgments
+4. [Credits and Acknowledgments](#4-credits-and-acknowledgments)
 
 ## 1. Project Background
 *Coming soon*
