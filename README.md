@@ -131,4 +131,4 @@ To facilitate wider use, our [Reparative Metadata Audit GUI](https://github.com/
 No installation is required. Simply run the Python script reparative_metadata_audit_tool.py to start the application on your PC.
 
 ## 4. Credits and Acknowledgments
-This tool was inspired by the Duke University Libraries Description Audit Tool, developed by [Noah Huffman](https://github.com/noahgh221) at the Rubenstein Library, and expanded by [Miriam Shams-Rainey](https://github.com/mshamsrainey) (see: [Description-Audit](https://github.com/duke-libraries/description-audit/tree/main)). 
+This tool was inspired by the Duke University Libraries Description Audit Tool, developed by [Noah Huffman](https://github.com/noahgh221) at the Rubenstein Library, and expanded by [Miriam Shams-Rainey](https://github.com/mshamsrainey) (see [Description-Audit](https://github.com/duke-libraries/description-audit/tree/main)). 
