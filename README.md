@@ -3,6 +3,35 @@ The Reparative Metadata Audit (RMA) Tool is a Python application designed for au
 
 Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in collaboration with ChatGPT 3.5, [Rachel Wittmann](https://github.com/RachelJaneWittmann), and [Anna Neatrour](https://github.com/aneatrour) at the University of Utah's J. Willard Marriot Library.
 
+## **Table of Contents**
+1. [Project Background](#1-project-background)
+
+   1.1 About the Tool
+   
+   1.2 The Lexicon
+
+   1.3 Features
+
+   1.4 Sample Data
+
+2. The Command-Line Tool
+
+   2.1 Usage
+
+   2.2 Dependencies
+
+   2.3 Notes
+
+3. The GUI for PC Users
+
+   3.1 Usage
+
+   3.2 Dependencies
+
+   3.3 Installation
+
+4. Credits and Acknowledgments
+
 ## 1. Project Background
 *Coming soon*
 
@@ -27,7 +56,7 @@ Users may download our lexicon to use in the tool as is or add additional terms 
 ### 1.4 Sample Data
 *Coming soon*
 
-## 2. Command-Line Tool 
+## 2. The Command-Line Tool 
 The RMA Tool can be run by any user from their command line. Where indicated in the script, provide the paths to each file, specify the columns you wish to analyze, designate your "Identifier" column, and input the categories of terms you want to match. Then, run the Python file from your command line. 
 
 ### 2.1 Usage
@@ -63,7 +92,7 @@ The RMA Tool can be run by any user from their command line. Where indicated in 
 - The metadata file should contain a column, such as a Record ID, that you can use as an "Identifier" to reconcile the tool's output with your original metadata. 
 - The tool outputs matching results to a CSV file named "matching_results.csv" in the tool's directory.
 
-## 3. GUI for PC Users
+## 3. The GUI for PC Users
 To facilitate wider use, our [Reparative Metadata Audit GUI](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-GUI-2.5.py) allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
 
 *Note: The GUI is not compatible with MacOS*
