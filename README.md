@@ -38,19 +38,19 @@ The RMA Tool can be run by any user from their command line. Where indicated in 
 3. Navigate to the tool's directory in the command-line interface.
    
 4. Update the paths to your lexicon and metadata files in the reparative_metadata_audit.py script.
-   - tool.load_lexicon("path/to/your/lexicon.csv")
-   - tool.load_metadata("path/to/your/metadata.csv")
+   ```tool.load_lexicon("path/to/your/lexicon.csv")```
 
-5. Run the tool using the following command:
-   ```
-   python reparative_metadata_audit.py
-   ```
-6. Follow the on-screen prompts to input the columns and categories:
+   ```tool.load_metadata("path/to/your/metadata.csv")```
+
+6. Run the tool using the following command:
+   ```python reparative_metadata_audit.py```
+
+7. Follow the on-screen prompts to input the columns and categories:
    - Enter the names of the columns you want to analyze, separated by commas (e.g., "column1,column2").
    - Enter the name of the identifier column (e.g., the name of a column used as a record ID)
    - Enter the categories of terms you want to search for, separated by commas (e.g., "Category1,Category2").
 
-7. Review the matching results displayed on the console or in the generated CSV file.
+8. Review the matching results displayed on the console or in the generated CSV file.
 
 ### Dependencies
 
