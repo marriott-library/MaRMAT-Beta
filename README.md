@@ -80,7 +80,8 @@ The RMA Tool can be run by any user from their command line. Where indicated in 
 ### 2.2 Dependencies
 
 - **[Python 3.x](https://docs.python.org/3/)**: Python is a widely used high-level programming language for general-purpose programming.
-- **[pandas](https://pandas.pydata.org/docs/)**: Pandas is a Python library that provides easy-to-use data structures and data analysis tools for manipulating and analyzing structured data, particularly tabular data. Pandas can be installed via pip: ```pip install pandas```
+- **[pandas](https://pandas.pydata.org/docs/)**: Pandas is a Python library that provides easy-to-use data structures and data analysis tools for manipulating and analyzing structured data, particularly tabular data. Pandas can be installed via pip:
+     ``pip install pandas``
 - **[re](https://docs.python.org/3/library/re.html)**: This module provides regular expression matching operations. It's a built-in module in Python and doesn't require separate installation.
 
 *Note: These dependencies are necessary to run the provided code successfully. Ensure that you have them installed before running the code.*
