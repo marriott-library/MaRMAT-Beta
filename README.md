@@ -129,7 +129,7 @@ To facilitate wider use, our [Reparative Metadata Audit GUI](https://github.com/
 *Note: These dependencies are essential for running the Reparative Metadata Audit Tool. If you don't have Python installed, you can download it from the [official Python website](https://www.python.org/downloads/). Tkinter is usually included with Python distributions, so no separate installation is required.*
 
 ### 3.3 Installation 
-No installation is required. Simply run the Python script reparative_metadata_audit_tool.py to start the application on your PC.
+No installation is required. Simply run the Python script ``reparative_metadata_audit_tool.py`` to start the application on your PC.
 
 ## 4. Credits and Acknowledgments
 This tool was inspired by the Duke University Libraries Description Audit Tool, developed by [Noah Huffman](https://github.com/noahgh221) at the Rubenstein Library, and expanded by [Miriam Shams-Rainey](https://github.com/mshamsrainey) (see [Description-Audit](https://github.com/duke-libraries/description-audit/tree/main)). 
