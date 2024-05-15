@@ -1,5 +1,5 @@
 # Reparative Metadata Audit (RMA) Tool
-The Reparative Metadata Audit (RMA) Tool is a Python application designed for auditing collections metadata files against a lexicon of potentially problematic terms. The tool can be run in your command line, but a graphical user interface (GUI) is also available for PC users.
+The Reparative Metadata Audit (RMA) Tool is a Python application designed for auditing collections metadata files against a lexicon of potentially problematic terms. The tool's design facilitates an easy-to-follow process for auditing metadata using a lexicon of problematic terms. For PC user's, we provide a graphical interface for file loading, column selection, and term matching, making it user-friendly for those with limited programming experience. The tool can also be run in your command line. 
 
 Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in collaboration with ChatGPT 3.5, [Rachel Wittmann](https://github.com/RachelJaneWittmann), and [Anna Neatrour](https://github.com/aneatrour) at the University of Utah's J. Willard Marriot Library.
 
