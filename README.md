@@ -96,7 +96,7 @@ The RMA Tool can be run by any user from their command line. Where indicated in 
 ## 3. The GUI for PC Users
 To facilitate wider use, our [Reparative Metadata Audit GUI](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-GUI-2.5.py) allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
 
-*Note: The GUI is not compatible with MacOS*
+*Note: The GUI is not compatible with MacOS. Additional information on the RMA GUI is available [here](https://github.com/kayleealexander/RMA-Tool/blob/main/GUI-Documentation.md).
 
 ### 3.1 Usage 
 1. Loading Files:
