@@ -61,26 +61,20 @@ class ReparativeMetadataAuditTool(tk.Tk):
         self.progress_bar.grid_remove()  # Hide progress bar initially
 
     def load_lexicon(self):
-        file_path = filedialog.askopenfilename(filetypes=[("CSV and TSV files", "*.csv *.tsv")])
+        file_path = filedialog.askopenfilename(filetypes=[("CSV files", "*.csv")])
         if file_path:
             try:
-                if file_path.endswith('.csv'):
-                    self.lexicon_df = pd.read_csv(file_path, encoding='latin1')
-                elif file_path.endswith('.tsv'):
-                    self.lexicon_df = pd.read_csv(file_path, encoding='latin1', sep='\t')
+                self.lexicon_df = pd.read_csv(file_path, encoding='latin1')
                 messagebox.showinfo("Success", "Lexicon loaded successfully.")
                 self.load_lexicon_button.config(state='disabled')
             except Exception as e:
                 messagebox.showerror("Error", f"An error occurred while loading lexicon: {e}")
 
     def load_metadata(self):
-        file_path = filedialog.askopenfilename(filetypes=[("CSV and TSV files", "*.csv *.tsv")])
+        file_path = filedialog.askopenfilename(filetypes=[("CSV files", "*.csv")])
         if file_path:
             try:
-                if file_path.endswith('.csv'):
-                    self.metadata_df = pd.read_csv(file_path, encoding='latin1')
-                elif file_path.endswith('.tsv'):
-                    self.metadata_df = pd.read_csv(file_path, encoding='latin1', sep='\t')
+                self.metadata_df = pd.read_csv(file_path, encoding='latin1')
                 messagebox.showinfo("Success", "Metadata loaded successfully.")
                 self.load_metadata_button.config(state='disabled')
                 self.next_button.grid()
