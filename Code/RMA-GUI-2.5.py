@@ -64,6 +64,7 @@ class ReparativeMetadataAuditTool(tk.Tk):
         # Queue for thread communication
         self.matching_queue = queue.Queue()
         self.matching_thread = None
+        self.check_queue_job = None
 
     def load_lexicon(self):
         file_path = filedialog.askopenfilename(filetypes=[("CSV and TSV files", "*.csv *.tsv")])
@@ -219,11 +220,11 @@ class ReparativeMetadataAuditTool(tk.Tk):
                         self.export_results()
                     else:
                         messagebox.showinfo("No Matches", "No matches found.")
-                    self.after(100, process_queue)
+                    self.after_cancel(self.check_queue_job)
 
         self.matching_thread = threading.Thread(target=match_terms)
         self.matching_thread.start()
-        self.after(100, process_queue)
+        self.check_queue_job = self.after(100, process_queue)
 
     def export_results(self):
         results_df = pd.DataFrame(self.matched_results)
@@ -279,3 +280,4 @@ class ReparativeMetadataAuditTool(tk.Tk):
 if __name__ == "__main__":
     app = ReparativeMetadataAuditTool()
     app.mainloop()
+
