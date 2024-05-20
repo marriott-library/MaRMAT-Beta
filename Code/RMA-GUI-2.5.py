@@ -3,6 +3,7 @@ from tkinter import filedialog, messagebox, ttk
 import pandas as pd
 import re
 import threading
+import queue
 
 class ReparativeMetadataAuditTool(tk.Tk):
     def __init__(self):
@@ -60,21 +61,31 @@ class ReparativeMetadataAuditTool(tk.Tk):
         self.progress_bar.grid(row=3, column=0, columnspan=3, pady=10, padx=10, sticky="ew")
         self.progress_bar.grid_remove()  # Hide progress bar initially
 
+        # Queue for thread communication
+        self.matching_queue = queue.Queue()
+        self.matching_thread = None
+
     def load_lexicon(self):
-        file_path = filedialog.askopenfilename(filetypes=[("CSV files", "*.csv")])
+        file_path = filedialog.askopenfilename(filetypes=[("CSV and TSV files", "*.csv *.tsv")])
         if file_path:
             try:
-                self.lexicon_df = pd.read_csv(file_path, encoding='latin1')
+                if file_path.endswith('.csv'):
+                    self.lexicon_df = pd.read_csv(file_path, encoding='latin1')
+                elif file_path.endswith('.tsv'):
+                    self.lexicon_df = pd.read_csv(file_path, encoding='latin1', sep='\t')
                 messagebox.showinfo("Success", "Lexicon loaded successfully.")
                 self.load_lexicon_button.config(state='disabled')
             except Exception as e:
                 messagebox.showerror("Error", f"An error occurred while loading lexicon: {e}")
 
     def load_metadata(self):
-        file_path = filedialog.askopenfilename(filetypes=[("CSV files", "*.csv")])
+        file_path = filedialog.askopenfilename(filetypes=[("CSV and TSV files", "*.csv *.tsv")])
         if file_path:
             try:
-                self.metadata_df = pd.read_csv(file_path, encoding='latin1')
+                if file_path.endswith('.csv'):
+                    self.metadata_df = pd.read_csv(file_path, encoding='latin1')
+                elif file_path.endswith('.tsv'):
+                    self.metadata_df = pd.read_csv(file_path, encoding='latin1', sep='\t')
                 messagebox.showinfo("Success", "Metadata loaded successfully.")
                 self.load_metadata_button.config(state='disabled')
                 self.next_button.grid()
@@ -192,18 +203,27 @@ class ReparativeMetadataAuditTool(tk.Tk):
                                     'Original Text': cell_value
                                 }
                                 self.matched_results.append(match_info)
-                self.progress_bar['value'] = (idx + 1) / total_rows * 100
-                self.update_idletasks()
+                self.matching_queue.put((idx + 1) / total_rows * 100)
 
-            self.progress_bar.stop()
-            self.progress_bar.grid_remove()
+        def process_queue():
+            try:
+                while True:
+                    progress = self.matching_queue.get_nowait()
+                    self.progress_bar['value'] = progress
+                    self.update_idletasks()
+            except queue.Empty:
+                if not self.matching_thread.is_alive():
+                    self.progress_bar.stop()
+                    self.progress_bar.grid_remove()
+                    if self.matched_results:
+                        self.export_results()
+                    else:
+                        messagebox.showinfo("No Matches", "No matches found.")
+                    self.after(100, process_queue)
 
-            if self.matched_results:
-                self.export_results()
-            else:
-                messagebox.showinfo("No Matches", "No matches found.")
-
-        threading.Thread(target=match_terms).start()
+        self.matching_thread = threading.Thread(target=match_terms)
+        self.matching_thread.start()
+        self.after(100, process_queue)
 
     def export_results(self):
         results_df = pd.DataFrame(self.matched_results)
