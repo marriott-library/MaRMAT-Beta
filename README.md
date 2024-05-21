@@ -116,10 +116,6 @@ To facilitate wider use, our [Reparative Metadata Audit GUI](https://github.com/
 5. Performing Matching:
    - Click "Perform Matching" to find matches between selected columns and categories.
    - The results will be exported to a CSV file.
-
-6. Resetting:
-   - Use the "Back" button to return to previous screens and alter your selections.
-   - Use the "Reset" button on the main frame to clear file selections and start over.
   
 ### 3.2 Dependencies
 - **[Python 3.x](https://docs.python.org/3/)**: Python is a widely used high-level programming language for general-purpose programming.
