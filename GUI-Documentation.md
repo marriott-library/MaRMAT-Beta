@@ -33,7 +33,6 @@ The [Reparative Metadata Audit Tool GUI ](https://github.com/kayleealexander/RMA
 
 ### 7. Perform Matching
   - perform_matching: Matches terms from the selected lexicon categories against the selected metadata columns.
-  - Progress Bar: Indicates progress during the matching process.
   - Multithreading: Uses threading to perform matching without freezing the UI.
 
 ### 8. Export Results
@@ -43,7 +42,6 @@ The [Reparative Metadata Audit Tool GUI ](https://github.com/kayleealexander/RMA
   - get_selected_columns: Returns the list of selected columns.
   - get_selected_categories: Returns the list of selected categories.
   - toggle_columns and toggle_categories: Toggle all selections in the listboxes.
-  - Navigation Methods: Methods like back_to_main_frame, back_to_column_selection, and back_to_identifier_selection handle navigation between different frames.
 
 ### 10. Main Execution
   - if __name__ == "__main__": Initializes and starts the main Tkinter event loop.
