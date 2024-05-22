@@ -56,6 +56,11 @@ class ReparativeMetadataAuditTool(tk.Tk):
         self.next_button.grid(row=2, column=0, columnspan=3, pady=10, sticky="nsew")
         self.next_button.grid_remove()  # Hide next button initially
 
+        # Progress bar
+        self.progress_bar = ttk.Progressbar(self.main_frame, orient='horizontal', mode='determinate')
+        self.progress_bar.grid(row=3, column=0, columnspan=3, padx=10, pady=10, sticky="nsew")
+        self.progress_bar.grid_remove()
+
         # Queue for thread communication
         self.matching_queue = queue.Queue()
         self.matching_thread = None
@@ -156,41 +161,62 @@ class ReparativeMetadataAuditTool(tk.Tk):
         self.all_categories_checkbox = ttk.Checkbutton(self.category_selection_frame, text="All", variable=self.all_categories_var, command=self.toggle_categories)
         self.all_categories_checkbox.grid(row=2, column=0, padx=10, pady=5, sticky="w")
 
-        self.next_button_categories = ttk.Button(self.category_selection_frame, text="Perform Matching", command=self.perform_matching)
+        self.next_button_categories = ttk.Button(self.category_selection_frame, text="Perform Matching", command=self.start_matching_thread)
         self.next_button_categories.grid(row=3, column=0, padx=10, pady=10, sticky="nsew")
+
+    def start_matching_thread(self):
+        self.progress_bar.grid()
+        self.progress_bar.start()
+        self.matching_thread = threading.Thread(target=self.perform_matching)
+        self.matching_thread.start()
+        self.check_queue()
 
     def perform_matching(self):
         selected_categories = self.get_selected_categories()
         if not selected_categories:
             messagebox.showwarning("Warning", "Please select at least one category.")
+            self.matching_queue.put("done")
             return
 
         self.matched_results = []
 
-        def match_terms():
-            total_rows = len(self.metadata_df)
-            for idx, row in self.metadata_df.iterrows():
-                for col in self.selected_columns:
-                    cell_value = str(row[col])
-                    for _, lexicon_row in self.lexicon_df.iterrows():
-                        term = lexicon_row['term']
-                        category = lexicon_row['category']
-                        if category in selected_categories:
-                            if re.search(rf'\b{re.escape(term)}\b', cell_value, re.IGNORECASE):
-                                match_info = {
-                                    'Identifier': row[self.identifier_column],
-                                    'Column': col,
-                                    'Term': term,
-                                    'Category': category,
-                                    'Original Text': cell_value
-                                }
-                                self.matched_results.append(match_info)
+        total_rows = len(self.metadata_df)
+        for idx, row in self.metadata_df.iterrows():
+            for col in self.selected_columns:
+                cell_value = str(row[col])
+                for _, lexicon_row in self.lexicon_df.iterrows():
+                    term = lexicon_row['term']
+                    category = lexicon_row['category']
+                    if category in selected_categories:
+                        if re.search(rf'\b{re.escape(term)}\b', cell_value, re.IGNORECASE):
+                            match_info = {
+                                'Identifier': row[self.identifier_column],
+                                'Column': col,
+                                'Term': term,
+                                'Category': category,
+                                'Original Text': cell_value
+                            }
+                            self.matched_results.append(match_info)
+            self.matching_queue.put(idx)
 
-        match_terms()
-        if self.matched_results:
-            self.export_results()
-        else:
-            messagebox.showinfo("No Matches", "No matches found.")
+        self.matching_queue.put("done")
+
+    def check_queue(self):
+        try:
+            while True:
+                message = self.matching_queue.get_nowait()
+                if message == "done":
+                    self.progress_bar.stop()
+                    self.progress_bar.grid_remove()
+                    if self.matched_results:
+                        self.export_results()
+                    else:
+                        messagebox.showinfo("No Matches", "No matches found.")
+                    return
+                else:
+                    self.progress_bar['value'] = (message + 1) / len(self.metadata_df) * 100
+        except queue.Empty:
+            self.after(100, self.check_queue)
 
     def export_results(self):
         results_df = pd.DataFrame(self.matched_results)
@@ -234,5 +260,3 @@ class ReparativeMetadataAuditTool(tk.Tk):
 if __name__ == "__main__":
     app = ReparativeMetadataAuditTool()
     app.mainloop()
-
-       
