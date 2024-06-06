@@ -45,3 +45,5 @@ This might be making the matching process against the LCSH lexicon not function 
 Anna asked if we could add intermediate steps where we print out some of the behind the scenes processing steps would be useful
 
 maybe we need a separate tool that could process digital library LCSH against a LCSH lexicon
+
+Also maybe take out headings only from LCSH changes, not subheadings in order to pick up broad matches
