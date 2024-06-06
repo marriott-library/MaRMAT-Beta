@@ -15,7 +15,6 @@ class ReparativeMetadataAuditTool(tk.Tk):
         self.columns = []
         self.categories = []
         self.selected_columns = []
-        self.category_selection_page_active = False
         self.identifier_column = None
         
         # Create main frame
@@ -43,7 +42,7 @@ class ReparativeMetadataAuditTool(tk.Tk):
         Let's get started!
         """
         
-        self.explanation_label = ttk.Label(self.main_frame, text=self.explanation_text, justify='left')
+        self.explanation_label = ttk.Label(self.main_frame, text=self.explanation_text, justify='left', wraplength=600)
         self.explanation_label.grid(row=0, column=0, columnspan=3, padx=20, pady=20, sticky="nsew")
         
         # Load lexicon button
@@ -116,7 +115,6 @@ class ReparativeMetadataAuditTool(tk.Tk):
         
         self.back_button_columns = ttk.Button(self.column_selection_frame, text="Back", command=self.back_to_main_frame)
         self.back_button_columns.grid(row=4, column=0, padx=10, pady=10, sticky="nsew")
-        self.back_button_columns.grid_remove()  # Hide back button initially
     
     def show_identifier_selection(self):
         self.selected_columns = self.get_selected_columns()  # Store selected columns
@@ -172,36 +170,30 @@ class ReparativeMetadataAuditTool(tk.Tk):
         self.back_button_categories.grid(row=4, column=0, padx=10, pady=10, sticky="nsew")
     
     def perform_matching(self):
-        if self.category_selection_page_active:
-            selected_categories = self.get_selected_categories()
-
-            if not selected_categories:
-                messagebox.showwarning("Warning", "Please select at least one category.")
-                return
-
-            self.progress_bar.grid()
-            self.progress_bar["value"] = 0
-            self.thread = threading.Thread(target=self.process_matching, args=(selected_categories,))
-            self.thread.start()
+        selected_categories = self.get_selected_categories()
+        if not selected_categories:
+            messagebox.showwarning("Warning", "Please select at least one category.")
+            return
+        
+        self.progress_bar.grid()
+        self.progress_bar["value"] = 0
+        self.thread = threading.Thread(target=self.process_matching, args=(selected_categories,))
+        self.thread.start()
+        self.after(100, self.check_thread)  # Check the thread status every 100 ms
+    
+    def check_thread(self):
+        if self.thread.is_alive():
+            self.after(100, self.check_thread)
         else:
-            selected_categories = self.get_selected_categories()
-
-            if not selected_categories:
-                messagebox.showwarning("Warning", "Please select at least one category.")
-                return
-
-            self.progress_bar.grid()
-            self.progress_bar["value"] = 0
-            self.thread = threading.Thread(target=self.process_matching, args=(selected_categories,))
-            self.thread.start()
-
+            self.progress_bar.grid_remove()
+    
     def process_matching(self, selected_categories):
         matches = self.find_matches(self.selected_columns, selected_categories)
-        matches_filtered = [(identifier, term, category, col) for identifier, term, category, col in matches if col in self.selected_columns]
+        matches_filtered = [(identifier, term, category, col, text) for identifier, term, category, col, text in matches if col in self.selected_columns]
         output_file_path = filedialog.asksaveasfilename(defaultextension=".csv", filetypes=[("CSV files", "*.csv")])
         if output_file_path:
             try:
-                matches_df = pd.DataFrame(matches_filtered, columns=['Identifier', 'Term', 'Category', 'Column'])
+                matches_df = pd.DataFrame(matches_filtered, columns=['Identifier', 'Term', 'Category', 'Column', 'Original Text'])
                 matches_df.to_csv(output_file_path, index=False)
                 messagebox.showinfo("Success", f"Merged data saved to: {output_file_path}")
                 self.reset()
@@ -241,7 +233,7 @@ class ReparativeMetadataAuditTool(tk.Tk):
                 if isinstance(row[col], str):
                     for term, category in zip(lexicon_df['term'], lexicon_df['category']):
                         if re.search(r'\b' + re.escape(term.lower()) + r'\b', row[col].lower()):
-                            matches.append((row[self.identifier_column], term, category, col))
+                            matches.append((row[self.identifier_column], term, category, col, row[col]))
                             break
         return matches
     
