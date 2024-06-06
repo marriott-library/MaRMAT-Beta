@@ -61,12 +61,7 @@ class ReparativeMetadataAuditTool(tk.Tk):
         self.next_button = ttk.Button(self.main_frame, text="Next", command=self.show_column_selection)
         self.next_button.grid(row=2, column=0, columnspan=3, pady=10, sticky="nsew")
         self.next_button.grid_remove()  # Hide next button initially
-        
-        # Progress bar
-        self.progress_bar = ttk.Progressbar(self.main_frame, orient="horizontal", mode="determinate")
-        self.progress_bar.grid(row=3, column=0, columnspan=3, pady=10, padx=10, sticky="ew")
-        self.progress_bar.grid_remove()  # Hide progress bar initially
-        
+
     def load_lexicon(self):
         file_path = filedialog.askopenfilename(filetypes=[("CSV files", "*.csv")])
         if file_path:
@@ -175,19 +170,6 @@ class ReparativeMetadataAuditTool(tk.Tk):
             messagebox.showwarning("Warning", "Please select at least one category.")
             return
         
-        self.progress_bar.grid()
-        self.progress_bar["value"] = 0
-        self.thread = threading.Thread(target=self.process_matching, args=(selected_categories,))
-        self.thread.start()
-        self.after(100, self.check_thread)  # Check the thread status every 100 ms
-    
-    def check_thread(self):
-        if self.thread.is_alive():
-            self.after(100, self.check_thread)
-        else:
-            self.progress_bar.grid_remove()
-    
-    def process_matching(self, selected_categories):
         matches = self.find_matches(self.selected_columns, selected_categories)
         matches_filtered = [(identifier, term, category, col, text) for identifier, term, category, col, text in matches if col in self.selected_columns]
         output_file_path = filedialog.asksaveasfilename(defaultextension=".csv", filetypes=[("CSV files", "*.csv")])
@@ -260,7 +242,6 @@ class ReparativeMetadataAuditTool(tk.Tk):
         self.identifier_column = None
         self.next_button.grid_remove()
         self.explanation_label.grid()
-        self.progress_bar.grid_remove()
 
 # Create and run the application
 app = ReparativeMetadataAuditTool()
