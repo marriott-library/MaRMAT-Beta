@@ -38,3 +38,10 @@ Anna will review documentation, see if there is anything additonal to add about 
 Rachel will finalize lexicons
 
 Kaylee will add additional column output for original context
+
+We discussed the issues with matching against the problem LCSH lexicon
+Kaylee thinks that the processing step where the metadata gets stripped of punctuation is removing the subdivisions between LCSH headings and subheadings
+This might be making the matching process against the LCSH lexicon not function well.
+Anna asked if we could add intermediate steps where we print out some of the behind the scenes processing steps would be useful
+
+maybe we need a separate tool that could process digital library LCSH against a LCSH lexicon
