@@ -4,10 +4,10 @@ import pandas as pd
 import re
 import threading
 
-class ReparativeMetadataAuditTool(tk.Tk):
+class MaRMAT(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Reparative Metadata Audit Tool")
+        self.title("Marriott Reparative Metadata Assessment Tool (MaRMAT)")
         
         # Initialize variables
         self.lexicon_df = None
@@ -23,7 +23,7 @@ class ReparativeMetadataAuditTool(tk.Tk):
         
         # Explanation text
         self.explanation_text = """
-        Welcome to the Reparative Metadata Audit Tool!
+        Welcome to Marriott Reparative Metadata Assessment Tool (MaRMAT)!
         
         This tool allows you to match terms from a problematic terms lexicon file with text data from a collections metadata file.
         
@@ -244,5 +244,5 @@ class ReparativeMetadataAuditTool(tk.Tk):
         self.explanation_label.grid()
 
 # Create and run the application
-app = ReparativeMetadataAuditTool()
+app = MaRMAT()
 app.mainloop()
