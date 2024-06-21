@@ -1,11 +1,11 @@
 import pandas as pd
 import re
 
-class ReparativeMetadataAuditToolCLI:
-    """A tool for auditing metadata and identifying matches based on a provided lexicon."""
+class MaRMAT:
+    """A tool for assessing metadata and identifying matches based on a provided lexicon."""
 
     def __init__(self):
-        """Initialize the audit tool."""
+        """Initialize the assessment tool."""
         self.lexicon_df = None
         self.metadata_df = None
         self.columns = []  # List of all available columns in the metadata
@@ -115,7 +115,7 @@ output_file = "matches.csv" # Input the file path where you want to save your ma
 
 # Example usage:
 print("1. Initialize the tool:")
-tool = ReparativeMetadataAuditToolCLI()
+tool = MaRMAT()
 
 print("\n2. Load lexicon and metadata files:")
 tool.load_lexicon("lexicon.csv")  # Input the path to your lexicon CSV file.
