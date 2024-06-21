@@ -1,47 +1,52 @@
-# Reparative Metadata Audit Tool: GUI Documentation
-The [Reparative Metadata Audit Tool GUI ](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-GUI-2.5.py) was designed using the Tkinter library in Python. This application allows users to load a lexicon and metadata file, select relevant columns and categories, and perform a search to identify problematic terms from the lexicon in the metadata. Below is the detailed breakdown of the functionalities implemented in this tool:
+# Reparative Metadata Audit Tool
 
+The Reparative Metadata Audit Tool is a graphical application built using Tkinter in Python. This tool allows users to match terms from a problematic terms lexicon file with text data from a collections metadata file, facilitating metadata cleanup and analysis.
 
-### 1. Class Initialization
-  - Class Definition: The ReparativeMetadataAuditTool class inherits from tk.Tk.
-  - Initial Setup: The __init__ method initializes the main window, frames, and widgets.
-  - Variables Initialization: Variables to hold dataframes, columns, categories, and UI elements are initialized.
+## Overview
 
-### 2. Main Frame UI Elements
-  - Explanation Label: Provides instructions to the user.
-  - Buttons:
-    - Load Lexicon: To load the lexicon file.
-    - Load Metadata: To load the metadata file.
-    - Reset: To reset the application.
-    - Next: Initially hidden, appears after loading metadata to proceed to column selection.
+The application provides the following functionalities:
 
-### 3. Methods for Loading Files
-  - load_lexicon: Opens a file dialog to select and load a lexicon file (CSV/TSV). Disables the button upon successful load.
-  - load_metadata: Opens a file dialog to select and load a metadata file (CSV/TSV). Enables the Next button upon successful load.
+- Load CSV files for both lexicon and metadata.
+- Select specific columns from the metadata for analysis.
+- Choose an identifier column in the metadata to relate back to the original dataset.
+- Select categories of terms from the lexicon for searching.
+- Perform matching to find terms in selected metadata columns and export results to a CSV file.
 
-### 4. Column Selection
-  - show_column_selection: Displays UI to select columns from the metadata for analysis.
-  - Column Listbox: Allows multiple selections of columns. Includes a checkbox to select all columns.
+## Features
 
-### 5. Identifier Selection
-  - show_identifier_selection: Displays UI to select an identifier column.
-  - Identifier Dropdown: Shows a dropdown list of metadata columns to select the identifier.
+- **User Interface**: Utilizes Tkinter for a GUI interface.
+- **File Loading**: Supports loading CSV files for lexicon and metadata.
+- **Column Selection**: Allows users to choose specific columns from metadata for term analysis.
+- **Identifier Selection**: Enables selection of an identifier column for linking matched terms back to the original metadata.
+- **Category Selection**: Provides options to select categories of terms from the lexicon for matching.
+- **Matching Process**: Performs regex-based term matching across selected metadata columns and chosen lexicon categories.
+- **Output**: Exports matched data to a CSV file for further analysis or use.
 
-### 6. Category Selection
-  - show_category_selection: Displays UI to select categories from the lexicon for analysis.
-  - Category Listbox: Allows multiple selections of categories. Includes a checkbox to select all categories.
+## Getting Started
 
-### 7. Perform Matching
-  - perform_matching: Matches terms from the selected lexicon categories against the selected metadata columns.
-  - Multithreading: Uses threading to perform matching without freezing the UI.
+To use the Reparative Metadata Audit Tool, follow these steps:
 
-### 8. Export Results
-  - export_results: Exports the matching results to a CSV file chosen by the user.
+1. Download the [RMA-GUI-2.52.py](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-GUI-2.52.py) file
+2. Download one of our sample lexicons in the [Code](https://github.com/kayleealexander/RMA-Tool/tree/main/Code) folder, or create your own.
+3. Download the metadata you want to audit as a CSV file.
+4. Open the [RMA-GUI-2.52.py](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-GUI-2.52.py) file and follow the prompts.
 
-### 9. Helper Methods
-  - get_selected_columns: Returns the list of selected columns.
-  - get_selected_categories: Returns the list of selected categories.
-  - toggle_columns and toggle_categories: Toggle all selections in the listboxes.
+### Using the Tool
 
-### 10. Main Execution
-  - if __name__ == "__main__": Initializes and starts the main Tkinter event loop.
+1. **Load Lexicon and Metadata**:
+   - Follow on-screen instructions to load your lexicon and metadata CSV files using the provided buttons.
+
+2. **Perform Analysis**:
+   - Select columns from your metadata for analysis.
+   - Choose an identifier column for matching results back to the original dataset.
+   - Select categories of terms from the lexicon for analysis.
+   - Click "Perform Matching" to find matches and export the results as a CSV file.
+
+### Additional Notes
+
+- **Dependencies**: Ensure you have Python 3.x and the `pandas` library installed as per the installation instructions.
+- **Contribution**: Feel free to contribute to the project by forking the repository, making changes, and submitting pull requests following the contribution guidelines.
+
+### Contact
+
+For any questions or support, please contact [Kaylee Alexander](mailto:kaylee.alexander@utah.edu).
