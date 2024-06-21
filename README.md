@@ -65,18 +65,18 @@ There are a few lexicons provided to help begin your reparative metadata assessm
 *Coming soon*
 
 ## 2. The Command-Line Tool 
-The [MaRMAT](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-Tool-2.5.py) can be run by any user from their command line. Where indicated in the script, provide the paths to each file, specify the columns you wish to analyze, designate your "Identifier" column, and input the categories of terms you want to match. Then, run the Python file from your command line. 
+The [MaRMAT](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/MaRMAT-2.5.py) can be run by any user from their command line. Where indicated in the script, provide the paths to each file, specify the columns you wish to analyze, designate your "Identifier" column, and input the categories of terms you want to match. Then, run the Python file from your command line. 
 
 ### 2.1 Usage
 1. Install Python if not already installed (Python 3.x recommended).
    
-2. Clone or download the Reparative Metadata Assessment Tool repository.
+2. Clone or download the MaRMAT repository.
 
 3. Navigate to the tool's directory in the command-line interface.
    
-4. Update the paths to your lexicon and metadata files in the RMA-Tool-2.5.py script. 
+4. Update the paths to your lexicon and metadata files in the MaRMAT-2.5.py script. 
 
-6. Run the tool using the following command: ```python RMA-Tool-2.5.py```
+6. Run the tool using the following command: ```python MaRMAT-2.5.py```
 
 8. Follow the on-screen prompts to input the columns and categories:
    - Enter the names of the columns you want to analyze, separated by commas (e.g., "column1,column2").
@@ -102,7 +102,7 @@ The [MaRMAT](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-Tool
 - The tool outputs matching results to a CSV file named "matching_results.csv" in the tool's directory.
 
 ## 3. The GUI for PC Users
-To facilitate wider use, the [MaRMAT GUI](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-GUI-2.52.py) allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
+To facilitate wider use, the [MaRMAT GUI](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/MaRMAT-GUI-2.52.py) allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
 
 *Note: The GUI is not compatible with MacOS. Additional information on the MaRMAT GUI is available [here](https://github.com/kayleealexander/RMA-Tool/blob/main/GUI-Documentation.md).
 
@@ -130,7 +130,7 @@ To facilitate wider use, the [MaRMAT GUI](https://github.com/kayleealexander/RMA
 
 - **[Tkinter](https://docs.python.org/3/library/tk.html)**: Tkinter is Python's standard GUI (Graphical User Interface) package. It is used to create desktop applications with a graphical interface.
 
-*Note: These dependencies are essential for running the Reparative Metadata Audit Tool. If you don't have Python installed, you can download it from the [official Python website](https://www.python.org/downloads/). Tkinter is usually included with Python distributions, so no separate installation is required.*
+*Note: These dependencies are essential for running the Reparative Metadata Audit Tool. If you don't have Python installed, you can download it from the [official Python website](https://www.python.org/downloads). Tkinter is usually included with Python distributions, so no separate installation is required.*
 
 ### 3.3 Installation 
 No installation is required. Simply download and run the Python script to start the application on your PC.
