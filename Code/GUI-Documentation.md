@@ -1,6 +1,6 @@
-# Reparative Metadata Audit Tool
+# Marriott Reparative Metadata Assessment Tool (MaRMAT) GUI
 
-The Reparative Metadata Audit Tool is a graphical application built using Tkinter in Python. This tool allows users to match terms from a problematic terms lexicon file with text data from a collections metadata file, facilitating metadata cleanup and analysis.
+The MaRMAT GUI is a graphical application built using Tkinter in Python. This tool allows users to match terms from a problematic terms lexicon file with text data from a collections metadata file, facilitating metadata cleanup and analysis.
 
 ## Overview
 
@@ -24,11 +24,11 @@ The application provides the following functionalities:
 
 ## Getting Started
 
-To use the Reparative Metadata Audit Tool, follow these steps:
+To use the MaRMAT GUI, follow these steps:
 
 1. Download the [RMA-GUI-2.52.py](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-GUI-2.52.py) file.
 2. Download one of our sample lexicons in the [Code](https://github.com/kayleealexander/RMA-Tool/tree/main/Code) folder, or create your own.
-3. Download the metadata you want to audit as a CSV file.
+3. Download the metadata you want to assess as a CSV file.
 4. Open the [RMA-GUI-2.52.py](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-GUI-2.52.py) file and follow the prompts.
 
 ## Using the Tool
