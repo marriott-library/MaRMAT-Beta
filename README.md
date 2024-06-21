@@ -1,5 +1,5 @@
-# Marriott Reparative Metadata Audit Tool (MaRMAT)
-The Marriott Reparative Metadata Audit Tool (MaRMAT) is a Python application designed for auditing collections metadata files against a lexicon of potentially problematic terms. The tool's design facilitates an easy-to-follow process for auditing metadata using a lexicon of problematic terms. For PC user's, we provide a graphical interface for file loading, column selection, and term matching, making it user-friendly for those with limited programming experience. The tool can also be run in your command line. 
+# Marriott Reparative Metadata Assessment Tool (MaRMAT)
+The Marriott Reparative Metadata Assessment Tool (MaRMAT) is a Python application designed for auditing collections metadata files against a lexicon of potentially problematic terms. The tool's design facilitates an easy-to-follow process for assessing metadata using a lexicon of problematic terms. For PC user's, we provide a graphical interface for file loading, column selection, and term matching, making it user-friendly for those with limited programming experience. The tool can also be run in your command line. 
 
 Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in collaboration with ChatGPT 3.5, [Rachel Wittmann](https://github.com/RachelJaneWittmann), and [Anna Neatrour](https://github.com/aneatrour) at the University of Utah's J. Willard Marriot Library.
 
@@ -41,7 +41,7 @@ At the most basic level, [MaRMAT](https://github.com/kayleealexander/RMA-Tool/bl
 An initial test case developed a tool for parsing, extracting, tokenizing, and preprocessing XML files containing Open Archives Initiative (OAI) feed metadata for library special collections that would then crosscheck tokens against Duke University's [lexicons](https://github.com/duke-libraries/description-audit/tree/main/lexicons) and append the corresponding lexicon categories (Aggrandizement, Race Euphemisms, Race Terms, Slavery Terms, Gender Terms, LGBTQ, Mental Illness, and Disability) to each row in the CSV output. This tool is accessible via the [XML Test Code](https://github.com/kayleealexander/RMA-Tool/tree/main/XML%20Test%20Code) folder of this repository, please note that this may not work with all OAI feed formats or take into account resumption tokens.
 
 ### 1.2 The Lexicons
-There are a few lexicons provided to help begin your reparative metadata assessment. Not all of the terms in these lexicons may need remediation, rather, they may signal areas of your collections that should be reiveiwed carefully. Users may download the provided lexicons to use in MaRMAT as is, remove terms that may not be problematic in your metadata, or add additional terms and categories based on specific project needs. The only requirements for a lexicon to work against another file are that there be two columns in the CSV file: "Term" and "Category" (case sensitive). Therefore, the tool's use is not limited to auditing metadata for problematic terms; it may also be loaded with a custom lexicon to perform matching against a variety of content types.
+There are a few lexicons provided to help begin your reparative metadata assessment. Not all of the terms in these lexicons may need remediation, rather, they may signal areas of your collections that should be reiveiwed carefully. Users may download the provided lexicons to use in MaRMAT as is, remove terms that may not be problematic in your metadata, or add additional terms and categories based on specific project needs. The only requirements for a lexicon to work against another file are that there be two columns in the CSV file: "Term" and "Category" (case sensitive). Therefore, the tool's use is not limited to assessing metadata for problematic terms; it may also be loaded with a custom lexicon to perform matching against a variety of content types.
 
 | Lexicon      | Description |
 | :----------:| ---------- |
@@ -65,11 +65,11 @@ The [MaRMAT](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-Tool
 ### 2.1 Usage
 1. Install Python if not already installed (Python 3.x recommended).
    
-2. Clone or download the Reparative Metadata Audit Tool repository.
+2. Clone or download the Reparative Metadata Assessment Tool repository.
 
 3. Navigate to the tool's directory in the command-line interface.
    
-4. Update the paths to your lexicon and metadata files in the reparative_metadata_audit.py script. 
+4. Update the paths to your lexicon and metadata files in the RMA-Tool-2.5.py script. 
 
 6. Run the tool using the following command: ```python RMA-Tool-2.5.py```
 
@@ -97,9 +97,9 @@ The [MaRMAT](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-Tool
 - The tool outputs matching results to a CSV file named "matching_results.csv" in the tool's directory.
 
 ## 3. The GUI for PC Users
-To facilitate wider use, our [Reparative Metadata Audit GUI](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-GUI-2.5.py) allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
+To facilitate wider use, the [MaRMAT GUI](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-GUI-2.52.py) allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
 
-*Note: The GUI is not compatible with MacOS. Additional information on the RMA GUI is available [here](https://github.com/kayleealexander/RMA-Tool/blob/main/GUI-Documentation.md).
+*Note: The GUI is not compatible with MacOS. Additional information on the MaRMAT GUI is available [here](https://github.com/kayleealexander/RMA-Tool/blob/main/GUI-Documentation.md).
 
 ### 3.1 Usage 
 1. Loading Files:
