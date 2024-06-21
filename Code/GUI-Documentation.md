@@ -33,10 +33,10 @@ To use the Reparative Metadata Audit Tool, follow these steps:
 
 ## Using the Tool
 
-**Load Lexicon and Metadata**:
+**1. Load Lexicon and Metadata**:
    - Follow on-screen instructions to load your lexicon and metadata CSV files using the provided buttons.
 
-**Perform Analysis**:
+**2. Perform Analysis**:
    - Select columns from your metadata for analysis.
    - Choose an identifier column for matching results back to the original dataset.
    - Select categories of terms from the lexicon for analysis.
