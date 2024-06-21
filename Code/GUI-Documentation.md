@@ -26,27 +26,26 @@ The application provides the following functionalities:
 
 To use the Reparative Metadata Audit Tool, follow these steps:
 
-1. Download the [RMA-GUI-2.52.py](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-GUI-2.52.py) file
+1. Download the [RMA-GUI-2.52.py](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-GUI-2.52.py) file.
 2. Download one of our sample lexicons in the [Code](https://github.com/kayleealexander/RMA-Tool/tree/main/Code) folder, or create your own.
 3. Download the metadata you want to audit as a CSV file.
 4. Open the [RMA-GUI-2.52.py](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-GUI-2.52.py) file and follow the prompts.
 
-### Using the Tool
+## Using the Tool
 
-1. **Load Lexicon and Metadata**:
+**Load Lexicon and Metadata**:
    - Follow on-screen instructions to load your lexicon and metadata CSV files using the provided buttons.
 
-2. **Perform Analysis**:
+**Perform Analysis**:
    - Select columns from your metadata for analysis.
    - Choose an identifier column for matching results back to the original dataset.
    - Select categories of terms from the lexicon for analysis.
    - Click "Perform Matching" to find matches and export the results as a CSV file.
 
-### Additional Notes
+## Additional Notes
 
-- **Dependencies**: Ensure you have Python 3.x and the `pandas` library installed as per the installation instructions.
-- **Contribution**: Feel free to contribute to the project by forking the repository, making changes, and submitting pull requests following the contribution guidelines.
+**Dependencies**: Ensure you have Python 3.x and the `pandas` library installed as per the installation instructions.
 
-### Contact
+## Contact
 
 For any questions or support, please contact [Kaylee Alexander](mailto:kaylee.alexander@utah.edu).
