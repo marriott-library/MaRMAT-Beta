@@ -36,7 +36,7 @@ Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in coll
 *Coming soon*
 
 ## 1.1 About the Tool
-At the most basic level, the RMA Tool is designed to match terms from a lexicon with textual data and produce a CSV file containing the matched results. It utilizes the Pandas library for data manipulation and regular expressions for text processing. It was designed primarily with librarians in mind, specifically those engaged in reparative metadata practices, to assist in idenfiying terms in their metadata that may be outdated, biased, or otherwise problematic. The underlying code (including preliminary iterations) and a recommended lexicon for using the tool can be accessed via the [Code](https://github.com/kayleealexander/RMA-Tool/tree/main/Code) folder of this repository. 
+At the most basic level, the [RMA Tool](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-GUI-2.52.py) is designed to match terms from a lexicon with textual data and produce a CSV file containing the matched results. It utilizes the Pandas library for data manipulation and regular expressions for text processing. It was designed primarily with librarians in mind, specifically those engaged in reparative metadata practices, to assist in idenfiying terms in their metadata that may be outdated, biased, or otherwise problematic. The underlying code (including preliminary iterations) and sample lexicons for using the tool can be accessed via the [Code](https://github.com/kayleealexander/RMA-Tool/tree/main/Code) folder of this repository. 
 
 An initial test case developed a tool for parsing, extracting, tokenizing, and preprocessing XML files containing Open Archives Initiative (OAI) feed metadata for library special collections that would then crosscheck tokens against Duke University's [lexicons](https://github.com/duke-libraries/description-audit/tree/main/lexicons) and append the corresponding lexicon categories (Aggrandizement, Race Euphemisms, Race Terms, Slavery Terms, Gender Terms, LGBTQ, Mental Illness, and Disability) to each row in the CSV output. This tool is accessible via the [XML Test Code](https://github.com/kayleealexander/RMA-Tool/tree/main/XML%20Test%20Code) folder of this repository, please note that this may not work with all OAI feed formats or take into account resumption tokens.
 
@@ -60,7 +60,7 @@ There are a few lexicons provided to help begin your reparative metadata assessm
 *Coming soon*
 
 ## 2. The Command-Line Tool 
-The RMA Tool can be run by any user from their command line. Where indicated in the script, provide the paths to each file, specify the columns you wish to analyze, designate your "Identifier" column, and input the categories of terms you want to match. Then, run the Python file from your command line. 
+The [RMA Tool](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/RMA-Tool-2.5.py) can be run by any user from their command line. Where indicated in the script, provide the paths to each file, specify the columns you wish to analyze, designate your "Identifier" column, and input the categories of terms you want to match. Then, run the Python file from your command line. 
 
 ### 2.1 Usage
 1. Install Python if not already installed (Python 3.x recommended).
@@ -71,7 +71,7 @@ The RMA Tool can be run by any user from their command line. Where indicated in 
    
 4. Update the paths to your lexicon and metadata files in the reparative_metadata_audit.py script. 
 
-6. Run the tool using the following command: ```python reparative_metadata_audit.py```
+6. Run the tool using the following command: ```python RMA-Tool-2.5.py```
 
 8. Follow the on-screen prompts to input the columns and categories:
    - Enter the names of the columns you want to analyze, separated by commas (e.g., "column1,column2").
