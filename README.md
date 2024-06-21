@@ -8,7 +8,7 @@ Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in coll
 
    1.1 [About the Tool](#11-about-the-tool)
    
-   1.2 [The Lexicons](#12-the-lexicon)
+   1.2 [The Lexicons](#12-the-lexicons)
 
    1.3 [Features](#13-features)
 
