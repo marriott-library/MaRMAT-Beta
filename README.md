@@ -136,7 +136,7 @@ To facilitate wider use, the [MaRMAT GUI](https://github.com/kayleealexander/RMA
 No installation is required. Simply download and run the Python script to start the application on your PC.
 
 ## 4. Credits and Acknowledgments
-Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in collaboration with ChatGPT 3.5, [Rachel Wittmann](https://github.com/RachelJaneWittmann), and [Anna Neatrour](https://github.com/aneatrour) at the University of Utah's J. Willard Marriot Library. MaRMAT Beta was released in July, 2024.
+Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in collaboration with ChatGPT 3.5, [Rachel Wittmann](https://github.com/RachelJaneWittmann), and [Anna Neatrour](https://github.com/aneatrour) at the University of Utah's J. Willard Marriott Library. MaRMAT Beta was released in July, 2024.
 
 This tool was inspired by the Duke University Libraries Description Audit Tool, developed by [Noah Huffman](https://github.com/noahgh221) at the Rubenstein Library, and expanded by [Miriam Shams-Rainey](https://github.com/mshamsrainey) (see [Description-Audit](https://github.com/duke-libraries/description-audit/tree/main)). 
 
