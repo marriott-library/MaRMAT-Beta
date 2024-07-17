@@ -63,29 +63,7 @@ There are a few lexicons provided to help begin your reparative metadata assessm
 
 ### 1.4 Example Outputs
 
-**Example 1: LCSH Lexicon**
-
-*Original Metadata*
-
-|ID   |Title   |Date   |Description   |Keywords   |Subjects   |
-|-----|-----|-----|-----|-----|-----|
-
-*MaRMAT Output*
-
-|Identifier   |Term   |Category   |Column   |Original Text   |
-|-----|-----|-----|-----|-----|
-
-**Example 2: Reparative Metadata Lexicon**
-
-*Original Metadata*
-
-|ID   |Title   |Date   |Description   |Keywords   |Subjects   |
-|-----|-----|-----|-----|-----|-----|
-
-*MaRMAT Output*
-
-|Identifier   |Term   |Category   |Column   |Original Text   |
-|-----|-----|-----|-----|-----|
+Coming soon
 
 
 ## 2. The Command-Line Tool 
