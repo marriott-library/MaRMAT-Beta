@@ -102,7 +102,7 @@ The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-Co
 - The tool outputs matching results to a CSV file named "matching_results.csv" in the tool's directory.
 
 ## 3. The GUI for PC Users
-To facilitate wider use, the [MaRMAT GUI](https://github.com/kayleealexander/RMA-Tool/blob/main/Code/MaRMAT-GUI-2.5.2.py) allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
+To facilitate wider use, the [MaRMAT GUI](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.2.py)allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
 
 *Note: The GUI is not compatible with MacOS. Additional information on the MaRMAT GUI is available [here](https://github.com/marriott-library/MaRMAT/blob/main/Code/GUI-Documentation.md).
 
