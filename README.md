@@ -12,7 +12,7 @@ We value your feedback! Please take [this survey](https://docs.google.com/forms/
 
    1.3 [Features](#13-features)
 
-   1.4 [Sample Data](#14-example-outputs)
+   1.4 [Example Outputs](#14-example-outputs)
 
 2. [The Command-Line Tool](#2-the-command-line-tool)
 
@@ -62,17 +62,31 @@ There are a few lexicons provided to help begin your reparative metadata assessm
 - Export results to a CSV file.
 
 ### 1.4 Example Outputs
-#### 1.4.1 Example 1: LCSH Lexicon 
 
-**Original Metadata**
+**Example 1: LCSH Lexicon**
 
-**MaRMAT Output**
+*Original Metadata*
 
-#### 1.4.2 Example 2: Reparative Metadata Lexicon 
+|ID   |Title   |Date   |Description   |Keywords   |Subjects   |
+|-----|-----|-----|-----|-----|-----|
 
-**Original Metadata**
+*MaRMAT Output*
 
-**MaRMAT Output**
+|Identifier   |Term   |Category   |Column   |Original Text   |
+|-----|-----|-----|-----|-----|
+
+**Example 2: Reparative Metadata Lexicon**
+
+*Original Metadata*
+
+|ID   |Title   |Date   |Description   |Keywords   |Subjects   |
+|-----|-----|-----|-----|-----|-----|
+
+*MaRMAT Output*
+
+|Identifier   |Term   |Category   |Column   |Original Text   |
+|-----|-----|-----|-----|-----|
+
 
 ## 2. The Command-Line Tool 
 The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-CommandLine-2.5.py) can be run by any user from their command line. Where indicated in the script, provide the paths to each file, specify the columns you wish to analyze, designate your "Identifier" column, and input the categories of terms you want to match. Then, run the Python file from your command line. 
