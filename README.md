@@ -65,7 +65,7 @@ There are a few lexicons provided to help begin your reparative metadata assessm
 
 To provide users with a sense of what to expect from running MaRMAT against their metadata collection, there are two example outputs provided for the two provided lexicons: [example reparative-metadata](https://github.com/marriott-library/MaRMAT/blob/main/Code/example-output_reparative-metadata-lexicon.csv-lexicon) and the [example lcsh-subject-lexicon](https://github.com/marriott-library/MaRMAT/blob/main/Code/example-output_lcsh-subject-lexicon.csv). Please keep in mind these reports are a snippet of larger reports. Users should be aware that there will likely be some false positives in your report or results that may not need remediation. For example, the LCSH term "Race" is a problem heading but it also may pick up other headings with race like "Bonneville Salt Flats Race, Utah" and the gender term "wife" may not always signal an unnamed woman or certain terms may not be seen as harmful by an organization.
 
-To assist in getting started with MaRMAT, there is a [video tutorial](https://youtu.be/uspAoqfj99g?si=jQArVdlbGm_qN78l) that demonstrates the begining steps to start using the tool on a PC. For subtitles to this video, please enable in settings.
+To assist in getting started with MaRMAT, there is a [video tutorial](https://youtu.be/uspAoqfj99g?si=jQArVdlbGm_qN78l) that demonstrates the begining steps to start using the tool on a PC (subtitles enabled in settings).
 
 
 ## 2. The Command-Line Tool 
