@@ -63,9 +63,12 @@ There are a few lexicons provided to help begin your reparative metadata assessm
 
 ### 1.4 Example Outputs and Tutorial
 
-To provide users with a sense of what to expect from running MaRMAT against their metadata collection, here are two example outputs for the provided lexicons: [example output reparative-metadata](https://github.com/marriott-library/MaRMAT/blob/main/Code/example-output_reparative-metadata-lexicon.csv-lexicon) and the [example output lcsh-subject-lexicon](https://github.com/marriott-library/MaRMAT/blob/main/Code/example-output_lcsh-subject-lexicon.csv). Please keep in mind these reports are a snippet of larger reports. Users should be aware that there will likely be some false positives in your report or results that may not need remediation. For example, the LCSH term "Race" is a problem heading but it also may pick up other headings with race like "Bonneville Salt Flats Race, Utah" and the gender term "wife" may not always signal an unnamed woman or certain terms may not be seen as harmful by an organization.
+To provide users with a sense of what to expect from running MaRMAT against their own metadata collection, here are two example outputs using the provided lexicons: 
+1. [example output reparative-metadata](https://github.com/marriott-library/MaRMAT/blob/main/Code/example-output_reparative-metadata-lexicon.csv-lexicon)
+2. [example output lcsh-subject-lexicon](https://github.com/marriott-library/MaRMAT/blob/main/Code/example-output_lcsh-subject-lexicon.csv).
+Please keep in mind these reports are just snippets of larger reports. Users should be aware that there may be false positives or results that may not need remediation. For example, the LCSH term "Race" is considered a problem heading but MaRMAT may flag other headings with "race," as in "Bonneville Salt Flats Race, Utah." Likewise, the gender term "wife" may not always signal an unnamed woman, and terms that may be harmful in some contexts may not be in others. Therefore, we stress the importants of human review and intervention prior to making broad conclusions or global changes based on MaRMAT outputs.
 
-To assist in getting started with MaRMAT, there is a [video tutorial](https://youtu.be/uspAoqfj99g?si=jQArVdlbGm_qN78l) that demonstrates the begining steps to start using the tool on a PC (subtitles enabled in settings).
+To assist in getting started with MaRMAT, there is also a [video tutorial](https://youtu.be/uspAoqfj99g?si=jQArVdlbGm_qN78l) that demonstrates the first steps in using the GUI for Windows (subtitles can be enabled in settings).
 
 
 ## 2. The Command-Line Tool 
@@ -105,7 +108,7 @@ The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-Co
 - The metadata file should contain a column, such as a Record ID, that you can use as an "Identifier" to reconcile the tool's output with your original metadata. 
 - The tool outputs matching results to a CSV file named "matching_results.csv" in the tool's directory.
 
-## 3. The GUI for PC Users
+## 3. The GUI for Windows Users
 To facilitate wider use, the [MaRMAT GUI](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.2.py) allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
 
 *Note: The GUI is not compatible with MacOS. Additional information on the MaRMAT GUI is available [here](https://github.com/marriott-library/MaRMAT/blob/main/Code/GUI-Documentation.md).
