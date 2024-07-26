@@ -12,7 +12,7 @@ We value your feedback! Please take [this survey](https://docs.google.com/forms/
 
    1.3 [Features](#13-features)
 
-   1.4 [Example Outputs](#14-example-outputs)
+   1.4 [Example Outputs](#14-example-outputs-and-tutorial)
 
 2. [The Command-Line Tool](#2-the-command-line-tool)
 
