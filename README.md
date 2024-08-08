@@ -141,7 +141,25 @@ To facilitate wider use, the [MaRMAT GUI](https://github.com/marriott-library/Ma
 *Note: These dependencies are essential for running the Reparative Metadata Audit Tool. If you don't have Python installed, you can download it from the [official Python website](https://www.python.org/downloads). Tkinter is usually included with Python distributions, so no separate installation is required.*
 
 ### 3.3 Installation 
-No installation is required. Simply download and run the Python script to start the application on your PC.
+No installation is required. Simply follow the steps below to download and run the Python script to start the application on your PC.
+
+1. Download the Python Script:
+   - Download the [MaRMAT-GUI-2.5.2.py script](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.2.py) to a location on your PC where you can easily find it, such as your Desktop or a dedicated project folder.
+
+2. Ensure Python is Installed:
+   - To make sure that Python is installed on your PC, search for "Python" in your Start Menu or look for the Python folder in your Program Files.
+   - If Python is not installed, you can download and install it from the official [Python website](https://www.python.org/downloads).
+
+3. Double-Click the Python Script:
+   - Navigate to the location where you downloaded the script.
+   - Double-click on the script file (i.e., MaRMAT-GUI-2.5.2.py).
+
+4. Application Starts:
+   - The application should start running automatically; the GUI will appear on your screen.
+     
+5. Optional - Create a Shortcut:
+   - If you plan to run the script frequently, you can create a shortcut to the Python script on your Desktop.
+   - Right-click on the script file, select "Send to," and then choose "Desktop (create shortcut)."
 
 ## 4. Credits and Acknowledgments
 Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in collaboration with ChatGPT 3.5, [Rachel Wittmann](https://github.com/RachelJaneWittmann), and [Anna Neatrour](https://github.com/aneatrour) at the University of Utah's J. Willard Marriott Library. MaRMAT Beta was released in July, 2024.
