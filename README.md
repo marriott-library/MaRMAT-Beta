@@ -144,7 +144,7 @@ To facilitate wider use, the [MaRMAT GUI](https://github.com/marriott-library/Ma
 No installation is required. Simply follow the steps below to download and run the Python script to start the application on your PC.
 
 1. Download the Python Script:
-   - Download the [MaRMAT-GUI-2.5.2.py script](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.2.py) to a location on your PC where you can easily find it, such as your Desktop or a dedicated project folder.
+   - Download the [MaRMAT-GUI-2.5.2.py](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.2.py) script to a location on your PC where you can easily find it, such as your Desktop or a dedicated project folder.
 
 2. Ensure Python is Installed:
    - To make sure that Python is installed on your PC, search for "Python" in your Start Menu or look for the Python folder in your Program Files.
