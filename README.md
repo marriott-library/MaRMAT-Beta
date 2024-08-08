@@ -144,7 +144,7 @@ To facilitate wider use, the [MaRMAT GUI](https://github.com/marriott-library/Ma
 No installation is required. Simply follow the steps below to download and run the Python script to start the application on your PC.
 
 1. Download the Python Script:
-   - Download the [MaRMAT-GUI-2.5.2.py](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.2.py) script to your PC.
+   - Download the [MaRMAT-GUI-2.5.2.py](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.2.py) script to a location on your PC where you can easily find it, such as your Desktop or Downloads.
 
 2. Ensure Python is Installed:
    - To make sure that Python is installed on your PC, search for "Python" in your Start Menu or look for the Python folder in your Program Files.
@@ -156,10 +156,6 @@ No installation is required. Simply follow the steps below to download and run t
 
 4. Application Starts:
    - The application should start running automatically; the GUI will appear on your screen.
-     
-5. Optional - Create a Shortcut:
-   - If you plan to run the script frequently, you can create a shortcut to the Python script on your Desktop.
-   - Right-click on the script file, select "Send to," and then choose "Desktop (create shortcut)."
 
 ## 4. Credits and Acknowledgments
 Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in collaboration with ChatGPT 3.5, [Rachel Wittmann](https://github.com/RachelJaneWittmann), and [Anna Neatrour](https://github.com/aneatrour) at the University of Utah's J. Willard Marriott Library. MaRMAT Beta was released in July, 2024.
