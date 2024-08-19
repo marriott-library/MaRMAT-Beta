@@ -4,17 +4,22 @@
 
 ### 1.1 **Python Installation**: 
    - Ensure Python is installed by running the following in Terminal:
-     ```bash
+
+      ```bash
      python3 --version
      ```
-     If Python is not installed, download it from the [official Python website](https://www.python.org/downloads/).
+      
+   - If Python is not installed, download it from the [official Python website](https://www.python.org/downloads/).
 
 ### 1.2 **Library Requirements**:
    - **Pandas**: Install the `pandas` library:
+     
      ```bash
      pip3 install pandas
      ```
+     
    - **Regular Expression (`re`) Module**: This module is part of Python’s standard library. Confirm its availability:
+     
      ```bash
      python3 -c "import re; print('re module is available')"
      ```
@@ -38,31 +43,37 @@
       - In TextEdit, find and modify the following sections (at the very end of the script under "Example usage") according to your specific file paths and requirements:
 
         - **Load Lexicon**:
+          
           ```python
           tool.load_lexicon("/path/to/your/lexicon.csv")  # Replace with the path to your lexicon CSV file.
           ```
 
         - **Load Metadata**:
+          
           ```python
           tool.load_metadata("/path/to/your/metadata.csv")  # Replace with the path to your metadata CSV file.
           ```
 
         - **Select Columns for Matching**:
+          
           ```python
           tool.select_columns(["Column1", "Column2"])  # Replace with the metadata column names you want to analyze.
           ```
 
         - **Select Identifier Column**:
+          
           ```python
           tool.select_identifier_column("Identifier")  # Replace with the name of your identifier column (e.g., a record ID number).
           ```
 
         - **Select Categories for Matching**:
+          
           ```python
           tool.select_categories(["RaceTerms"])  # Replace with the categories from the lexicon that you want to search for.
           ```
 
         - **Perform Matching and View Results**:
+          
           ```python
           tool.perform_matching("/path/to/your/output.csv")  # Replace with the path to your output file.
           ```
@@ -78,12 +89,14 @@
      
       - **Navigate to the Script’s Directory**:
       - Use the `cd` command to go to the directory where your script is located, for example:
+        
         ```bash
         cd ~/Documents
         ```
    
    - **Execute the Script**:
       - Run the script using the following command:
+        
         ```bash
         python3 MaRMAT-CommandLine-2.5.py
         ```
