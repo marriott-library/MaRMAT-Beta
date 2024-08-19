@@ -106,7 +106,7 @@ The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-Co
 - The metadata file should contain a column, such as a Record ID, that you can use as an "Identifier" to reconcile the tool's output with your original metadata. 
 - The tool outputs matching results to a CSV file named "matching_results.csv" in the tool's directory.
 
-   *Additional detailed instructions for Mac users can be found [here](https://github.com/marriott-library/MaRMAT/blob/main/Code/MacOS-UsersGuide.md).*
+**Additional detailed instructions for MacOS users can be found [here](https://github.com/marriott-library/MaRMAT/blob/main/Code/MacOS-UsersGuide.md).**
 
 
 ## 3. The GUI for Windows Users
