@@ -21,7 +21,7 @@
 ### Step-by-Step Instructions
 
 #### 1. **Save the Script**
-   - Ensure the[MaRMAT-CommandLine-2.5.py(https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-CommandLine-2.5.py) script is saved on your Mac.
+   - Ensure the [MaRMAT-CommandLine-2.5.py](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-CommandLine-2.5.py) script is saved on your Mac.
    - Add the lexicon (e.g., [Reparative Metadata](https://github.com/marriott-library/MaRMAT/blob/main/Code/reparative-metadata-lexicon.csv), [LCSH](https://github.com/marriott-library/MaRMAT/blob/main/Code/LCSH-lexicon.csv)) you'd like to use as well as the metadata file you want to analyze to the same folder. 
 
 #### 2. **Opening the Script for Editing with TextEdit**
