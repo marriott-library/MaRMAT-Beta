@@ -1,6 +1,6 @@
-## Comprehensive Guide for Running MaRMAT in Terminal on a Mac
+# Comprehensive Guide for Running MaRMAT in Terminal on a Mac
 
-### Prerequisites
+## Prerequisites
 
 1. **Python Installation**: Ensure Python is installed by running the following in Terminal:
    ```bash
@@ -18,13 +18,13 @@
      python3 -c "import re; print('re module is available')"
      ```
 
-### Step-by-Step Instructions
+## Step-by-Step Instructions
 
-#### 1. **Save the Script**
+### 1. **Save the Script**
    - Ensure the [MaRMAT-CommandLine-2.5.py](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-CommandLine-2.5.py) script is saved on your Mac.
    - Add the lexicon (e.g., [Reparative Metadata](https://github.com/marriott-library/MaRMAT/blob/main/Code/reparative-metadata-lexicon.csv), [LCSH](https://github.com/marriott-library/MaRMAT/blob/main/Code/LCSH-lexicon.csv)) you'd like to use as well as the metadata file you want to analyze to the same folder. 
 
-#### 2. **Opening the Script for Editing with TextEdit**
+### 2. **Opening the Script for Editing with TextEdit**
 
    1. **Locate the Script**:
       - Open Finder and navigate to the directory where the script is saved (e.g., `Documents`, `Downloads`).
@@ -71,7 +71,7 @@
    4. **Ensure Proper TextEdit Settings**:
       - If TextEdit opens the file in **Rich Text Format (RTF)**, change it to **Plain Text** by selecting **Format > Make Plain Text** from the menu. This ensures the script runs correctly.
 
-#### 3. **Running the Script**
+### 3. **Running the Script**
 
    1. **Open Terminal**:
    
