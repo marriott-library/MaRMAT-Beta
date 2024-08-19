@@ -40,7 +40,7 @@
       - If you don’t see TextEdit, choose **Other...** and select TextEdit (or another text editor) from the list.
 
    - **Edit the Script**:
-      - In TextEdit, find and modify the following sections (at the very end of the script under "Example usage") according to your specific file paths and requirements:
+      - In TextEdit, find and modify the sections below according to your specific file paths and requirements. Note: These sections are all at the very end of the script under "# Example usage" (you can use `command` + `F` to search for "Example usage" to quickly find this).
 
         - **Load Lexicon**:
           
