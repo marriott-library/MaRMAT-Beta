@@ -22,7 +22,7 @@ We value your feedback! Please take [this survey](https://docs.google.com/forms/
 
    2.3 [Notes](#23-notes)
 
-3. [The GUI for PC Users](#3-the-gui-for-pc-users)
+3. [The GUI for Windows Users](#3-the-gui-for-windows-users)
 
    3.1 [Usage](#31-usage)
 
@@ -73,7 +73,7 @@ To assist in getting started with MaRMAT, there is also a [video tutorial](https
 
 
 ## 2. The Command-Line Tool 
-The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-CommandLine-2.5.py) can be run by any user from their command line. Where indicated in the script, provide the paths to each file, specify the columns you wish to analyze, designate your "Identifier" column, and input the categories of terms you want to match. Then, run the Python file from your command line. 
+The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-CommandLine-2.5.py) can be run by any user from their command line. Where indicated in the script, provide the paths to each file, specify the columns you wish to analyze, designate your "Identifier" column, and input the categories of terms you want to match. Then, run the Python file from your command line. **Additional instructions for MacOS users can be found [HERE](https://github.com/marriott-library/MaRMAT/blob/main/Code/MacOS-UsersGuide.md).**
 
 ### 2.1 Usage
 1. Install Python if not already installed (Python 3.x recommended).
@@ -82,7 +82,7 @@ The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-Co
 
 3. Use the command-line interface to navigate to the directory where you saved the files (e.g., `Downloads`, `Desktop`).
    
-4. Open the `MaRMAT-2.5.py` script in a text editor and provide the information for your files and what you want to analyze under "Example usage" at the very end of the script. Note: Additional detailed instructions for MacOS users can be found [HERE](https://github.com/marriott-library/MaRMAT/blob/main/Code/MacOS-UsersGuide.md).
+4. Open the `MaRMAT-2.5.py` script in a text editor and provide the information for your files and what you want to analyze under "Example usage" at the very end of the script. 
    
 6. Save the script.
 
