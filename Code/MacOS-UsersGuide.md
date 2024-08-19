@@ -26,14 +26,14 @@
 
 ### 2. **Opening the Script for Editing with TextEdit**
 
-   1. **Locate the Script**:
+   2.1. **Locate the Script**:
       - Open Finder and navigate to the directory where the script is saved (e.g., `Documents`, `Downloads`).
 
-   2. **Open with TextEdit**:
+   2.2. **Open with TextEdit**:
       - Right-click on the script file (`MaRMAT-CommandLine-2.5.py`) and select **Open With > TextEdit**.
       - If you don’t see TextEdit, choose **Other...** and select TextEdit (or another text editor) from the list.
 
-   3. **Edit the Script**:
+   3.3. **Edit the Script**:
       - In TextEdit, find and modify the following sections (at the very end of the script under "Example usage") according to your specific file paths and requirements:
 
         - **Load Lexicon**:
@@ -68,20 +68,20 @@
 
       - Save your changes by clicking **File > Save** or pressing `Command + S`.
 
-   4. **Ensure Proper TextEdit Settings**:
+   2.4. **Ensure Proper TextEdit Settings**:
       - If TextEdit opens the file in **Rich Text Format (RTF)**, change it to **Plain Text** by selecting **Format > Make Plain Text** from the menu. This ensures the script runs correctly.
 
 ### 3. **Running the Script**
 
-   1. **Open Terminal**:
+   3.1. **Open Terminal**:
    
-   2. **Navigate to the Script’s Directory**:
+   3.2. **Navigate to the Script’s Directory**:
       - Use the `cd` command to go to the directory where your script is located, for example:
         ```bash
         cd ~/Documents
         ```
    
-   3. **Execute the Script**:
+   3.3. **Execute the Script**:
       - Run the script using the following command:
         ```bash
         python3 MaRMAT-CommandLine-2.5.py
