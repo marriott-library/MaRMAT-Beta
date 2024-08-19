@@ -80,9 +80,9 @@ The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-Co
    
 2. Clone or download the MaRMAT repository.
 
-3. Use the command-line interface to navigate to the directory where you saved the files (e.g., Downloads, Desktop).
+3. Use the command-line interface to navigate to the directory where you saved the files (e.g., `Downloads`, `Desktop`).
    
-4. Open the MaRMAT-2.5.py script in a text editor and provide the information for your files and what you want to analyze under "Example usage" at the very end of the script. Note: you may want to have all of your files (the lexicon, the python script, and the metadata you want to analyze all in one folder, i.e. the directory you're working in). 
+4. Open the `MaRMAT-2.5.py` script in a text editor and provide the information for your files and what you want to analyze under "Example usage" at the very end of the script. Note: Additional detailed instructions for MacOS users can be found [HERE](https://github.com/marriott-library/MaRMAT/blob/main/Code/MacOS-UsersGuide.md).
    
 6. Save the script.
 
@@ -105,8 +105,6 @@ The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-Co
 - The metadata file should contain the text data to be analyzed, with each row representing a separate entry.
 - The metadata file should contain a column, such as a Record ID, that you can use as an "Identifier" to reconcile the tool's output with your original metadata. 
 - The tool outputs matching results to a CSV file named "matching_results.csv" in the tool's directory.
-
-**Additional detailed instructions for MacOS users can be found [here](https://github.com/marriott-library/MaRMAT/blob/main/Code/MacOS-UsersGuide.md).**
 
 
 ## 3. The GUI for Windows Users
