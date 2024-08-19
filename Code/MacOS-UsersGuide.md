@@ -2,7 +2,8 @@
 
 ## 1. Prerequisites
 
-### 1.1 **Python Installation**: Ensure Python is installed by running the following in Terminal:
+### 1.1 **Python Installation**: 
+   - Ensure Python is installed by running the following in Terminal:
    ```bash
    python3 --version
    ```
