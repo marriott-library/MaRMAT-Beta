@@ -90,8 +90,6 @@ The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-Co
 
 8. Review the matching results displayed on the console or in the generated CSV file.
 
-*Additional detailed instructions for Mac users can be found [here](https://github.com/marriott-library/MaRMAT/blob/main/Code/MacOS-UsersGuide.md).*
-
 ### 2.2 Dependencies
 
 - **[Python 3.x](https://docs.python.org/3/)**: Python is a widely used high-level programming language for general-purpose programming.
@@ -107,6 +105,9 @@ The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-Co
 - The metadata file should contain the text data to be analyzed, with each row representing a separate entry.
 - The metadata file should contain a column, such as a Record ID, that you can use as an "Identifier" to reconcile the tool's output with your original metadata. 
 - The tool outputs matching results to a CSV file named "matching_results.csv" in the tool's directory.
+
+   *Additional detailed instructions for Mac users can be found [here](https://github.com/marriott-library/MaRMAT/blob/main/Code/MacOS-UsersGuide.md).*
+
 
 ## 3. The GUI for Windows Users
 To facilitate wider use, the [MaRMAT GUI](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.2.py) allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
