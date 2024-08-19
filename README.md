@@ -90,7 +90,7 @@ The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-Co
 
 8. Review the matching results displayed on the console or in the generated CSV file.
 
-*Additional detailed instructions for Mac users can be found here.*
+*Additional detailed instructions for Mac users can be found [here](https://github.com/marriott-library/MaRMAT/blob/main/Code/MacOS-UsersGuide.md).*
 
 ### 2.2 Dependencies
 
