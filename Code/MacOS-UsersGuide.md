@@ -2,13 +2,13 @@
 
 ## 1. Prerequisites
 
-1.1 **Python Installation**: Ensure Python is installed by running the following in Terminal:
+## 1.1 **Python Installation**: Ensure Python is installed by running the following in Terminal:
    ```bash
    python3 --version
    ```
    If Python is not installed, download it from the [official Python website](https://www.python.org/downloads/).
 
-1.2 **Library Requirements**:
+## 1.2 **Library Requirements**:
    - **Pandas**: Install the `pandas` library:
      ```bash
      pip3 install pandas
