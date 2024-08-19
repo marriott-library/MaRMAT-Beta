@@ -80,18 +80,17 @@ The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-Co
    
 2. Clone or download the MaRMAT repository.
 
-3. Navigate to the tool's directory in the command-line interface.
+3. Use the command-line interface to navigate to the directory where you saved the files (e.g., Downloads, Desktop).
    
-4. Update the paths to your lexicon and metadata files in the MaRMAT-2.5.py script. 
+4. Open the MaRMAT-2.5.py script in a text editor and provide the information for your files and what you want to analyze under "Example usage" at the very end of the script. Note: you may want to have all of your files (the lexicon, the python script, and the metadata you want to analyze all in one folder, i.e. the directory you're working in). 
+   
+6. Save the script.
 
-6. Run the tool using the following command: ```python MaRMAT-2.5.py```
+7. Run the tool in your command line using the following command: ```python3 MaRMAT-2.5.py```
 
-8. Follow the on-screen prompts to input the columns and categories:
-   - Enter the names of the columns you want to analyze, separated by commas (e.g., "column1,column2").
-   - Enter the name of the identifier column (e.g., the name of a column used as a record ID)
-   - Enter the categories of terms you want to search for, separated by commas (e.g., "Category1,Category2").
+8. Review the matching results displayed on the console or in the generated CSV file.
 
-9. Review the matching results displayed on the console or in the generated CSV file.
+*Additional detailed instructions for Mac users can be found here.*
 
 ### 2.2 Dependencies
 
