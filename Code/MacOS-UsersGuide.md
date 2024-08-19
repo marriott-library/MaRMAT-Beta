@@ -1,14 +1,14 @@
 # Comprehensive Guide for Running MaRMAT in Terminal on a Mac
 
-## Prerequisites
+## 1. Prerequisites
 
-1. **Python Installation**: Ensure Python is installed by running the following in Terminal:
+1.1 **Python Installation**: Ensure Python is installed by running the following in Terminal:
    ```bash
    python3 --version
    ```
    If Python is not installed, download it from the [official Python website](https://www.python.org/downloads/).
 
-2. **Library Requirements**:
+1.2 **Library Requirements**:
    - **Pandas**: Install the `pandas` library:
      ```bash
      pip3 install pandas
@@ -18,22 +18,22 @@
      python3 -c "import re; print('re module is available')"
      ```
 
-## Step-by-Step Instructions
+## 2. Step-by-Step Instructions
 
-### 1. **Save the Script**
+### 2.1. **Save the Script**
    - Ensure the [MaRMAT-CommandLine-2.5.py](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-CommandLine-2.5.py) script is saved on your Mac.
    - Add the lexicon (e.g., [Reparative Metadata](https://github.com/marriott-library/MaRMAT/blob/main/Code/reparative-metadata-lexicon.csv), [LCSH](https://github.com/marriott-library/MaRMAT/blob/main/Code/LCSH-lexicon.csv)) you'd like to use as well as the metadata file you want to analyze to the same folder. 
 
-### 2. **Opening the Script for Editing with TextEdit**
+### 2.2. **Opening the Script for Editing with TextEdit**
 
-   2.1. **Locate the Script**:
+   - **Locate the Script**:
       - Open Finder and navigate to the directory where the script is saved (e.g., `Documents`, `Downloads`).
 
-   2.2. **Open with TextEdit**:
+   - **Open with TextEdit**:
       - Right-click on the script file (`MaRMAT-CommandLine-2.5.py`) and select **Open With > TextEdit**.
       - If you don’t see TextEdit, choose **Other...** and select TextEdit (or another text editor) from the list.
 
-   3.3. **Edit the Script**:
+   - **Edit the Script**:
       - In TextEdit, find and modify the following sections (at the very end of the script under "Example usage") according to your specific file paths and requirements:
 
         - **Load Lexicon**:
@@ -68,26 +68,26 @@
 
       - Save your changes by clicking **File > Save** or pressing `Command + S`.
 
-   2.4. **Ensure Proper TextEdit Settings**:
+   - **Ensure Proper TextEdit Settings**:
       - If TextEdit opens the file in **Rich Text Format (RTF)**, change it to **Plain Text** by selecting **Format > Make Plain Text** from the menu. This ensures the script runs correctly.
 
-### 3. **Running the Script**
+### 2.3. **Running the Script**
 
-   3.1. **Open Terminal**:
-   
-   3.2. **Navigate to the Script’s Directory**:
+   - **Open Terminal**:
+     
+      - **Navigate to the Script’s Directory**:
       - Use the `cd` command to go to the directory where your script is located, for example:
         ```bash
         cd ~/Documents
         ```
    
-   3.3. **Execute the Script**:
+   - **Execute the Script**:
       - Run the script using the following command:
         ```bash
         python3 MaRMAT-CommandLine-2.5.py
         ```
 
-### Additional Considerations
+### 3. Additional Considerations
 
 - **Full Paths**: Always use the full path for files if they are not in the same directory as the script.
 - **Output Files**: Ensure the output directory specified in the script has the appropriate permissions to save the results.
