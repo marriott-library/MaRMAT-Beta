@@ -27,7 +27,7 @@
 #### 2. **Opening the Script for Editing with TextEdit**
 
    1. **Locate the Script**:
-      - Open Finder and navigate to the directory where the script is saved (e.g., `Documents`, `Downloads`.
+      - Open Finder and navigate to the directory where the script is saved (e.g., `Documents`, `Downloads`).
 
    2. **Open with TextEdit**:
       - Right-click on the script file (`MaRMAT-CommandLine-2.5.py`) and select **Open With > TextEdit**.
