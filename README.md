@@ -30,7 +30,9 @@ We value your feedback! Please take [this survey](https://docs.google.com/forms/
 
    3.3 [Installation](#33-installation)
 
-4. [Credits and Acknowledgments](#4-credits-and-acknowledgments)
+   3.4 [Troubleshooting](#34-troubleshooting)
+
+5. [Credits and Acknowledgments](#4-credits-and-acknowledgments)
 
 ## 1. Project Background
 The Marriot Reparative Metadata Assessment Tool (MaRMAT) is based [Duke University’s Description Audit Tool](https://github.com/duke-libraries/description-audit). It is intended to assist digital collections metadata practitioners in bulk analysis of metadata collections to identify potentially harmful language in description and facilitate repairing metadata to reflect current and preferred terminology. While Duke University's Description Audit Tool was created to analyze MARC XML and EAD finding aid metadata, MaRMAT was developed to analyze metadata in a spreadsheet format, allowing for assessment of Dublin Core metadata and other schemas due to only requiring key column-header names. In addition, the script has been altered to provide more custom querying capabilities.
@@ -154,6 +156,17 @@ No installation is required. Simply follow the steps below to download and run t
 
 4. Application Starts:
    - The application should start running automatically; the GUI will appear on your screen.
+  
+### 3.4 Troubleshooting
+If you are receiving error messages related to pandas, such as "No module named 'pandas'", be sure to install pandas. This [resource] (https://pip.pypa.io/en/stable/getting-started/) may be helpful. Or, do the following in Command Line:
+
+``C:\Users\USERNAME>py -m pip``
+
+Followed by
+
+``C:\Users\USERNAME>py -m pip install pandas``
+
+Be sure to replace USERNAME with your computer's user name in the above. 
 
 ## 4. Credits and Acknowledgments
 Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in collaboration with ChatGPT 3.5, [Rachel Wittmann](https://github.com/RachelJaneWittmann), and [Anna Neatrour](https://github.com/aneatrour) at the University of Utah's J. Willard Marriott Library. MaRMAT Beta was released in July, 2024.
