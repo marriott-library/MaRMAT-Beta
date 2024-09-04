@@ -158,7 +158,7 @@ No installation is required. Simply follow the steps below to download and run t
    - The application should start running automatically; the GUI will appear on your screen.
   
 ### 3.4 Troubleshooting
-If you are receiving error messages related to pandas, such as "No module named 'pandas'", be sure to install pandas. This [resource] (https://pip.pypa.io/en/stable/getting-started/) may be helpful. Or, do the following in Command Line:
+If you are receiving error messages related to pandas, such as "No module named 'pandas'", be sure to install pandas. This [resource](https://pip.pypa.io/en/stable/getting-started/) may be helpful. Or, do the following in Command Line:
 
 ``C:\Users\USERNAME>py -m pip``
 
