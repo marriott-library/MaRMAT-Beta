@@ -137,7 +137,7 @@ To facilitate wider use, the [MaRMAT GUI](https://github.com/marriott-library/Ma
 - **[Python 3.x](https://docs.python.org/3/)**: Python is a widely used high-level programming language for general-purpose programming.
 
 - **[Tkinter](https://docs.python.org/3/library/tk.html)**: Tkinter is Python's standard GUI (Graphical User Interface) package. It is used to create desktop applications with a graphical interface.
-- - **[pandas](https://pandas.pydata.org/docs/)**: Pandas is a Python library that provides easy-to-use data structures and data analysis tools for manipulating and analyzing structured data, particularly tabular data. Pandas can be installed via pip:
+- **[pandas](https://pandas.pydata.org/docs/)**: Pandas is a Python library that provides easy-to-use data structures and data analysis tools for manipulating and analyzing structured data, particularly tabular data. Pandas can be installed via pip:
      ``py -m pip install pandas``
 
 *Note: These dependencies are essential for running the Reparative Metadata Audit Tool. If you don't have Python installed, you can download it from the [official Python website](https://www.python.org/downloads). Tkinter is usually included with Python distributions, so no separate installation is required.*
