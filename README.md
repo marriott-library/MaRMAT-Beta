@@ -95,8 +95,9 @@ The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-Co
 ### 2.2 Dependencies
 
 - **[Python 3.x](https://docs.python.org/3/)**: Python is a widely used high-level programming language for general-purpose programming.
-- **[pandas](https://pandas.pydata.org/docs/)**: Pandas is a Python library that provides easy-to-use data structures and data analysis tools for manipulating and analyzing structured data, particularly tabular data. Pandas can be installed via pip:
-     ``pip install pandas``
+
+- **[pandas](https://pandas.pydata.org/docs/)**: Pandas is a Python library that provides easy-to-use data structures and data analysis tools for manipulating and analyzing structured data, particularly tabular data. Pandas can be installed using pip in Terminal: `pip install pandas`
+
 - **[re](https://docs.python.org/3/library/re.html)**: This module provides regular expression matching operations. It's a built-in module in Python and doesn't require separate installation.
 
 *Note: These dependencies are necessary to run the provided code successfully. Ensure that you have them installed before running the code.*
@@ -136,11 +137,13 @@ To facilitate wider use, the [MaRMAT GUI](https://github.com/marriott-library/Ma
 ### 3.2 Dependencies
 - **[Python 3.x](https://docs.python.org/3/)**: Python is a widely used high-level programming language for general-purpose programming.
 
-- **[Tkinter](https://docs.python.org/3/library/tk.html)**: Tkinter is Python's standard GUI (Graphical User Interface) package. It is used to create desktop applications with a graphical interface.
-- **[pandas](https://pandas.pydata.org/docs/)**: Pandas is a Python library that provides easy-to-use data structures and data analysis tools for manipulating and analyzing structured data, particularly tabular data. Pandas can be installed via pip:
-     ``py -m pip install pandas``
+- **[Tkinter](https://docs.python.org/3/library/tk.html)**: Tkinter is Python's standard GUI (Graphical User Interface) package. It is used to create desktop applications with a graphical interface. It is usually included with Python distributions, so no separate installation is required.
 
-*Note: These dependencies are essential for running the Reparative Metadata Audit Tool. If you don't have Python installed, you can download it from the [official Python website](https://www.python.org/downloads). Tkinter is usually included with Python distributions, so no separate installation is required.*
+- **[re](https://docs.python.org/3/library/re.html)**: This module provides regular expression matching operations. It's a built-in module in Python and doesn't require separate installation.
+
+- **[pandas](https://pandas.pydata.org/docs/)**: Pandas is a Python library that provides easy-to-use data structures and data analysis tools for manipulating and analyzing structured data, particularly tabular data. Pandas can be installed using pip in your command line interface: ``py -m pip install pandas``
+
+*Note: These dependencies are essential for running MaRMAT. If you don't have Python installed, you can download it from the [official Python website](https://www.python.org/downloads).*
 
 ### 3.3 Installation 
 No installation is required. Simply follow the steps below to download and run the Python script to start the application on your PC.
@@ -160,15 +163,15 @@ No installation is required. Simply follow the steps below to download and run t
    - The application should start running automatically; the GUI will appear on your screen.
   
 ### 3.4 Troubleshooting
-If you are receiving error messages related to pandas, such as "No module named 'pandas'", be sure to install pandas. This [resource](https://pip.pypa.io/en/stable/getting-started/) may be helpful. Or, do the following in Command Line:
+If you are receiving error messages related to ``pandas``, such as ``No module named 'pandas'``, follow these steps to install ``pandas``. 
 
-``C:\Users\USERNAME>py -m pip``
+1. Open your command line interface
 
-Followed by
+2. Type the following into command line: ``py -m pip install pandas``
 
-``C:\Users\USERNAME>py -m pip install pandas``
+3. Press enter to run the command
 
-Be sure to replace USERNAME with your computer's user name in the above. 
+If this process does not resolve your issue, follow these Getting Started tips to make sure python and the pip installer are running correctly on your PC: [https://pip.pypa.io/en/stable/getting-started](https://pip.pypa.io/en/stable/getting-started/)
 
 ## 4. Credits and Acknowledgments
 Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in collaboration with ChatGPT 3.5, [Rachel Wittmann](https://github.com/RachelJaneWittmann), and [Anna Neatrour](https://github.com/aneatrour) at the University of Utah's J. Willard Marriott Library. MaRMAT Beta was released in July, 2024.
