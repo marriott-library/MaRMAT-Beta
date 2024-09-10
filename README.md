@@ -163,7 +163,7 @@ No installation is required. Simply follow the steps below to download and run t
    - The application should start running automatically; the GUI will appear on your screen.
   
 ### 3.4 Troubleshooting
-If you are receiving error messages related to ``pandas``, such as ``No module named 'pandas'``, follow these steps to install ``pandas``. 
+You should be able to open the Python file and the GUI pops up. If you are having issues with the GUI opening, try opening the file in Python IDLE and running it. IDLE should give ou an error message with insights as to why it is not loading correctly. If you are receiving error messages pyrelated to ``pandas``, such as ``No module named 'pandas'``, follow these steps to install ``pandas``. 
 
 1. Open your command line interface
 
