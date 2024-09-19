@@ -84,7 +84,7 @@ The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-Co
 
 3. Use the command-line interface to navigate to the directory where you saved the files (e.g., `Downloads`, `Desktop`).
    
-4. Open the `MaRMAT-2.5.py` script in a text editor and provide the information for your files and what you want to analyze under "Example usage" at the very end of the script. 
+4. Open the `MaRMAT-2.5.3.py` script in a text editor and provide the information for your files and what you want to analyze under "Example usage" at the very end of the script. 
    
 6. Save the script.
 
