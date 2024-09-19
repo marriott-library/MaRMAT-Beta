@@ -88,7 +88,7 @@ The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-Co
    
 6. Save the script.
 
-7. Run the tool in your command line using the following command: ```python3 MaRMAT-2.5.py```
+7. Run the tool in your command line using the following command: ```python3 MaRMAT-CommandLine-2.5.py```
 
 8. Review the matching results displayed on the console or in the generated CSV file.
 
