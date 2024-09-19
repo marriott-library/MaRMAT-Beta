@@ -107,7 +107,6 @@ class MaRMAT:
                     for term, category in zip(lexicon_df['term'], lexicon_df['category']):
                         if re.search(r'\b' + re.escape(term.lower()) + r'\b', row[col].lower()):
                             matches.append((row[self.identifier_column], term, category, col))
-                            break
         return matches
 
 # Define output file path
