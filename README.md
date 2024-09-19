@@ -43,7 +43,7 @@ Identifying potentially harmful language, problematic and outdated Library of Co
 
 
 ## 1.1 About the Tool
-At the most basic level, [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.2.py) is designed to match terms from a lexicon with textual data and produce a CSV file containing the matched results. It utilizes the Pandas library for data manipulation and regular expressions for text processing. It was designed primarily with librarians in mind, specifically those engaged in reparative metadata practices, to assist in idenfiying terms in their metadata that may be outdated, biased, or otherwise problematic. The underlying code (including preliminary iterations) and sample lexicons for using the tool can be accessed via the [Code](https://github.com/marriott-library/MaRMAT/tree/main/Code) folder of this repository. For additional information about the GUI, see [GUI-Documentation](https://github.com/marriott-library/MaRMAT/blob/main/Code/GUI-Documentation.md). 
+At the most basic level, [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.3.py) is designed to match terms from a lexicon with textual data and produce a CSV file containing the matched results. It utilizes the Pandas library for data manipulation and regular expressions for text processing. It was designed primarily with librarians in mind, specifically those engaged in reparative metadata practices, to assist in idenfiying terms in their metadata that may be outdated, biased, or otherwise problematic. The underlying code (including preliminary iterations) and sample lexicons for using the tool can be accessed via the [Code](https://github.com/marriott-library/MaRMAT/tree/main/Code) folder of this repository. For additional information about the GUI, see [GUI-Documentation](https://github.com/marriott-library/MaRMAT/blob/main/Code/GUI-Documentation.md). 
 
 An initial test case developed a tool for parsing, extracting, tokenizing, and preprocessing XML files containing Open Archives Initiative (OAI) feed metadata for library special collections that would then crosscheck tokens against Duke University's [lexicons](https://github.com/duke-libraries/description-audit/tree/main/lexicons) and append the corresponding lexicon categories (Aggrandizement, Race Euphemisms, Race Terms, Slavery Terms, Gender Terms, LGBTQ, Mental Illness, and Disability) to each row in the CSV output. This tool is accessible via the [XML Test Code](https://github.com/marriott-library/MaRMAT/tree/main/XML%20Test%20Code) folder of this repository, please note that this may not work with all OAI feed formats or take into account resumption tokens.
 
@@ -111,7 +111,7 @@ The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-Co
 
 
 ## 3. The GUI for Windows Users
-To facilitate wider use, the [MaRMAT GUI](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.2.py) allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
+To facilitate wider use, the [MaRMAT GUI](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.3.py) allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
 
 *Note: The GUI is not compatible with MacOS. Additional information on the MaRMAT GUI is available [here](https://github.com/marriott-library/MaRMAT/blob/main/Code/GUI-Documentation.md).
 
@@ -149,7 +149,7 @@ To facilitate wider use, the [MaRMAT GUI](https://github.com/marriott-library/Ma
 No installation is required. Simply follow the steps below to download and run the Python script to start the application on your PC.
 
 1. Download the Python Script:
-   - Download the [MaRMAT-GUI-2.5.2.py](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.2.py) script to a location on your PC where you can easily find it, such as your Desktop or Downloads.
+   - Download the [MaRMAT-GUI-2.5.2.py](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.3.py) script to a location on your PC where you can easily find it, such as your Desktop or Downloads.
 
 2. Ensure Python is Installed:
    - To make sure that Python is installed on your PC, search for "Python" in your Start Menu or look for the Python folder in your Program Files.
@@ -157,7 +157,7 @@ No installation is required. Simply follow the steps below to download and run t
 
 3. Double-Click the Python Script:
    - Navigate to the location where you downloaded the script.
-   - Double-click on the script file (i.e., MaRMAT-GUI-2.5.2.py).
+   - Double-click on the script file (i.e., MaRMAT-GUI-2.5.3.py).
 
 4. Application Starts:
    - The application should start running automatically; the GUI will appear on your screen.
