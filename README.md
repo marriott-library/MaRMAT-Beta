@@ -14,38 +14,34 @@ We value your feedback! Please take [this survey](https://docs.google.com/forms/
 
    1.4 [Example Outputs and Tutorial](#14-example-outputs-and-tutorial)
 
-2. [The Command-Line Tool](#2-the-command-line-tool)
+2. [The GUI for Windows Users](#2-the-gui-for-windows-users)
 
    2.1 [Usage](#21-usage)
 
    2.2 [Dependencies](#22-dependencies)
 
-   2.3 [Notes](#23-notes)
+   2.3 [Installation](#23-installation)
 
-3. [The GUI for Windows Users](#3-the-gui-for-windows-users)
+   2.4 [Troubleshooting](#24-troubleshooting)
+
+3. [The Command-Line Tool](#3-the-command-line-tool)
 
    3.1 [Usage](#31-usage)
 
    3.2 [Dependencies](#32-dependencies)
 
-   3.3 [Installation](#33-installation)
+   3.3 [Notes](#33-notes)
 
-   3.4 [Troubleshooting](#34-troubleshooting)
-
-5. [Credits and Acknowledgments](#4-credits-and-acknowledgments)
+4. [Credits and Acknowledgments](#4-credits-and-acknowledgments)
+5. [User Feedback Survey](#5-user-feedback-survey)
 
 ## 1. Project Background
-The Marriot Reparative Metadata Assessment Tool (MaRMAT) is based [Duke University’s Description Audit Tool](https://github.com/duke-libraries/description-audit). It is intended to assist digital collections metadata practitioners in bulk analysis of metadata collections to identify potentially harmful language in description and facilitate repairing metadata to reflect current and preferred terminology. While Duke University's Description Audit Tool was created to analyze MARC XML and EAD finding aid metadata, MaRMAT was developed to analyze metadata in a spreadsheet format, allowing for assessment of Dublin Core metadata and other schemas due to only requiring key column-header names. In addition, the script has been altered to provide more custom querying capabilities.
-
-MaRMAT is designed to query spreadsheet-based (CSV) metadata against a lexicon of potentially harmful terms in uncontrolled metadata elements, such as Title, Description, and Collection Title. Controlled metadata, such as Subject, can be queried against a database of outdated or problematic Library of Congress Subject Headings. The bulk query of multiple columns of metadata against the provided lexicon, or user-supplied custom created lexicon, is designed to facilitate efficient bulk analysis instead of individual keyword searching methods. 
-
 Identifying potentially harmful language, problematic and outdated Library of Congress Subject Headings, is one step towards reparative metadata practices. Deciding what and how to change this metadata, however, is up to metadata practitioners and involves awareness, education, and sensitivity for the communities and history reflected in digital collections. The Digital Library Federation’s Inclusive Metadata Toolkit, created by the Digital Library Federation’s Cultural Assessment Working Group, provides resources to educate and assist in reparative metadata decision-making.  
 
+The Marriot Reparative Metadata Assessment Tool (MaRMAT) is based [Duke University’s Description Audit Tool](https://github.com/duke-libraries/description-audit). It is intended to assist digital collections metadata practitioners in bulk analysis of metadata collections to identify potentially harmful language in description and facilitate repairing metadata to reflect current and preferred terminology. While Duke University's Description Audit Tool was created to analyze MARC XML and EAD finding aid metadata, MaRMAT was developed to analyze metadata in a spreadsheet format, allowing for assessment of Dublin Core metadata and other schemas due to only requiring key column-header names. In addition, the script has been altered to provide more custom querying capabilities.
 
 ## 1.1 About the Tool
 At the most basic level, [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.3.py) is designed to match terms from a lexicon with textual data and produce a CSV file containing the matched results. It utilizes the Pandas library for data manipulation and regular expressions for text processing. It was designed primarily with librarians in mind, specifically those engaged in reparative metadata practices, to assist in idenfiying terms in their metadata that may be outdated, biased, or otherwise problematic. The underlying code (including preliminary iterations) and sample lexicons for using the tool can be accessed via the [Code](https://github.com/marriott-library/MaRMAT/tree/main/Code) folder of this repository. For additional information about the GUI, see [GUI-Documentation](https://github.com/marriott-library/MaRMAT/blob/main/Code/GUI-Documentation.md). 
-
-An initial test case developed a tool for parsing, extracting, tokenizing, and preprocessing XML files containing Open Archives Initiative (OAI) feed metadata for library special collections that would then crosscheck tokens against Duke University's [lexicons](https://github.com/duke-libraries/description-audit/tree/main/lexicons) and append the corresponding lexicon categories (Aggrandizement, Race Euphemisms, Race Terms, Slavery Terms, Gender Terms, LGBTQ, Mental Illness, and Disability) to each row in the CSV output. This tool is accessible via the [XML Test Code](https://github.com/marriott-library/MaRMAT/tree/main/XML%20Test%20Code) folder of this repository, please note that this may not work with all OAI feed formats or take into account resumption tokens.
 
 ### 1.2 The Lexicons
 There are two lexicons provided to help begin your reparative metadata assessment. Not all of the terms in these lexicons may need remediation, rather, they may signal areas of your collections that should be reiveiwed carefully. Users may download the provided lexicons to use in MaRMAT as is, remove terms that may not be problematic in your metadata, or add additional terms and categories based on specific project needs. The only requirements for a lexicon to work against another file are that there be two columns in the CSV file: "Term" and "Category" (case sensitive). Therefore, the tool's use is not limited to assessing metadata for problematic terms; it may also be loaded with a custom lexicon to perform matching against a variety of content types.
@@ -73,49 +69,12 @@ Please keep in mind these reports are just snippets of larger reports. Users sho
 
 To assist in getting started with MaRMAT, there is also a [video tutorial](https://youtu.be/uspAoqfj99g?si=jQArVdlbGm_qN78l) that demonstrates the first steps in using the GUI for Windows (subtitles can be enabled in settings).
 
-
-## 2. The Command-Line Tool 
-The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-CommandLine-2.5.py) can be run by any user from their command line. Where indicated in the script, provide the paths to each file, specify the columns you wish to analyze, designate your "Identifier" column, and input the categories of terms you want to match. Then, run the Python file from your command line. **Additional instructions for MacOS users can be found [HERE](https://github.com/marriott-library/MaRMAT/blob/main/Code/MacOS-UsersGuide.md).**
-
-### 2.1 Usage
-1. Install Python if not already installed (Python 3.x recommended).
-   
-2. Clone or download the MaRMAT repository.
-
-3. Use the command-line interface to navigate to the directory where you saved the files (e.g., `Downloads`, `Desktop`).
-   
-4. Open the `MaRMAT-2.5.3.py` script in a text editor and provide the information for your files and what you want to analyze under "Example usage" at the very end of the script. 
-   
-6. Save the script.
-
-7. Run the tool in your command line using the following command: ```python3 MaRMAT-CommandLine-2.5.py```
-
-8. Review the matching results displayed on the console or in the generated CSV file.
-
-### 2.2 Dependencies
-
-- **[Python 3.x](https://docs.python.org/3/)**: Python is a widely used high-level programming language for general-purpose programming.
-
-- **[pandas](https://pandas.pydata.org/docs/)**: Pandas is a Python library that provides easy-to-use data structures and data analysis tools for manipulating and analyzing structured data, particularly tabular data. Pandas can be installed using pip in Terminal: `pip install pandas`
-
-- **[re](https://docs.python.org/3/library/re.html)**: This module provides regular expression matching operations. It's a built-in module in Python and doesn't require separate installation.
-
-*Note: These dependencies are necessary to run the provided code successfully. Ensure that you have them installed before running the code.*
-
-### 2.3 Notes
-- Ensure that both the lexicon and metadata files are in CSV format.
-- The lexicon file should contain columns for terms and their corresponding categories ("Terms","Category").
-- The metadata file should contain the text data to be analyzed, with each row representing a separate entry.
-- The metadata file should contain a column, such as a Record ID, that you can use as an "Identifier" to reconcile the tool's output with your original metadata. 
-- The tool outputs matching results to a CSV file named "matching_results.csv" in the tool's directory.
-
-
-## 3. The GUI for Windows Users
+## 2. The GUI for Windows Users
 To facilitate wider use, the [MaRMAT GUI](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.3.py) allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
 
 *Note: The GUI is not compatible with MacOS. Additional information on the MaRMAT GUI is available [here](https://github.com/marriott-library/MaRMAT/blob/main/Code/GUI-Documentation.md).
 
-### 3.1 Usage 
+### 2.1 Usage 
 1. Loading Files:
    - Click on the "Load Lexicon" button to load the lexicon file.
    - Click on the "Load Metadata" button to load the metadata file.
@@ -134,7 +93,7 @@ To facilitate wider use, the [MaRMAT GUI](https://github.com/marriott-library/Ma
    - Click "Perform Matching" to find matches between selected columns and categories.
    - The results will be exported to a CSV file.
   
-### 3.2 Dependencies
+### 2.2 Dependencies
 - **[Python 3.x](https://docs.python.org/3/)**: Python is a widely used high-level programming language for general-purpose programming.
 
 - **[Tkinter](https://docs.python.org/3/library/tk.html)**: Tkinter is Python's standard GUI (Graphical User Interface) package. It is used to create desktop applications with a graphical interface. It is usually included with Python distributions, so no separate installation is required.
@@ -145,7 +104,7 @@ To facilitate wider use, the [MaRMAT GUI](https://github.com/marriott-library/Ma
 
 *Note: These dependencies are essential for running MaRMAT. If you don't have Python installed, you can download it from the [official Python website](https://www.python.org/downloads).*
 
-### 3.3 Installation 
+### 2.3 Installation 
 No installation is required. Simply follow the steps below to download and run the Python script to start the application on your PC.
 
 1. Download the Python Script:
@@ -162,7 +121,7 @@ No installation is required. Simply follow the steps below to download and run t
 4. Application Starts:
    - The application should start running automatically; the GUI will appear on your screen.
   
-### 3.4 Troubleshooting
+### 2.4 Troubleshooting
 The GUI should automacially open when you open the Python code file. If you are having issues with the GUI opening, try opening the file in Python IDLE and running it. IDLE should give ou an error message with insights as to why it is not loading correctly. If you are receiving error messages pyrelated to ``pandas``, such as ``No module named 'pandas'``, follow these steps to install ``pandas``. 
 
 1. Open your command line interface
@@ -172,6 +131,41 @@ The GUI should automacially open when you open the Python code file. If you are 
 3. Press enter to run the command
 
 If this process does not resolve your issue, follow these Getting Started tips to make sure python and the pip installer are running correctly on your PC: [https://pip.pypa.io/en/stable/getting-started](https://pip.pypa.io/en/stable/getting-started/)
+
+## 3. The Command-Line Tool 
+The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-CommandLine-2.5.py) can be run by any user from their command line. Where indicated in the script, provide the paths to each file, specify the columns you wish to analyze, designate your "Identifier" column, and input the categories of terms you want to match. Then, run the Python file from your command line. **Additional instructions for MacOS users can be found [HERE](https://github.com/marriott-library/MaRMAT/blob/main/Code/MacOS-UsersGuide.md).**
+
+### 3.1 Usage
+1. Install Python if not already installed (Python 3.x recommended).
+   
+2. Clone or download the MaRMAT repository.
+
+3. Use the command-line interface to navigate to the directory where you saved the files (e.g., `Downloads`, `Desktop`).
+   
+4. Open the `MaRMAT-2.5.3.py` script in a text editor and provide the information for your files and what you want to analyze under "Example usage" at the very end of the script. 
+   
+6. Save the script.
+
+7. Run the tool in your command line using the following command: ```python3 MaRMAT-CommandLine-2.5.py```
+
+8. Review the matching results displayed on the console or in the generated CSV file.
+
+### 3.2 Dependencies
+
+- **[Python 3.x](https://docs.python.org/3/)**: Python is a widely used high-level programming language for general-purpose programming.
+
+- **[pandas](https://pandas.pydata.org/docs/)**: Pandas is a Python library that provides easy-to-use data structures and data analysis tools for manipulating and analyzing structured data, particularly tabular data. Pandas can be installed using pip in Terminal: `pip install pandas`
+
+- **[re](https://docs.python.org/3/library/re.html)**: This module provides regular expression matching operations. It's a built-in module in Python and doesn't require separate installation.
+
+*Note: These dependencies are necessary to run the provided code successfully. Ensure that you have them installed before running the code.*
+
+### 3.3 Notes
+- Ensure that both the lexicon and metadata files are in CSV format.
+- The lexicon file should contain columns for terms and their corresponding categories ("Terms","Category").
+- The metadata file should contain the text data to be analyzed, with each row representing a separate entry.
+- The metadata file should contain a column, such as a Record ID, that you can use as an "Identifier" to reconcile the tool's output with your original metadata. 
+- The tool outputs matching results to a CSV file named "matching_results.csv" in the tool's directory.
 
 ## 4. Credits and Acknowledgments
 Code developed by [Kaylee Alexander](https://github.com/kayleealexander) in collaboration with ChatGPT 3.5, [Rachel Wittmann](https://github.com/RachelJaneWittmann), and [Anna Neatrour](https://github.com/aneatrour) at the University of Utah's J. Willard Marriott Library. MaRMAT Beta was released in July, 2024.
