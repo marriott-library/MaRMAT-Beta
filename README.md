@@ -63,9 +63,10 @@ There are two lexicons provided to help begin your reparative metadata assessmen
 
 ### 1.4 Example Outputs and Tutorial
 
-To provide users with a sense of what to expect from running MaRMAT against their own metadata collection, here are two example outputs using the provided lexicons: 
-1. [Example Output: Reparative Metadata Lexicon](https://github.com/marriott-library/MaRMAT/blob/main/Code/example-output_reparative-metadata-lexicon.csv)
-2. [Example Output: LCSH Lexicon](https://github.com/marriott-library/MaRMAT/blob/main/Code/example-output_lcsh-subject-lexicon.csv)
+To provide users with a sense of what to expect from running MaRMAT against their own metadata collection, below includes example metadata to load and query against the provided lexicons, and outputs from the the provided lexicons: 
+1. [Example Input: Potentially Problematic Metadata](https://github.com/marriott-library/MaRMAT/blob/main/Code/example-input-metadata.csv)
+2. [Example Output: Reparative Metadata Lexicon](https://github.com/marriott-library/MaRMAT/blob/main/Code/example-output-reparative-metadata-lexicon.csv)
+3. [Example Output: LCSH Lexicon](https://github.com/marriott-library/MaRMAT/blob/main/Code/example-output-lcsh-subject-lexicon.csv)
 
 Please keep in mind these reports are just snippets of larger reports. Users should be aware that there may be false positives or results that may not need remediation. For example, the LCSH term "Race" is considered a problem heading but MaRMAT may flag other headings with "race," as in "Bonneville Salt Flats Race, Utah." Likewise, the gender term "wife" may not always signal an unnamed woman, and terms that may be harmful in some contexts may not be in others. Therefore, we stress the importance of human review and intervention prior to making broad conclusions or global changes based on MaRMAT outputs.
 
