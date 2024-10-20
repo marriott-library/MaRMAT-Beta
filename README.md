@@ -36,7 +36,7 @@ We value your feedback! Please take [this survey](https://docs.google.com/forms/
 
 4. [Credits and Acknowledgments](#4-credits-and-acknowledgments)
 5. [User Feedback Survey](#5-user-feedback-survey)
-
+F
 ## 1. Project Background
 Identifying potentially harmful language, problematic and outdated Library of Congress Subject Headings, is one step towards reparative metadata practices. Deciding what and how to change this metadata, however, is up to metadata practitioners and involves awareness, education, and sensitivity for the communities and history reflected in digital collections. The Digital Library Federation’s Inclusive Metadata Toolkit, created by the Digital Library Federation’s Cultural Assessment Working Group, provides resources to educate and assist in reparative metadata decision-making.  
 
@@ -50,8 +50,8 @@ There are two lexicons provided to help begin your reparative metadata assessmen
 
 | Lexicon      | Description |
 | :----------:| ---------- |
-| Reparative Metadata Lexicon   | The [Reparative Metadata Lexicon](https://github.com/marriott-library/MaRMAT/blob/main/Code/reparative-metadata-lexicon.csv) includes potentially harmful terminology organized by category and is best suited for uncontrolled metadata fields (i.e. Title, Description). This lexicon has been adapted from Duke University's lexicons, which were created for similar use cases. For the Marriott Reparative Metadata Assessment Tool (MaRMAT),  Duke's [lexicons](https://github.com/duke-libraries/description-audit/tree/main/lexicons) were modified  by transposing across their category columns to create a single lexicon (term, category) that better accommodate users adding additional terms and categories without having to adjust the underlying code structure.  |
-| Library of Congress Subject Heading (LCSH) Lexicon   | The [LCSH Lexicon](https://github.com/marriott-library/MaRMAT/blob/main/Code/LCSH-lexicon.csv) includes selected changed and canceled LCSH (mostly from 2023) and headings that have been identified as problematic. The LCSH Lexicon is best suited to run against the Subject metadata field, or other fields that contain LCSH terms
+| Reparative Metadata Lexicon   | The [Reparative Metadata Lexicon](https://github.com/marriott-library/MaRMAT/blob/main/Code/lexicon-reparative-metadata.csv) includes potentially harmful terminology organized by category and is best suited for uncontrolled metadata fields (i.e. Title, Description). This lexicon has been adapted from Duke University's lexicons, which were created for similar use cases. For the Marriott Reparative Metadata Assessment Tool (MaRMAT),  Duke's [lexicons](https://github.com/duke-libraries/description-audit/tree/main/lexicons) were modified  by transposing across their category columns to create a single lexicon (term, category) that better accommodate users adding additional terms and categories without having to adjust the underlying code structure.  |
+| Library of Congress Subject Heading (LCSH) Lexicon   | The [LCSH Lexicon](https://github.com/marriott-library/MaRMAT/blob/main/Code/lexicon-LCSH.csv) includes selected changed and canceled LCSH (mostly from 2023) and headings that have been identified as problematic. The LCSH Lexicon is best suited to run against the Subject metadata field, or other fields that contain LCSH terms
 
 ### 1.3 Features
 - Load lexicon and metadata files in CSV format.
