@@ -36,7 +36,7 @@ We value your feedback! Please take [this survey](https://docs.google.com/forms/
 
 4. [Credits and Acknowledgments](#4-credits-and-acknowledgments)
 5. [User Feedback Survey](#5-user-feedback-survey)
-F
+
 ## 1. Project Background
 Identifying potentially harmful language, problematic and outdated Library of Congress Subject Headings, is one step towards reparative metadata practices. Deciding what and how to change this metadata, however, is up to metadata practitioners and involves awareness, education, and sensitivity for the communities and history reflected in digital collections. The Digital Library Federation’s Inclusive Metadata Toolkit, created by the Digital Library Federation’s Cultural Assessment Working Group, provides resources to educate and assist in reparative metadata decision-making.  
 
