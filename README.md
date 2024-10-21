@@ -70,7 +70,7 @@ To provide users with a sense of what to expect from running MaRMAT against thei
 
 Please keep in mind these reports are just snippets of larger reports. Users should be aware that there may be false positives or results that may not need remediation. For example, the LCSH term "Race" is considered a problem heading but MaRMAT may flag other headings with "race," as in "Bonneville Salt Flats Race, Utah." Likewise, the gender term "wife" may not always signal an unnamed woman, and terms that may be harmful in some contexts may not be in others. Therefore, we stress the importance of human review and intervention prior to making broad conclusions or global changes based on MaRMAT outputs.
 
-To assist in getting started with MaRMAT, there is also a [video tutorial](https://youtu.be/uspAoqfj99g?si=jQArVdlbGm_qN78l) that demonstrates the first steps in using the GUI for Windows (subtitles can be enabled in settings).
+To assist in getting started with MaRMAT, there is also a [video tutorial](https://youtu.be/uspAoqfj99g?si=jQArVdlbGm_qN78l) that demonstrates the first steps in using the GUI for Windows (subtitles can be enabled in settings). The Mac OS demonstration is also available [on video](https://youtu.be/F5HNRj8Bq54?feature=shared), please note audio for this demo will be coming soon.  
 
 ## 2. The GUI for Windows Users
 To facilitate wider use, the [MaRMAT GUI](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-GUI-2.5.3.py) allows users to easily load a lexicon and a metadata file, select a key column (i.e., Identifier) to use in reconciling matches, and choose the columns and categories they'd like to perform matching on. 
