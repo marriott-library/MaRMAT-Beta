@@ -143,7 +143,7 @@ The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-Co
    
 2. Clone or download the MaRMAT repository.
 
-3. Use the command-line interface to navigate to the directory where you saved the files (e.g., `Downloads`, `Desktop`). For example, run `cd Downloads` to change your directory to `Downloads`.
+3. Use the command-line interface to navigate to the directory where you saved the files (e.g., `Downloads`, `Desktop`). For example, run `cd Downloads` to change your directory to your `Downloads` folder.
 
 5. Run the tool in your command line using the following command: ```python3 MaRMAT-CommandLine-2.6.py```
 
