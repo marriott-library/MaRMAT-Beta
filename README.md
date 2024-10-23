@@ -136,7 +136,7 @@ The GUI should automacially open when you open the Python code file. If you are 
 If this process does not resolve your issue, follow these Getting Started tips to make sure python and the pip installer are running correctly on your PC: [https://pip.pypa.io/en/stable/getting-started](https://pip.pypa.io/en/stable/getting-started/)
 
 ## 3. The Command-Line Tool 
-The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-CommandLine-2.6.py) can be run by any user from their command line. *Demonstration video coming soon*
+The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-CommandLine-2.6.py) can be run by any user from their command line.
 
 ### 3.1 Usage
 1. Install Python if not already installed (Python 3.x recommended).
@@ -154,6 +154,8 @@ The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-Co
 8. Follow the prompt to provide the path you would like to save your output to. 
 
 9. Review the matching results displayed on the console or in the generated CSV file.
+
+*Note: Demonstration video coming soon*
 
 ### 3.2 Dependencies
 
