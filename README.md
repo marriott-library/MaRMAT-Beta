@@ -136,20 +136,20 @@ The GUI should automacially open when you open the Python code file. If you are 
 If this process does not resolve your issue, follow these Getting Started tips to make sure python and the pip installer are running correctly on your PC: [https://pip.pypa.io/en/stable/getting-started](https://pip.pypa.io/en/stable/getting-started/)
 
 ## 3. The Command-Line Tool 
-The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-CommandLine-2.6.py) can be run by any user from their command line. Where indicated in the script, provide the paths to each file, specify the columns you wish to analyze, designate your "Identifier" column, and input the categories of terms you want to match. Then, run the Python file from your command line. **Additional instructions for MacOS users can be found [HERE](https://github.com/marriott-library/MaRMAT/blob/main/Code/MacOS-UsersGuide.md).** The Mac demonstration is also available [on video] (https://youtu.be/F5HNRj8Bq54?feature=shared](https://youtu.be/j_fFplU1W_o), please note audio for this demo will be coming soon.  
+The [MaRMAT](https://github.com/marriott-library/MaRMAT/blob/main/Code/MaRMAT-CommandLine-2.6.py) can be run by any user from their command line. *Demonstration video coming soon*
 
 ### 3.1 Usage
 1. Install Python if not already installed (Python 3.x recommended).
    
 2. Clone or download the MaRMAT repository.
 
-3. Use the command-line interface to navigate to the directory where you saved the files (e.g., `Downloads`, `Desktop`).
+3. Use the command-line interface to navigate to the directory where you saved the files (e.g., `Downloads`, `Desktop`). For example, run `cd Downloads` to change your directory to `Downloads`.
 
-4. Run the tool in your command line using the following command: ```python3 MaRMAT-CommandLine-2.6.py```
+5. Run the tool in your command line using the following command: ```python3 MaRMAT-CommandLine-2.6.py```
 
-5. Follow the prompts in your command line to provide the paths to the lexicon and metadata files.
+6. Follow the prompts in your command line to provide the paths to the lexicon and metadata files.
 
-6. Follow the prompts to input the names of the columns you want to analyze in the metadata file, the name of the column that should be used as the identifier or key column, and the categories of terms from the lexicon that you want to search for in your metadata file. Note: inputs are case sensitive.
+7. Follow the prompts to input the names of the columns you want to analyze in the metadata file, the name of the column that should be used as the identifier or key column, and the categories of terms from the lexicon that you want to search for in your metadata file. Note: inputs are case sensitive.
    
 8. Follow the prompt to provide the path you would like to save your output to. 
 
