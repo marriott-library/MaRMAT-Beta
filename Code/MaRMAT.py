@@ -114,7 +114,8 @@ class MaRMAT:
             term_col_dfs = []
             bounded_term = re.compile(rf"\b{term}\b", flags=re.IGNORECASE)  # make term a group for .split()
             for col in selected_columns:
-                matches = self.metadata_df[self.metadata_df[col].str.contains(bounded_term, regex=True, na=False)].copy()
+                raw_matches = self.metadata_df[self.metadata_df[col].str.contains(term, regex=False, na=False, case=False)]
+                matches = raw_matches[raw_matches[col].str.contains(bounded_term, regex=True, na=False)].copy()
                 if len(matches) > 0:
                     matches.rename(columns={col: "Context"}, inplace=True)
 
