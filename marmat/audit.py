@@ -1,4 +1,5 @@
 import re
+import warnings
 import pandas as pd
 
 
@@ -13,7 +14,9 @@ class AuditTool:
         self.categories = []  # List of all available categories in the lexicon
         self.selected_columns = []  # List of columns selected for matching
         self.selected_categories = []  # List of categories selected for matching
-        self.identifier_column = None  # Identifier column used to uniquely identify rows
+        self.id_col = None  # Identifier column used to uniquely identify rows
+        self.export_cols = []
+        self.matches_df = None
 
     def load_lexicon(self, file_path):
         """Load the lexicon file.
@@ -59,7 +62,7 @@ class AuditTool:
         column (str): Name of the identifier column in the metadata.
 
         """
-        self.identifier_column = column
+        self.id_col = column
 
     def select_categories(self, categories):
         """Select categories from the lexicon for matching.
@@ -70,25 +73,36 @@ class AuditTool:
         """
         self.selected_categories = categories
 
-    def perform_matching(self, output_file):
+    def select_export_cols(self, export_cols):
+        """Select categories from the lexicon for matching.
+
+        Parameters:
+        export_cols (list of str): List of column names in metadata_df to export.
+
+        """
+        self.export_cols = export_cols
+
+    def perform_matching(self):
         """Perform matching between selected columns and categories and save results to a CSV file.
 
         Parameters:
         output_file (str): Path to the output CSV file to save matching results.
 
         """
+        if self.lexicon_df is None or self.metadata_df is None:
+            raise ValueError("Please load lexicon and metadata files first.")
+        elif set(self.selected_categories) - set(self.categories):
+            missing_cats = set(self.selected_categories) - set(self.categories)
+            raise ValueError(f"{missing_cats} not in lexicon categories")
+        elif set(self.selected_columns) - set(self.columns):
+            missing_cols = set(self.selected_columns) - set(self.columns)
+            raise ValueError(f"{missing_cols} not in metadata columns")
+
         if not (self.metadata_df is not None and self.lexicon_df is not None):
             raise ValueError("Please load lexicon and metadata files first.")
 
-        matches_df = self.find_matches(self.selected_columns, self.selected_categories)
-        matches_df.sort_values(by=["Category", "Term"], inplace=True)
-
-        """Write results to CSV"""
-        try:
-            matches_df.to_csv(output_file, index=False, encoding="utf8")
-            print(f"Results saved to {output_file}")
-        except Exception as e:
-            print(f"An error occurred while saving results: {e}")
+        self.matches_df = self.find_matches(self.selected_columns, self.selected_categories)
+        self.matches_df.sort_values(by=["Category", "Term"], inplace=True)
 
     def find_matches(self, selected_columns, selected_categories):
         """Find matches between metadata and lexicon based on selected columns and categories.
@@ -109,13 +123,19 @@ class AuditTool:
         cumsum = cumsum.astype(int)
 
         combined_dfs = []
-        for i, (term, category) in enumerate(zip(lexicon_df['term'], lexicon_df['category'])):
+        for i, (term, category, plural) in enumerate(zip(lexicon_df['term'], lexicon_df['category'], lexicon_df['plural'])):
             print(f"Processing {category} term {i + 1 - cumsum.loc[category]} of {count.loc[category]}")
             term_col_dfs = []
-            bounded_term = re.compile(rf"\b{term}\b", flags=re.IGNORECASE)  # make term a group for .split()
+            if plural:
+                bounded_term = re.compile(r"(?<=\b)" + f"({term}s?)" + r"(?=\b)", flags=re.IGNORECASE)  # make term a group for .split()
+            else:
+                bounded_term = re.compile(r"(?<=\b)" + f"({term})" + r"(?=\b)", flags=re.IGNORECASE)  # make term a group for .split()
+
             for col in selected_columns:
                 raw_matches = self.metadata_df[self.metadata_df[col].str.contains(term, regex=False, na=False, case=False)]
-                matches = raw_matches[raw_matches[col].str.contains(bounded_term, regex=True, na=False)].copy()
+                with warnings.catch_warnings():
+                    warnings.simplefilter("ignore")
+                    matches = raw_matches[raw_matches[col].str.contains(bounded_term, regex=True, na=False)].copy()
                 if len(matches) > 0:
                     matches.rename(columns={col: "Context"}, inplace=True)
 
@@ -125,10 +145,23 @@ class AuditTool:
                     matches["Field"] = col
                     matches["Occurences"] = matches["Context"].str.count(bounded_term)
 
-                    standard_cols = [self.identifier_column, 'Term', 'Category', 'Context', 'Field', 'Occurences']
-                    term_col_dfs.append(matches.loc[:, standard_cols])
+                    standard_cols = [self.id_col, 'Term', 'Category', 'Context', 'Field', 'Occurences']
+                    term_col_dfs.append(matches.loc[:, standard_cols + self.export_cols])
 
             if term_col_dfs:
                 combined_dfs.append(pd.concat(term_col_dfs, axis=0))
 
         return pd.concat(combined_dfs, axis=0).reset_index(drop=True)
+
+    def export_matches(self, output_file):
+        """
+        Write results to CSV
+        Parameters:
+        output_file (str): Path to the output CSV file to save matching results.
+        """
+        try:
+            self.matches_df.to_csv(output_file, index=False, encoding="utf8")
+            self.matches_df.to_excel(output_file.replace(".csv", ".xlsx"), index=False)
+            print(f"Results saved to {output_file}")
+        except Exception as e:
+            print(f"An error occurred while saving results: {e}")
