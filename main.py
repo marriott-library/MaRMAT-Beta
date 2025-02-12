@@ -1,9 +1,9 @@
-from MaRMAT import MaRMAT
+from marmat.audit import AuditTool
 
 # Main program for command line interaction
 if __name__ == "__main__":
     print("1. Initialize the tool:")
-    tool = MaRMAT()
+    tool = AuditTool()
 
     print("\n2. Load lexicon and metadata files:")
     lexicon_path = input("Enter the path to the lexicon CSV file: ")

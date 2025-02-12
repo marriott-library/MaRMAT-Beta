@@ -2,7 +2,7 @@ import re
 import pandas as pd
 
 
-class MaRMAT:
+class AuditTool:
     """A tool for assessing metadata and identifying matches based on a provided lexicon."""
 
     def __init__(self):
