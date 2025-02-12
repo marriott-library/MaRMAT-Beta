@@ -1,10 +1,10 @@
 import pytest
 from pandas import read_csv
-from Code.MaRMAT import MaRMAT
+from marmat.audit import AuditTool
 
 
 def test_init_attrs():
-    tool = MaRMAT()
+    tool = AuditTool()
     assert tool.lexicon_df is None
     assert tool.metadata_df is None
     assert tool.columns == []
@@ -22,12 +22,12 @@ class TestMaRMAT:
 
     @pytest.fixture(scope="class")
     def tool(self):
-        tool = MaRMAT()
+        tool = AuditTool()
         tool.select_columns(["title"])  # Input the name(s) of the metadata column(s) you want to analyze.
         tool.select_identifier_column("id")
         tool.select_categories(["RaceTerms", "JapaneseincarcerationTerm"])
-        tool.load_metadata("Code/example-input-metadata.csv")
-        tool.load_lexicon("tests/test-lexicon-reparative-metadata.csv")
+        tool.load_metadata("tests/example-input-metadata.csv")
+        tool.load_lexicon("tests/example-lexicon-reparative-metadata.csv")
         return tool
 
     def test_attrs(self, tool):
@@ -78,12 +78,12 @@ class TestMaRMAT:
         assert two_cat_two_col_df.columns.to_list() == standard_cols
 
     def test_perform_matching(self, tool, tmp_path):
-        blank_tool = MaRMAT()
+        blank_tool = AuditTool()
         with pytest.raises(ValueError):  # neither metadata nor lexicon
             blank_tool.perform_matching(tmp_path)
 
         with pytest.raises(ValueError):  # lexicon but no metadata
-            blank_tool.load_lexicon("tests/test-lexicon-reparative-metadata.csv")
+            blank_tool.load_lexicon("tests/example-lexicon-reparative-metadata.csv")
             blank_tool.perform_matching(tmp_path)
 
         tool.perform_matching(tmp_path / "test_output.csv")
