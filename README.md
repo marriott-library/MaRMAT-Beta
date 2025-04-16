@@ -5,6 +5,8 @@ Note: Whether you are using the GUI for Windows or the command-line tool for Mac
 
 We value your feedback! Please take [this survey](https://docs.google.com/forms/d/e/1FAIpQLSfaABD5qsU2trEjrDWs3MoytgiNCaD08GJvRWzqhgzv5GjoDg/viewform?usp=sf_link) to tell us about your experience using MaRMAT.
 
+UPDATE: We are anticipating a MaRMAT upgrade in June 2025 which will expand GUI usablity to MacOS and PC users, in addition to many feature and functionality improvments. 
+
 ## **Table of Contents**
 1. [Project Background](#1-project-background)
 
