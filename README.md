@@ -1,6 +1,6 @@
 # Marriott Reparative Metadata Assessment Tool (MaRMAT) - Beta
 
-MaRMAT Beta is now obsolete. For the most current MaRMAT, see https://github.com/marriott-library/MaRMAT. 
+**MaRMAT Beta is now obsolete. For the most current MaRMAT, see https://github.com/marriott-library/MaRMAT.** 
 
 The Marriott Reparative Metadata Assessment Tool (MaRMAT) is a Python application designed for auditing collections metadata files against a lexicon of potentially problematic terms. The tool's design facilitates an easy-to-follow process for assessing metadata using a lexicon of terms. For PC user's, we provide a graphical interface for file loading, column selection, and term matching, making it user-friendly for those with limited programming experience. The tool can also be run in your command line. 
 
